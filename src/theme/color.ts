@@ -1,10 +1,9 @@
 const palette = {
-  black: '#000000',
+  black: '#000A1D',
   white: '#FFFFFF',
-  lightBlue: '#1DB3F4',
-  darkBlue: '#161B30',
-  darkestBlue: '#0E1221',
-  red: '#FF2B4E',
+  green: '#27D4D4',
+  lightGreen: '#EAF8F9',
+  red: '#D32D27',
 }
 
 /**
@@ -36,13 +35,13 @@ export const color = {
   /**
    * Primary color
    */
-  primary: palette.lightBlue,
+  primary: palette.green,
   /**
    * Secondary color
    */
-  secondary: palette.darkestBlue,
+  secondary: palette.lightGreen,
   /**
    * Tertiary color
    */
-  tertiary: palette.darkBlue,
+  tertiary: palette.black,
 }

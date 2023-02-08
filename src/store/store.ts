@@ -2,7 +2,9 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import thunk from 'redux-thunk'
-import appSlice from './slices/app/appSlice'
+import appSlice from '../modules/App/stores/appSlice'
+import dashboardSlice from '../modules/Dashboard/stores/dashboardSlice'
+import authSlice from '../modules/Login/stores/authSlice'
 
 // =================
 // Configuration
@@ -14,6 +16,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   app: appSlice,
+  auth: authSlice,
+  dashboard: dashboardSlice,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

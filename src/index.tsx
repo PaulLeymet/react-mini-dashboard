@@ -1,12 +1,48 @@
+import { createTheme } from '@mui/material'
+import { ThemeProvider } from '@mui/system'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { Provider } from 'react-redux'
+import { persistStore } from 'redux-persist'
+import { PersistGate } from 'redux-persist/integration/react'
+import './index.css'
 import App from './modules/App/App'
 import reportWebVitals from './reportWebVitals'
+import { store } from './store/store'
+import { color } from './theme/color'
+
+// =================
+// MUI theme
+// =================
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: color.primary,
+    },
+    secondary: {
+      main: color.secondary,
+    },
+    info: {
+      main: color.white,
+    },
+  },
+})
+
+// =================
+// Persistent store
+// =================
+let persistor = persistStore(store)
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
+    </ThemeProvider>
   </React.StrictMode>,
 )
 

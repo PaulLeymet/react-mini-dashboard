@@ -15,15 +15,18 @@ export default function DesignText({
   variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'caption' | 'button' | 'overline' | 'inherit'
   onClick?: () => void
 }) {
+  const styles: SxProps<Theme> = {
+    cursor: onClick ? 'pointer' : 'auto',
+    color: color.black,
+  }
+
   return (
     <Typography
       sx={{
-        ...{
-          cursor: onClick ? 'pointer' : 'auto',
-          color: color.black,
-        },
+        ...styles,
         ...sx,
       }}
+      textAlign={'center'}
       variant={variant}
       className={className}
       onClick={onClick}

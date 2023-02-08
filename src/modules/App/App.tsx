@@ -1,43 +1,9 @@
-import { createTheme } from '@mui/material'
-import { ThemeProvider } from '@mui/system'
-import { CSSProperties } from 'react'
-import { Provider } from 'react-redux'
+import { CSSProperties, useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { persistStore } from 'redux-persist'
-import { PersistGate } from 'redux-persist/integration/react'
-import { store } from '../../store/store'
-import { color } from '../../theme/color'
-import Home from '../Home/Home'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import Dashboard from '../Dashboard/Dashboard'
 import Login from '../Login/Login'
-
-// =================
-// MUI theme
-// =================
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: color.primary,
-    },
-    secondary: {
-      main: color.secondary,
-    },
-    info: {
-      main: color.white,
-    },
-  },
-  typography: {
-    h1: {
-      fontFamily: 'BeaufortForLoL',
-      fontSize: 45,
-    },
-    fontFamily: 'Spiegel',
-  },
-})
-
-// =================
-// Persistent store
-// =================
-let persistor = persistStore(store)
+import { resetAuth, selectAuth } from '../Login/stores/authSlice'
 
 // =================
 // Routes
@@ -45,7 +11,7 @@ let persistor = persistStore(store)
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <Dashboard />,
   },
   {
     path: '/login',
@@ -54,17 +20,44 @@ const router = createBrowserRouter([
 ])
 
 export default function App() {
-  return (
-    <div style={styles.app}>
-      <ThemeProvider theme={theme}>
-        <Provider store={store}>
-          <PersistGate persistor={persistor}>
-            <RouterProvider router={router} />
-          </PersistGate>
-        </Provider>
-      </ThemeProvider>
-    </div>
-  )
+  // =================
+  // Stores
+  // =================
+  const auth = useAppSelector(selectAuth)
+  const dispatch = useAppDispatch()
+
+  // =================
+  // States
+  // =================
+  const [authenticated, setAuthenticated] = useState(false)
+
+  // =================
+  // Hooks
+  // =================
+  useEffect(() => {
+    authenticate()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auth.token])
+
+  // =================
+  // Methods
+  // =================
+  const authenticate = () => {
+    // @TODO : To be replaced by an API call to server with response indicating if user is authorize + user data
+    if (auth.token) {
+      setAuthenticated(true)
+      // @TODO : Store user data received from server
+      // dispatch(setUser(data))
+    } else {
+      setAuthenticated(false)
+      dispatch(resetAuth())
+    }
+  }
+
+  // =================
+  // Render
+  // =================
+  return <div style={styles.app}>{authenticated ? <RouterProvider router={router} /> : <Login />}</div>
 }
 
 const styles: {
