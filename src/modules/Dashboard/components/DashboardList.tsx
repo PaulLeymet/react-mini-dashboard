@@ -31,8 +31,6 @@ export default function DashboardList({ category, style }: { category: Dashboard
   const getElements = (): AuthGenericType | null => {
     switch (category) {
       case 'film':
-        console.log('TZST', dashboard.films)
-
         return dashboard.films
       case 'people':
         return dashboard.people
@@ -78,7 +76,6 @@ export default function DashboardList({ category, style }: { category: Dashboard
   // Render
   // =================
   const renderElement = (data: any) => {
-    console.log('TEST')
     switch (category) {
       case 'film':
         return <Film key={data.name} film={data as FilmType} />
