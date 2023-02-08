@@ -24,8 +24,8 @@ export default function ListElement({ id, style, onShow, onAdd }: { id: string; 
   // Render
   // =================
   return (
-    <ListItem>
-      <div style={styles.component} onClick={onShow}>
+    <ListItem style={styles.component}>
+      <div onClick={onShow}>
         <DesignText sx={styles.text}>{id}</DesignText>
       </div>
     </ListItem>
@@ -37,8 +37,8 @@ const styles: {
 } = {
   component: {
     cursor: 'pointer',
-    width: 100,
-    height: 100,
+    width: '10%',
+    height: '90%',
     background: color.primary,
     margin: 4,
     display: 'flex',

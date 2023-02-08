@@ -96,13 +96,15 @@ export default function DashboardList({ category, style }: { category: Dashboard
 
   return (
     <div style={{ ...styles.component, ...style }}>
-      <ArrowBackIosIcon style={{ ...styles.chevron, ...(canBack ? null : styles.inactive) }} onClick={onBack} />
-      <List sx={styles.component} subheader={<li />}>
-        {peopleData?.results?.map((element: any) => {
-          return renderElement(element)
-        })}
-      </List>
-      <ArrowForwardIosIcon style={{ ...styles.chevron, ...(canForward ? null : styles.inactive) }} onClick={onForward} />
+      <div style={styles.content}>
+        <ArrowBackIosIcon style={{ ...styles.chevron, ...(canBack ? null : styles.inactive) }} onClick={onBack} />
+        <List sx={styles.list} subheader={<li />}>
+          {peopleData?.results?.map((element: any) => {
+            return renderElement(element)
+          })}
+        </List>
+        <ArrowForwardIosIcon style={{ ...styles.chevron, ...(canForward ? null : styles.inactive) }} onClick={onForward} />
+      </div>
     </div>
   )
 }
@@ -112,8 +114,23 @@ const styles: {
 } = {
   component: {
     display: 'flex',
+    width: '100%',
+    height: '100%',
+  },
+  content: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    margin: 30,
+  },
+  list: {
+    display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    width: '100%',
+    height: '100%',
+    padding: 0,
   },
   chevron: {
     cursor: 'pointer',

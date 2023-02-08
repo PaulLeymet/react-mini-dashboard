@@ -26,6 +26,9 @@ const theme = createTheme({
       main: color.white,
     },
   },
+  typography: {
+    fontFamily: 'revert-layer',
+  },
 })
 
 // =================

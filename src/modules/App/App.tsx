@@ -63,5 +63,8 @@ export default function App() {
 const styles: {
   [key: string]: CSSProperties | undefined
 } = {
-  app: {},
+  app: {
+    width: '100%',
+    height: '100%',
+  },
 }

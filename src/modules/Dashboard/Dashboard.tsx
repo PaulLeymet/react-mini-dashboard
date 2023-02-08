@@ -1,4 +1,6 @@
 import { CSSProperties, useEffect } from 'react'
+import DesignHeader from '../../design-system/DesignText/DesignHeader'
+import DesignVerticalTabs from '../../design-system/DesignVerticalTabs/DesignVerticalTabs'
 import { useAppDispatch } from '../../store/hooks'
 import { color } from '../../theme/color'
 import { getApi } from '../../utils/api'
@@ -55,12 +57,69 @@ export default function Dashboard() {
   // =================
   return (
     <div style={styles.page}>
-      <DashboardList style={styles.cardContainer} category="film" />
-      <DashboardList style={styles.cardContainer} category="people" />
-      <DashboardList style={styles.cardContainer} category="planets" />
-      <DashboardList style={styles.cardContainer} category="species" />
-      <DashboardList style={styles.cardContainer} category="starships" />
-      <DashboardList style={styles.cardContainer} category="vehicles" />
+      <div style={styles.elementsSection}>
+        <DesignHeader sx={styles.header}>Elements</DesignHeader>
+        <DesignVerticalTabs
+          tabs={[
+            {
+              label: 'Films',
+              content: <DashboardList style={styles.cardContainer} category="film" />,
+            },
+            {
+              label: 'People',
+              content: <DashboardList style={styles.cardContainer} category="people" />,
+            },
+            {
+              label: 'Planets',
+              content: <DashboardList style={styles.cardContainer} category="planets" />,
+            },
+            {
+              label: 'Species',
+              content: <DashboardList style={styles.cardContainer} category="species" />,
+            },
+            {
+              label: 'Starships',
+              content: <DashboardList style={styles.cardContainer} category="starships" />,
+            },
+            {
+              label: 'Vehicles',
+              content: <DashboardList style={styles.cardContainer} category="vehicles" />,
+            },
+          ]}
+        />
+      </div>
+
+      <div style={styles.ressourcesSection}>
+        <DesignHeader sx={styles.header}>Ressources</DesignHeader>
+        <DesignVerticalTabs
+          tabs={[
+            {
+              label: 'Films',
+              content: <DashboardList style={styles.cardContainer} category="film" />,
+            },
+            {
+              label: 'People',
+              content: <DashboardList style={styles.cardContainer} category="people" />,
+            },
+            {
+              label: 'Planets',
+              content: <DashboardList style={styles.cardContainer} category="planets" />,
+            },
+            {
+              label: 'Species',
+              content: <DashboardList style={styles.cardContainer} category="species" />,
+            },
+            {
+              label: 'Starships',
+              content: <DashboardList style={styles.cardContainer} category="starships" />,
+            },
+            {
+              label: 'Vehicles',
+              content: <DashboardList style={styles.cardContainer} category="vehicles" />,
+            },
+          ]}
+        />
+      </div>
     </div>
   )
 }
@@ -70,18 +129,33 @@ const styles: {
 } = {
   page: {
     width: '100%',
+    height: '100%',
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'self-start',
+    justifyContent: 'self-start',
     flexDirection: 'column',
   },
   cardContainer: {
     background: color.secondary,
-    padding: 30,
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    margin: 10,
+    height: '100%',
+  },
+  elementsSection: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    width: '100%',
+  },
+  ressourcesSection: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    width: '100%',
+  },
+  header: {
+    margin: 2,
   },
 }
