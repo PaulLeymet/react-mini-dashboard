@@ -1,8 +1,8 @@
 import { CSSProperties } from 'react'
-import { FilmType } from '../stores/types/FilmType'
-import ListElement from './ListElement'
+import { VehicleType } from '../../../stores/types/VehicleType'
+import ListElement from '../ListElement'
 
-export default function Film({ film, style }: { film: FilmType; style?: CSSProperties }) {
+export default function VehicleDetailled({ vehicle, style }: { vehicle: VehicleType; style?: CSSProperties }) {
   // =================
   // Stores
   // =================
@@ -22,5 +22,5 @@ export default function Film({ film, style }: { film: FilmType; style?: CSSPrope
   // =================
   // Render
   // =================
-  return <ListElement label={film.title} />
+  return <ListElement id={vehicle.name} />
 }

@@ -11,12 +11,12 @@ import { PlanetType } from '../stores/types/PlanetType'
 import { SpecieType } from '../stores/types/SpecieType'
 import { StarshipType } from '../stores/types/StarshipType'
 import { VehicleType } from '../stores/types/VehicleType'
-import Film from './Film'
-import People from './People'
-import Planet from './Planet'
-import Specie from './Specie'
-import Starship from './Starship'
-import Vehicle from './Vehicle'
+import Film from './Elements/Film/Film'
+import People from './Elements/People/People'
+import Planet from './Elements/Planet/Planet'
+import Specie from './Elements/Specie/Specie'
+import Starship from './Elements/Starship/Starship'
+import Vehicle from './Elements/Vehicle/Vehicle'
 
 export default function DashboardList({ category, style }: { category: DashboardCategory; style?: CSSProperties }) {
   // =================

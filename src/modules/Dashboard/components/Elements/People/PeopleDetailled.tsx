@@ -1,8 +1,7 @@
-import { CSSProperties } from 'react'
-import { VehicleType } from '../stores/types/VehicleType'
-import ListElement from './ListElement'
+import { PeopleType } from '../../../stores/types/PeopleType'
+import ListElement from '../ListElement'
 
-export default function Vehicle({ vehicle, style }: { vehicle: VehicleType; style?: CSSProperties }) {
+export default function PeopleDetailled({ people }: { people: PeopleType }) {
   // =================
   // Stores
   // =================
@@ -22,5 +21,5 @@ export default function Vehicle({ vehicle, style }: { vehicle: VehicleType; styl
   // =================
   // Render
   // =================
-  return <ListElement label={vehicle.name} />
+  return <ListElement id={people.name} />
 }

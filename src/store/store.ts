@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 import thunk from 'redux-thunk'
 import appSlice from '../modules/App/stores/appSlice'
 import dashboardSlice from '../modules/Dashboard/stores/dashboardSlice'
+import modalSlice from '../modules/Dashboard/stores/modalSlice'
 import authSlice from '../modules/Login/stores/authSlice'
 
 // =================
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   app: appSlice,
   auth: authSlice,
   dashboard: dashboardSlice,
+  modal: modalSlice,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

@@ -1,8 +1,8 @@
 import { CSSProperties } from 'react'
-import { SpecieType } from '../stores/types/SpecieType'
-import ListElement from './ListElement'
+import { StarshipType } from '../../../stores/types/StarshipType'
+import ListElement from '../ListElement'
 
-export default function Specie({ specie, style }: { specie: SpecieType; style?: CSSProperties }) {
+export default function StarshipDetailled({ starship, style }: { starship: StarshipType; style?: CSSProperties }) {
   // =================
   // Stores
   // =================
@@ -22,5 +22,5 @@ export default function Specie({ specie, style }: { specie: SpecieType; style?: 
   // =================
   // Render
   // =================
-  return <ListElement label={specie.name} />
+  return <ListElement id={starship.name} />
 }

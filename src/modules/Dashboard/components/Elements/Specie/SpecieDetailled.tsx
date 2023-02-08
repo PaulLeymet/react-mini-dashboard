@@ -1,8 +1,8 @@
 import { CSSProperties } from 'react'
-import { PlanetType } from '../stores/types/PlanetType'
-import ListElement from './ListElement'
+import { SpecieType } from '../../../stores/types/SpecieType'
+import ListElement from '../ListElement'
 
-export default function Planet({ planet, style }: { planet: PlanetType; style?: CSSProperties }) {
+export default function SpecieDetailled({ specie, style }: { specie: SpecieType; style?: CSSProperties }) {
   // =================
   // Stores
   // =================
@@ -22,5 +22,5 @@ export default function Planet({ planet, style }: { planet: PlanetType; style?: 
   // =================
   // Render
   // =================
-  return <ListElement label={planet.name} />
+  return <ListElement id={specie.name} />
 }

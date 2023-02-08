@@ -1,8 +1,8 @@
 import { CSSProperties } from 'react'
-import { StarshipType } from '../stores/types/StarshipType'
-import ListElement from './ListElement'
+import { PlanetType } from '../../../stores/types/PlanetType'
+import ListElement from '../ListElement'
 
-export default function Starship({ starship, style }: { starship: StarshipType; style?: CSSProperties }) {
+export default function PlanetDetailled({ planet, style }: { planet: PlanetType; style?: CSSProperties }) {
   // =================
   // Stores
   // =================
@@ -22,5 +22,5 @@ export default function Starship({ starship, style }: { starship: StarshipType; 
   // =================
   // Render
   // =================
-  return <ListElement label={starship.name} />
+  return <ListElement id={planet.name} />
 }

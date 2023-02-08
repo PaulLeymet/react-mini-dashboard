@@ -1,9 +1,9 @@
 import { ListItem } from '@mui/material'
 import { CSSProperties } from 'react'
-import DesignText from '../../../design-system/DesignText/DesignText'
-import { color } from '../../../theme/color'
+import DesignText from '../../../../design-system/DesignText/DesignText'
+import { color } from '../../../../theme/color'
 
-export default function ListElement({ label, style }: { label: string; style?: CSSProperties }) {
+export default function ListElement({ id, style, onShow, onAdd }: { id: string; style?: CSSProperties; onShow?: () => void; onAdd?: () => void }) {
   // =================
   // Stores
   // =================
@@ -25,8 +25,8 @@ export default function ListElement({ label, style }: { label: string; style?: C
   // =================
   return (
     <ListItem>
-      <div style={styles.component}>
-        <DesignText sx={styles.text}>{label}</DesignText>
+      <div style={styles.component} onClick={onShow}>
+        <DesignText sx={styles.text}>{id}</DesignText>
       </div>
     </ListItem>
   )

@@ -1,7 +1,8 @@
-import { PeopleType } from '../stores/types/PeopleType'
-import ListElement from './ListElement'
+import { CSSProperties } from 'react'
+import { FilmType } from '../../../stores/types/FilmType'
+import ListElement from '../ListElement'
 
-export default function People({ people }: { people: PeopleType }) {
+export default function FilmDetailled({ film, style }: { film: FilmType; style?: CSSProperties }) {
   // =================
   // Stores
   // =================
@@ -21,5 +22,5 @@ export default function People({ people }: { people: PeopleType }) {
   // =================
   // Render
   // =================
-  return <ListElement label={people.name} />
+  return <ListElement id={film.title} />
 }
