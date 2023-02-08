@@ -23,6 +23,7 @@ export default function Film({ film, style }: { film: FilmType; style?: CSSPrope
   // Methods
   // =================
   const onShowDetail = () => {
+    console.log(film)
     dispatch(displayInModal(<FilmDetailled film={film} />))
   }
 

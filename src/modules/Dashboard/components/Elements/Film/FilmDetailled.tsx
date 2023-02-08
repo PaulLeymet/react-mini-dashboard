@@ -1,6 +1,5 @@
-import { CSSProperties } from 'react'
-import { FilmType } from '../../../stores/types/FilmType'
-import ListElement from '../ListElement'
+import { CSSProperties } from 'react';
+import { FilmType } from '../../../stores/types/FilmType';
 
 export default function FilmDetailled({ film, style }: { film: FilmType; style?: CSSProperties }) {
   // =================
@@ -22,5 +21,5 @@ export default function FilmDetailled({ film, style }: { film: FilmType; style?:
   // =================
   // Render
   // =================
-  return <ListElement id={film.title} />
+  return  <></>
 }

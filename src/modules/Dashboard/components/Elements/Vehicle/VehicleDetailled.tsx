@@ -1,6 +1,5 @@
 import { CSSProperties } from 'react'
 import { VehicleType } from '../../../stores/types/VehicleType'
-import ListElement from '../ListElement'
 
 export default function VehicleDetailled({ vehicle, style }: { vehicle: VehicleType; style?: CSSProperties }) {
   // =================
@@ -22,5 +21,5 @@ export default function VehicleDetailled({ vehicle, style }: { vehicle: VehicleT
   // =================
   // Render
   // =================
-  return <ListElement id={vehicle.name} />
+  return <></>
 }

@@ -1,4 +1,5 @@
 import { ListItem } from '@mui/material'
+import { motion } from 'framer-motion'
 import { CSSProperties } from 'react'
 import DesignText from '../../../../design-system/DesignText/DesignText'
 import { color } from '../../../../theme/color'
@@ -24,11 +25,13 @@ export default function ListElement({ id, style, onShow, onAdd }: { id: string; 
   // Render
   // =================
   return (
-    <ListItem style={styles.component}>
-      <div onClick={onShow}>
-        <DesignText sx={styles.text}>{id}</DesignText>
-      </div>
-    </ListItem>
+    <motion.div style={styles.component} initial={{ scale: 1 }} whileHover={{ scale: 1.05 }}>
+      <ListItem style={styles.listItem} onClick={onShow}>
+        <div>
+          <DesignText sx={styles.text}>{id}</DesignText>
+        </div>
+      </ListItem>
+    </motion.div>
   )
 }
 
@@ -45,6 +48,13 @@ const styles: {
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
+  },
+  listItem: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   text: {
     pointerEvents: 'none',

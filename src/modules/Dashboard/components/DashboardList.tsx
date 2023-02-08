@@ -78,7 +78,7 @@ export default function DashboardList({ category, style }: { category: Dashboard
   const renderElement = (data: any) => {
     switch (category) {
       case 'film':
-        return <Film key={data.name} film={data as FilmType} />
+        return <Film key={data.title} film={data as FilmType} />
       case 'people':
         return <People key={data.name} people={data as PeopleType} />
       case 'planets':

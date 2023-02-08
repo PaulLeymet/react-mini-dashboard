@@ -1,5 +1,6 @@
 import { CSSProperties, useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import DesignModal from '../../design-system/DesignModal/DesignModal'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import Dashboard from '../Dashboard/Dashboard'
 import Login from '../Login/Login'
@@ -57,7 +58,12 @@ export default function App() {
   // =================
   // Render
   // =================
-  return <div style={styles.app}>{authenticated ? <RouterProvider router={router} /> : <Login />}</div>
+  return (
+    <div style={styles.app}>
+      {authenticated ? <RouterProvider router={router} /> : <Login />}
+      <DesignModal />
+    </div>
+  )
 }
 
 const styles: {
