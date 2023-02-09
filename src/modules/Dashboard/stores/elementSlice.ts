@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../../store/store'
+import { ElementsCategory } from './types/CategoryType'
 import { FilmType } from './types/FilmType'
 import { PeopleType } from './types/PeopleType'
 import { PlanetType } from './types/PlanetType'
@@ -10,7 +11,6 @@ import { VehicleType } from './types/VehicleType'
 // =================
 // Types
 // =================
-export type DashboardCategory = 'film' | 'people' | 'planets' | 'species' | 'starships' | 'vehicles'
 
 export interface AuthGenericType {
   count: number
@@ -72,9 +72,9 @@ const initialState: AuthType = {
 // =================
 // Slice
 // =================
-export const dashboardSlice = createSlice({
+export const elementSlice = createSlice({
   reducers: {
-    updateData: (state, action: PayloadAction<{ category: DashboardCategory; data: AuthGenericType }>) => {
+    updateData: (state, action: PayloadAction<{ category: ElementsCategory; data: AuthGenericType }>) => {
       switch (action.payload.category) {
         case 'film':
           state.films = action.payload.data
@@ -99,18 +99,18 @@ export const dashboardSlice = createSlice({
       }
     },
   },
-  name: 'dashboardSlice',
+  name: 'elementSlice',
   initialState: initialState,
 })
 
 // =================
 // Actions
 // =================
-export const { updateData } = dashboardSlice.actions
+export const { updateData } = elementSlice.actions
 
 // =================
 // Selectors
 // =================
-export const selectDashboard = (state: RootState) => state.dashboard
+export const selectElements = (state: RootState) => state.elements
 
-export default dashboardSlice.reducer
+export default elementSlice.reducer

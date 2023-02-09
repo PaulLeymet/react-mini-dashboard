@@ -2,27 +2,28 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { List } from '@mui/material'
 import { CSSProperties } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/hooks'
-import { getApi } from '../../../utils/api'
-import { AuthGenericType, DashboardCategory, selectDashboard, updateData } from '../stores/dashboardSlice'
-import { FilmType } from '../stores/types/FilmType'
-import { PeopleType } from '../stores/types/PeopleType'
-import { PlanetType } from '../stores/types/PlanetType'
-import { SpecieType } from '../stores/types/SpecieType'
-import { StarshipType } from '../stores/types/StarshipType'
-import { VehicleType } from '../stores/types/VehicleType'
-import Film from './Elements/Film/Film'
-import People from './Elements/People/People'
-import Planet from './Elements/Planet/Planet'
-import Specie from './Elements/Specie/Specie'
-import Starship from './Elements/Starship/Starship'
-import Vehicle from './Elements/Vehicle/Vehicle'
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
+import { getApi } from '../../../../utils/api'
+import { AuthGenericType, selectElements, updateData } from '../../stores/elementSlice'
+import { ElementsCategory } from '../../stores/types/CategoryType'
+import { FilmType } from '../../stores/types/FilmType'
+import { PeopleType } from '../../stores/types/PeopleType'
+import { PlanetType } from '../../stores/types/PlanetType'
+import { SpecieType } from '../../stores/types/SpecieType'
+import { StarshipType } from '../../stores/types/StarshipType'
+import { VehicleType } from '../../stores/types/VehicleType'
+import Film from './Film/Film'
+import People from './People/People'
+import Planet from './Planet/Planet'
+import Specie from './Specie/Specie'
+import Starship from './Starship/Starship'
+import Vehicle from './Vehicle/Vehicle'
 
-export default function DashboardList({ category, style }: { category: DashboardCategory; style?: CSSProperties }) {
+export default function ElementsList({ category, style }: { category: ElementsCategory; style?: CSSProperties }) {
   // =================
   // Stores
   // =================
-  const dashboard = useAppSelector(selectDashboard)
+  const dashboard = useAppSelector(selectElements)
   const dispatch = useAppDispatch()
 
   // =================
@@ -46,9 +47,9 @@ export default function DashboardList({ category, style }: { category: Dashboard
         return null
     }
   }
-  const peopleData = getElements()
-  const canBack = !!peopleData?.previous
-  const canForward = !!peopleData?.next
+  const elements = getElements()
+  const canBack = !!elements?.previous
+  const canForward = !!elements?.next
 
   // =================
   // Hooks
@@ -59,15 +60,15 @@ export default function DashboardList({ category, style }: { category: Dashboard
   // =================
 
   const onBack = async () => {
-    if (peopleData?.previous) {
-      const { data } = await getApi(peopleData.previous)
+    if (elements?.previous) {
+      const { data } = await getApi(elements.previous)
       dispatch(updateData({ category, data }))
     }
   }
 
   const onForward = async () => {
-    if (peopleData?.next) {
-      const { data } = await getApi(peopleData.next)
+    if (elements?.next) {
+      const { data } = await getApi(elements.next)
       dispatch(updateData({ category, data }))
     }
   }
@@ -99,7 +100,7 @@ export default function DashboardList({ category, style }: { category: Dashboard
       <div style={styles.content}>
         <ArrowBackIosIcon style={{ ...styles.chevron, ...(canBack ? null : styles.inactive) }} onClick={onBack} />
         <List sx={styles.list} subheader={<li />}>
-          {peopleData?.results?.map((element: any) => {
+          {elements?.results?.map((element: any) => {
             return renderElement(element)
           })}
         </List>

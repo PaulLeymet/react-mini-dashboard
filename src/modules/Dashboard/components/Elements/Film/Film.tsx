@@ -1,8 +1,9 @@
 import { CSSProperties } from 'react'
-import { useAppDispatch } from '../../../../../store/hooks'
+import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
 import { displayInModal } from '../../../stores/modalSlice'
+import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
 import { FilmType } from '../../../stores/types/FilmType'
-import ListElement from '../ListElement'
+import Element from '../Element'
 import FilmDetailled from './FilmDetailled'
 
 export default function Film({ film, style }: { film: FilmType; style?: CSSProperties }) {
@@ -10,10 +11,12 @@ export default function Film({ film, style }: { film: FilmType; style?: CSSPrope
   // Stores
   // =================
   const dispatch = useAppDispatch()
+  const ressources = useAppSelector(selectRessources)
 
   // =================
   // States
   // =================
+  const selected = ressources.films.some((e) => e.title === film.title)
 
   // =================
   // Hooks
@@ -23,14 +26,29 @@ export default function Film({ film, style }: { film: FilmType; style?: CSSPrope
   // Methods
   // =================
   const onShowDetail = () => {
-    console.log(film)
     dispatch(displayInModal(<FilmDetailled film={film} />))
   }
 
-  const onAddRessource = () => {}
+  const onAddRessource = () => {
+    if (selected) {
+      dispatch(
+        removeRessource({
+          category: 'film',
+          ressource: film,
+        }),
+      )
+    } else {
+      dispatch(
+        addRessource({
+          category: 'film',
+          ressource: film,
+        }),
+      )
+    }
+  }
 
   // =================
   // Render
   // =================
-  return <ListElement id={film.title} onShow={onShowDetail} onAdd={onAddRessource} />
+  return <Element selected={selected} id={film.title} onShow={onShowDetail} onAdd={onAddRessource} />
 }

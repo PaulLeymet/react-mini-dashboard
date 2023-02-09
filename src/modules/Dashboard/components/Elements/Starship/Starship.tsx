@@ -1,8 +1,9 @@
 import { CSSProperties } from 'react'
-import { useAppDispatch } from '../../../../../store/hooks'
+import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
 import { displayInModal } from '../../../stores/modalSlice'
+import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
 import { StarshipType } from '../../../stores/types/StarshipType'
-import ListElement from '../ListElement'
+import Element from '../Element'
 import StarshipDetailled from './StarshipDetailled'
 
 export default function Starship({ starship, style }: { starship: StarshipType; style?: CSSProperties }) {
@@ -10,10 +11,12 @@ export default function Starship({ starship, style }: { starship: StarshipType; 
   // Stores
   // =================
   const dispatch = useAppDispatch()
+  const ressources = useAppSelector(selectRessources)
 
   // =================
   // States
   // =================
+  const selected = ressources.starships.some((e) => e.name === starship.name)
 
   // =================
   // Hooks
@@ -26,10 +29,26 @@ export default function Starship({ starship, style }: { starship: StarshipType; 
     dispatch(displayInModal(<StarshipDetailled starship={starship} />))
   }
 
-  const onAddRessource = () => {}
+  const onAddRessource = () => {
+    if (selected) {
+      dispatch(
+        removeRessource({
+          category: 'starships',
+          ressource: starship,
+        }),
+      )
+    } else {
+      dispatch(
+        addRessource({
+          category: 'starships',
+          ressource: starship,
+        }),
+      )
+    }
+  }
 
   // =================
   // Render
   // =================
-  return <ListElement id={starship.name} onShow={onShowDetail} onAdd={onAddRessource} />
+  return <Element selected={selected} id={starship.name} onShow={onShowDetail} onAdd={onAddRessource} />
 }

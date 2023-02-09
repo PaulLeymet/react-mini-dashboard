@@ -1,8 +1,9 @@
 import { CSSProperties } from 'react'
-import { useAppDispatch } from '../../../../../store/hooks'
+import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
 import { displayInModal } from '../../../stores/modalSlice'
+import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
 import { SpecieType } from '../../../stores/types/SpecieType'
-import ListElement from '../ListElement'
+import Element from '../Element'
 import SpecieDetailled from './SpecieDetailled'
 
 export default function Specie({ specie, style }: { specie: SpecieType; style?: CSSProperties }) {
@@ -10,10 +11,12 @@ export default function Specie({ specie, style }: { specie: SpecieType; style?: 
   // Stores
   // =================
   const dispatch = useAppDispatch()
+  const ressources = useAppSelector(selectRessources)
 
   // =================
   // States
   // =================
+  const selected = ressources.species.some((e) => e.name === specie.name)
 
   // =================
   // Hooks
@@ -26,10 +29,26 @@ export default function Specie({ specie, style }: { specie: SpecieType; style?: 
     dispatch(displayInModal(<SpecieDetailled specie={specie} />))
   }
 
-  const onAddRessource = () => {}
+  const onAddRessource = () => {
+    if (selected) {
+      dispatch(
+        removeRessource({
+          category: 'species',
+          ressource: specie,
+        }),
+      )
+    } else {
+      dispatch(
+        addRessource({
+          category: 'species',
+          ressource: specie,
+        }),
+      )
+    }
+  }
 
   // =================
   // Render
   // =================
-  return <ListElement id={specie.name} onShow={onShowDetail} onAdd={onAddRessource} />
+  return <Element selected={selected} id={specie.name} onShow={onShowDetail} onAdd={onAddRessource} />
 }

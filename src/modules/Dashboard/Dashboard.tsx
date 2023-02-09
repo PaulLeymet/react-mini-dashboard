@@ -4,8 +4,9 @@ import DesignVerticalTabs from '../../design-system/DesignVerticalTabs/DesignVer
 import { useAppDispatch } from '../../store/hooks'
 import { color } from '../../theme/color'
 import { getApi } from '../../utils/api'
-import DashboardList from './components/DashboardList'
-import { AuthGenericType, updateData } from './stores/dashboardSlice'
+import ElementsList from './components/Elements/ElementsList'
+import RessourcesList from './components/Ressources/RessourcesList'
+import { AuthGenericType, updateData } from './stores/elementSlice'
 
 export default function Dashboard() {
   // =================
@@ -63,27 +64,27 @@ export default function Dashboard() {
           tabs={[
             {
               label: 'Films',
-              content: <DashboardList style={styles.cardContainer} category="film" />,
+              content: <ElementsList style={styles.cardContainer} category="film" />,
             },
             {
               label: 'People',
-              content: <DashboardList style={styles.cardContainer} category="people" />,
+              content: <ElementsList style={styles.cardContainer} category="people" />,
             },
             {
               label: 'Planets',
-              content: <DashboardList style={styles.cardContainer} category="planets" />,
+              content: <ElementsList style={styles.cardContainer} category="planets" />,
             },
             {
               label: 'Species',
-              content: <DashboardList style={styles.cardContainer} category="species" />,
+              content: <ElementsList style={styles.cardContainer} category="species" />,
             },
             {
               label: 'Starships',
-              content: <DashboardList style={styles.cardContainer} category="starships" />,
+              content: <ElementsList style={styles.cardContainer} category="starships" />,
             },
             {
               label: 'Vehicles',
-              content: <DashboardList style={styles.cardContainer} category="vehicles" />,
+              content: <ElementsList style={styles.cardContainer} category="vehicles" />,
             },
           ]}
         />
@@ -95,27 +96,27 @@ export default function Dashboard() {
           tabs={[
             {
               label: 'Films',
-              content: <DashboardList style={styles.cardContainer} category="film" />,
+              content: <RessourcesList style={styles.cardContainer} category="film" />,
             },
             {
               label: 'People',
-              content: <DashboardList style={styles.cardContainer} category="people" />,
+              content: <RessourcesList style={styles.cardContainer} category="people" />,
             },
             {
               label: 'Planets',
-              content: <DashboardList style={styles.cardContainer} category="planets" />,
+              content: <RessourcesList style={styles.cardContainer} category="planets" />,
             },
             {
               label: 'Species',
-              content: <DashboardList style={styles.cardContainer} category="species" />,
+              content: <RessourcesList style={styles.cardContainer} category="species" />,
             },
             {
               label: 'Starships',
-              content: <DashboardList style={styles.cardContainer} category="starships" />,
+              content: <RessourcesList style={styles.cardContainer} category="starships" />,
             },
             {
               label: 'Vehicles',
-              content: <DashboardList style={styles.cardContainer} category="vehicles" />,
+              content: <RessourcesList style={styles.cardContainer} category="vehicles" />,
             },
           ]}
         />
