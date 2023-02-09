@@ -26,7 +26,7 @@ export default function DesignTabs({ tabs, style }: { tabs: { label: string; con
       marginTop: 10,
     },
     tab: {
-      width: '20%',
+      width: `${100 / 6}%`,
     },
     tabPanel: {
       width: '100%',
