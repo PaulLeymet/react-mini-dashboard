@@ -65,9 +65,10 @@ const styles: {
 } = {
   main: {
     cursor: 'pointer',
-    width: '80%',
+    maxWidth: 400,
+    minWidth: 80,
     height: 50,
-    background: color.secondary,
+    background: color.white + 'E8',
     margin: 4,
     display: 'flex',
     alignItems: 'center',

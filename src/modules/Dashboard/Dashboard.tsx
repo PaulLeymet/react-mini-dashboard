@@ -1,5 +1,5 @@
 import { CSSProperties, useEffect } from 'react'
-import DesignVerticalTabs from '../../design-system/DesignVerticalTabs/DesignVerticalTabs'
+import DesignTabs from '../../design-system/DesignTabs/DesignTabs'
 import { useAppDispatch } from '../../store/hooks'
 import { getApi } from '../../utils/api'
 import CategoryPanel from './components/Elements/CategoryPanel'
@@ -55,31 +55,31 @@ export default function Dashboard() {
   // =================
   return (
     <div style={styles.page}>
-      <DesignVerticalTabs
+      <DesignTabs
         tabs={[
           {
             label: 'Films',
-            content: <CategoryPanel style={styles.categoryPanel} category="film" />,
+            content: <CategoryPanel category="film" />,
           },
           {
             label: 'People',
-            content: <CategoryPanel style={styles.categoryPanel} category="people" />,
+            content: <CategoryPanel category="people" />,
           },
           {
             label: 'Planets',
-            content: <CategoryPanel style={styles.categoryPanel} category="planets" />,
+            content: <CategoryPanel category="planets" />,
           },
           {
             label: 'Species',
-            content: <CategoryPanel style={styles.categoryPanel} category="species" />,
+            content: <CategoryPanel category="species" />,
           },
           {
             label: 'Starships',
-            content: <CategoryPanel style={styles.categoryPanel} category="starships" />,
+            content: <CategoryPanel category="starships" />,
           },
           {
             label: 'Vehicles',
-            content: <CategoryPanel style={styles.categoryPanel} category="vehicles" />,
+            content: <CategoryPanel category="vehicles" />,
           },
         ]}
       />
@@ -98,5 +98,4 @@ const styles: {
     justifyContent: 'self-start',
     flexDirection: 'column',
   },
-  categoryPanel: {},
 }

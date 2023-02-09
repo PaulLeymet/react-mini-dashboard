@@ -2,7 +2,7 @@ import { TabContext, TabPanel } from '@mui/lab'
 import { Tab, Tabs } from '@mui/material'
 import { CSSProperties, useState } from 'react'
 
-export default function DesignVerticalTabs({ tabs, style }: { tabs: { label: string; content: JSX.Element }[]; style?: CSSProperties }) {
+export default function DesignTabs({ tabs, style }: { tabs: { label: string; content: JSX.Element }[]; style?: CSSProperties }) {
   const [value, setValue] = useState(0)
 
   const handleChange = (event: React.SyntheticEvent<Element, Event>, value: any) => {
@@ -14,6 +14,7 @@ export default function DesignVerticalTabs({ tabs, style }: { tabs: { label: str
   } = {
     elements: {
       width: '100%',
+      height: '100%',
       flexDirection: 'column',
       display: 'flex',
     },
@@ -28,7 +29,9 @@ export default function DesignVerticalTabs({ tabs, style }: { tabs: { label: str
     },
     tabPanel: {
       width: '100%',
+      height: '100%',
       overflow: 'hidden',
+      padding: 0,
     },
   }
 

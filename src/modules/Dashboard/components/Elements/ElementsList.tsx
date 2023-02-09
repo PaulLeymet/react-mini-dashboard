@@ -1,8 +1,10 @@
-import { List } from '@mui/material'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import { Grid, List } from '@mui/material'
 import { CSSProperties, useState } from 'react'
+import DesignSpinner from '../../../../design-system/DesignSpinner/DesignSpinner'
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
 import { color } from '../../../../theme/color'
-import { ILLUSTRATIONS } from '../../../../theme/illustrations'
 import { getApi } from '../../../../utils/api'
 import { selectElements, updateData } from '../../stores/elementSlice'
 import { selectRessources } from '../../stores/ressourceSlice'
@@ -111,31 +113,32 @@ export default function ElementsList({
     }
   }
 
-  const renderBackground = () => {
-    switch (category) {
-      case 'film':
-        return ILLUSTRATIONS.films
-      case 'people':
-        return ILLUSTRATIONS.people
-      case 'planets':
-        return ILLUSTRATIONS.planets
-      case 'species':
-        return ILLUSTRATIONS.species
-      case 'starships':
-        return ILLUSTRATIONS.starships
-      case 'vehicles':
-        return ILLUSTRATIONS.vehicles
-      default:
-        break
-    }
-  }
-
   return (
-    <List sx={{ ...styles.main, ...style }}>
-      {elementsList?.map((element: any) => {
-        return renderElement(element)
-      })}
-    </List>
+    <Grid style={styles.main} container spacing={4}>
+      <Grid style={styles.leftContainer} item xs={4}>
+        {isRessourceList ? null : fetching === 'BACKWARD' ? (
+          <DesignSpinner style={styles.spinner} size={30} />
+        ) : (
+          <ArrowBackIosIcon style={{ ...styles.chevron, ...(canBack ? null : styles.inactive) }} onClick={onBack} />
+        )}
+      </Grid>
+
+      <Grid style={styles.middleContainer} item xs={4}>
+        <List sx={{ ...styles.list, ...style }}>
+          {elementsList?.map((element: any) => {
+            return renderElement(element)
+          })}
+        </List>
+      </Grid>
+
+      <Grid style={styles.rightContainer} item xs={4}>
+        {isRessourceList ? null : fetching === 'FORWARD' ? (
+          <DesignSpinner style={styles.spinner} size={30} />
+        ) : (
+          <ArrowForwardIosIcon style={{ ...styles.chevron, ...(canForward ? null : styles.inactive) }} onClick={onForward} />
+        )}
+      </Grid>
+    </Grid>
   )
 }
 
@@ -146,19 +149,56 @@ const styles: {
     display: 'flex',
     width: '100%',
     height: '100%',
+    margin: 0,
+    padding: 0,
+  },
+  leftContainer: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    margin: 0,
+    padding: 0,
+  },
+  middleContainer: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 0,
+    padding: 0,
+  },
+  rightContainer: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    margin: 0,
+    padding: 0,
+  },
+  list: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
     flexDirection: 'column',
     alignItems: 'center',
+    marginTop: 5,
   },
   chevron: {
     cursor: 'pointer',
     width: 30,
     height: 30,
     color: color.white,
+    margin: '10px',
   },
   spinner: {
     width: 30,
     height: 30,
     color: color.white,
+    margin: '10px',
   },
   inactive: {
     opacity: 0.2,
