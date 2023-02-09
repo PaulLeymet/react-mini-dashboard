@@ -6,7 +6,7 @@ import { StarshipType } from '../../../stores/types/StarshipType'
 import Element from '../Element'
 import StarshipDetailled from './StarshipDetailled'
 
-export default function Starship({ starship, style }: { starship: StarshipType; style?: CSSProperties }) {
+export default function Starship({ starship, style, isRessource }: { starship: StarshipType; style?: CSSProperties; isRessource?: boolean }) {
   // =================
   // Stores
   // =================

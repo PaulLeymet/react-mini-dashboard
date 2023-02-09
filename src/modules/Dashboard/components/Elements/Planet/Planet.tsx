@@ -7,7 +7,7 @@ import Element from '../Element'
 
 import PlanetDetailled from './PlanetDetailled'
 
-export default function Planet({ planet, style }: { planet: PlanetType; style?: CSSProperties }) {
+export default function Planet({ planet, style, isRessource }: { planet: PlanetType; style?: CSSProperties; isRessource?: boolean }) {
   // =================
   // Stores
   // =================

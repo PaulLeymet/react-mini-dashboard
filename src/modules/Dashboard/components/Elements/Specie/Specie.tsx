@@ -6,7 +6,7 @@ import { SpecieType } from '../../../stores/types/SpecieType'
 import Element from '../Element'
 import SpecieDetailled from './SpecieDetailled'
 
-export default function Specie({ specie, style }: { specie: SpecieType; style?: CSSProperties }) {
+export default function Specie({ specie, style, isRessource }: { specie: SpecieType; style?: CSSProperties; isRessource?: boolean }) {
   // =================
   // Stores
   // =================

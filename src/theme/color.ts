@@ -4,6 +4,7 @@ const palette = {
   green: '#27D4D4',
   lightGreen: '#EAF8F9',
   red: '#D32D27',
+  yellow: '#FFD414',
 }
 
 /**
@@ -35,13 +36,13 @@ export const color = {
   /**
    * Primary color
    */
-  primary: palette.green,
+  primary: '#136DD7',
   /**
    * Secondary color
    */
-  secondary: palette.lightGreen,
+  secondary: '#C6E6F2',
   /**
    * Tertiary color
    */
-  tertiary: palette.black,
+  tertiary: palette.yellow,
 }

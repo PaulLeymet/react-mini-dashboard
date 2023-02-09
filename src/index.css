@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Starjedi';
+  src: url('/src/assets/fonts/Starjedi.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;

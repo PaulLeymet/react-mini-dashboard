@@ -45,7 +45,7 @@ export default function Element({
     <motion.div style={styles.component} initial={{ scale: 1 }} whileHover={{ scale: 1.05 }} onClick={onShow}>
       <ListItem style={styles.listItem}>
         <DesignText sx={styles.text}>{id}</DesignText>
-        <motion.div style={styles.iconContainer} initial={{ scale: 1 }} whileHover={{ scale: 1.2 }} onClick={handleAdd}>
+        <motion.div style={styles.iconContainer} initial={{ scale: 1 }} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} onClick={handleAdd}>
           {selected ? <Star style={styles.icon} /> : <StarOutline style={styles.icon} />}
         </motion.div>
       </ListItem>
@@ -60,7 +60,7 @@ const styles: {
     cursor: 'pointer',
     width: '10%',
     height: '90%',
-    background: color.primary,
+    background: color.white + 'E9',
     margin: 4,
     display: 'flex',
     alignItems: 'center',
@@ -76,7 +76,7 @@ const styles: {
   },
   text: {
     pointerEvents: 'none',
-    color: color.white,
+    color: color.black,
   },
   iconContainer: {
     position: 'absolute',
@@ -84,7 +84,7 @@ const styles: {
     right: 5,
   },
   icon: {
-    color: color.white,
+    color: color.tertiary,
     width: 30,
     height: 30,
   },

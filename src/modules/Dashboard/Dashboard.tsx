@@ -5,7 +5,6 @@ import { useAppDispatch } from '../../store/hooks'
 import { color } from '../../theme/color'
 import { getApi } from '../../utils/api'
 import ElementsList from './components/Elements/ElementsList'
-import RessourcesList from './components/Ressources/RessourcesList'
 import { AuthGenericType, updateData } from './stores/elementSlice'
 
 export default function Dashboard() {
@@ -59,7 +58,7 @@ export default function Dashboard() {
   return (
     <div style={styles.page}>
       <div style={styles.elementsSection}>
-        <DesignHeader sx={styles.header}>Elements</DesignHeader>
+        <DesignHeader style={styles.header}>Elements</DesignHeader>
         <DesignVerticalTabs
           tabs={[
             {
@@ -91,32 +90,32 @@ export default function Dashboard() {
       </div>
 
       <div style={styles.ressourcesSection}>
-        <DesignHeader sx={styles.header}>Ressources</DesignHeader>
+        <DesignHeader style={styles.header}>Ressources</DesignHeader>
         <DesignVerticalTabs
           tabs={[
             {
               label: 'Films',
-              content: <RessourcesList style={styles.cardContainer} category="film" />,
+              content: <ElementsList style={styles.cardContainer} category="film" isRessourceList />,
             },
             {
               label: 'People',
-              content: <RessourcesList style={styles.cardContainer} category="people" />,
+              content: <ElementsList style={styles.cardContainer} category="people" isRessourceList />,
             },
             {
               label: 'Planets',
-              content: <RessourcesList style={styles.cardContainer} category="planets" />,
+              content: <ElementsList style={styles.cardContainer} category="planets" isRessourceList />,
             },
             {
               label: 'Species',
-              content: <RessourcesList style={styles.cardContainer} category="species" />,
+              content: <ElementsList style={styles.cardContainer} category="species" isRessourceList />,
             },
             {
               label: 'Starships',
-              content: <RessourcesList style={styles.cardContainer} category="starships" />,
+              content: <ElementsList style={styles.cardContainer} category="starships" isRessourceList />,
             },
             {
               label: 'Vehicles',
-              content: <RessourcesList style={styles.cardContainer} category="vehicles" />,
+              content: <ElementsList style={styles.cardContainer} category="vehicles" isRessourceList />,
             },
           ]}
         />

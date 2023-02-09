@@ -6,7 +6,7 @@ import { VehicleType } from '../../../stores/types/VehicleType'
 import Element from '../Element'
 import VehicleDetailled from './VehicleDetailled'
 
-export default function Vehicle({ vehicle, style }: { vehicle: VehicleType; style?: CSSProperties }) {
+export default function Vehicle({ vehicle, style, isRessource }: { vehicle: VehicleType; style?: CSSProperties; isRessource?: boolean }) {
   // =================
   // Stores
   // =================

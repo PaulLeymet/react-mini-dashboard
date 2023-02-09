@@ -5,7 +5,7 @@ import { PeopleType } from '../../../stores/types/PeopleType'
 import Element from '../Element'
 import PeopleDetailled from './PeopleDetailled'
 
-export default function People({ people }: { people: PeopleType }) {
+export default function People({ people, isRessource }: { people: PeopleType; isRessource?: boolean }) {
   // =================
   // Stores
   // =================

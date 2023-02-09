@@ -1,7 +1,7 @@
-import { CSSProperties } from 'react';
-import { FilmType } from '../../../stores/types/FilmType';
+import { CSSProperties } from 'react'
+import { FilmType } from '../../../stores/types/FilmType'
 
-export default function FilmDetailled({ film, style }: { film: FilmType; style?: CSSProperties }) {
+export default function FilmDetailled({ film, style, isRessource }: { film: FilmType; style?: CSSProperties; isRessource?: boolean }) {
   // =================
   // Stores
   // =================
@@ -21,5 +21,5 @@ export default function FilmDetailled({ film, style }: { film: FilmType; style?:
   // =================
   // Render
   // =================
-  return  <></>
+  return <></>
 }

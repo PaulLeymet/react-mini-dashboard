@@ -6,7 +6,7 @@ import { FilmType } from '../../../stores/types/FilmType'
 import Element from '../Element'
 import FilmDetailled from './FilmDetailled'
 
-export default function Film({ film, style }: { film: FilmType; style?: CSSProperties }) {
+export default function Film({ film, style, isRessource }: { film: FilmType; style?: CSSProperties; isRessource?: boolean }) {
   // =================
   // Stores
   // =================
