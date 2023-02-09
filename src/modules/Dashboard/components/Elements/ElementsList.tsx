@@ -177,6 +177,7 @@ const styles: {
     borderRadius: 10,
     border: `2px solid ${color.white + '80'}`,
     padding: '10px 15px',
+    backdropFilter: 'blur(3px)',
   },
   rightContainer: {
     display: 'flex',
