@@ -4,7 +4,6 @@ import { displayInModal } from '../../../stores/modalSlice'
 import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
 import { SpecieType } from '../../../stores/types/SpecieType'
 import Element from '../Element'
-import SpecieDetailled from './SpecieDetailled'
 
 export default function Specie({ specie, style, isRessource }: { specie: SpecieType; style?: CSSProperties; isRessource?: boolean }) {
   // =================
@@ -26,7 +25,13 @@ export default function Specie({ specie, style, isRessource }: { specie: SpecieT
   // Methods
   // =================
   const onShowDetail = () => {
-    dispatch(displayInModal(<SpecieDetailled specie={specie} />))
+    dispatch(
+      displayInModal({
+        id: specie.name,
+        category: 'species',
+        url: specie.url,
+      }),
+    )
   }
 
   const onAddRessource = () => {

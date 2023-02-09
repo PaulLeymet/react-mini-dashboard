@@ -4,7 +4,6 @@ import { displayInModal } from '../../../stores/modalSlice'
 import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
 import { VehicleType } from '../../../stores/types/VehicleType'
 import Element from '../Element'
-import VehicleDetailled from './VehicleDetailled'
 
 export default function Vehicle({ vehicle, style, isRessource }: { vehicle: VehicleType; style?: CSSProperties; isRessource?: boolean }) {
   // =================
@@ -26,7 +25,13 @@ export default function Vehicle({ vehicle, style, isRessource }: { vehicle: Vehi
   // Methods
   // =================
   const onShowDetail = () => {
-    dispatch(displayInModal(<VehicleDetailled vehicle={vehicle} />))
+    dispatch(
+      displayInModal({
+        id: vehicle.name,
+        category: 'vehicles',
+        url: vehicle.url,
+      }),
+    )
   }
 
   const onAddRessource = () => {

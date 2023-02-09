@@ -1,7 +1,16 @@
 import { CSSProperties } from 'react'
-import { VehicleType } from '../../../stores/types/VehicleType'
 
-export default function VehicleDetailled({ vehicle, style, isRessource }: { vehicle: VehicleType; style?: CSSProperties; isRessource?: boolean }) {
+export default function VehicleDetailled({
+  id,
+  url,
+  style,
+  isRessource,
+}: {
+  id?: string
+  url?: string
+  style?: CSSProperties
+  isRessource?: boolean
+}) {
   // =================
   // Stores
   // =================

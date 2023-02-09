@@ -3,7 +3,6 @@ import { displayInModal } from '../../../stores/modalSlice'
 import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
 import { PeopleType } from '../../../stores/types/PeopleType'
 import Element from '../Element'
-import PeopleDetailled from './PeopleDetailled'
 
 export default function People({ people, isRessource }: { people: PeopleType; isRessource?: boolean }) {
   // =================
@@ -25,7 +24,13 @@ export default function People({ people, isRessource }: { people: PeopleType; is
   // Methods
   // =================
   const onShowDetail = () => {
-    dispatch(displayInModal(<PeopleDetailled people={people} />))
+    dispatch(
+      displayInModal({
+        id: people.name,
+        category: 'people',
+        url: people.url,
+      }),
+    )
   }
 
   const onAddRessource = () => {

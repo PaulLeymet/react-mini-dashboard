@@ -9,4 +9,8 @@ export interface FilmType {
   planets: string[]
   starships: string[]
   vehicles: string[]
+  species: string[]
+  created: string
+  edited: string
+  url: string
 }

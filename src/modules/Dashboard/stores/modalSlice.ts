@@ -1,19 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../../store/store'
+import { ElementsCategory } from './types/CategoryType'
 
 // =================
 // Types
 // =================
 export interface DashboardModalType {
   open: boolean
-  content: JSX.Element | null
+  id: string | undefined
+  url: string | undefined
+  category: ElementsCategory | undefined
 }
 // =================
 // Initial state
 // =================
 const initialState: DashboardModalType = {
   open: false,
-  content: null,
+  id: undefined,
+  url: undefined,
+  category: undefined,
 }
 
 // =================
@@ -21,13 +26,17 @@ const initialState: DashboardModalType = {
 // =================
 export const modalSlice = createSlice({
   reducers: {
-    displayInModal: (state, action: PayloadAction<JSX.Element>) => {
+    displayInModal: (state, action: PayloadAction<{ id: string; url: string; category: ElementsCategory }>) => {
       state.open = true
-      state.content = action.payload
+      state.id = action.payload.id
+      state.url = action.payload.url
+      state.category = action.payload.category
     },
     closeModal: (state) => {
       state.open = false
-      state.content = null
+      state.id = undefined
+      state.url = undefined
+      state.category = undefined
     },
   },
   name: 'modalSlice',

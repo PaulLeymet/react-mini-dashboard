@@ -1,7 +1,6 @@
 import { AppBar, Toolbar } from '@mui/material'
 import { CSSProperties, useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import DesignModal from '../../design-system/DesignModal/DesignModal'
 import DesignHeader from '../../design-system/DesignText/DesignHeader'
 import DesignText from '../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
@@ -87,7 +86,6 @@ export default function App() {
       ) : (
         <Login />
       )}
-      <DesignModal />
     </div>
   )
 }

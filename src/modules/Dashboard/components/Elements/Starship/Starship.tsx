@@ -4,7 +4,6 @@ import { displayInModal } from '../../../stores/modalSlice'
 import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
 import { StarshipType } from '../../../stores/types/StarshipType'
 import Element from '../Element'
-import StarshipDetailled from './StarshipDetailled'
 
 export default function Starship({ starship, style, isRessource }: { starship: StarshipType; style?: CSSProperties; isRessource?: boolean }) {
   // =================
@@ -26,7 +25,13 @@ export default function Starship({ starship, style, isRessource }: { starship: S
   // Methods
   // =================
   const onShowDetail = () => {
-    dispatch(displayInModal(<StarshipDetailled starship={starship} />))
+    dispatch(
+      displayInModal({
+        id: starship.name,
+        category: 'starships',
+        url: starship.url,
+      }),
+    )
   }
 
   const onAddRessource = () => {

@@ -5,8 +5,6 @@ import { addRessource, removeRessource, selectRessources } from '../../../stores
 import { PlanetType } from '../../../stores/types/PlanetType'
 import Element from '../Element'
 
-import PlanetDetailled from './PlanetDetailled'
-
 export default function Planet({ planet, style, isRessource }: { planet: PlanetType; style?: CSSProperties; isRessource?: boolean }) {
   // =================
   // Stores
@@ -27,7 +25,13 @@ export default function Planet({ planet, style, isRessource }: { planet: PlanetT
   // Methods
   // =================
   const onShowDetail = () => {
-    dispatch(displayInModal(<PlanetDetailled planet={planet} />))
+    dispatch(
+      displayInModal({
+        id: planet.name,
+        category: 'planets',
+        url: planet.url,
+      }),
+    )
   }
 
   const onAddRessource = () => {

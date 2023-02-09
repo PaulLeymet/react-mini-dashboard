@@ -4,7 +4,6 @@ import { displayInModal } from '../../../stores/modalSlice'
 import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
 import { FilmType } from '../../../stores/types/FilmType'
 import Element from '../Element'
-import FilmDetailled from './FilmDetailled'
 
 export default function Film({ film, style, isRessource }: { film: FilmType; style?: CSSProperties; isRessource?: boolean }) {
   // =================
@@ -26,7 +25,13 @@ export default function Film({ film, style, isRessource }: { film: FilmType; sty
   // Methods
   // =================
   const onShowDetail = () => {
-    dispatch(displayInModal(<FilmDetailled film={film} />))
+    dispatch(
+      displayInModal({
+        id: film.title,
+        category: 'film',
+        url: film.url,
+      }),
+    )
   }
 
   const onAddRessource = () => {
