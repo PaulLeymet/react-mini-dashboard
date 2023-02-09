@@ -8,12 +8,14 @@ export default function DesignText({
   color,
   variant,
   onClick,
+  textAlign,
 }: {
   children: string
   style?: SxProps<Theme>
   variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'caption' | 'button' | 'overline' | 'inherit'
   color?: string
   onClick?: () => void
+  textAlign?: 'center' | 'left' | 'right'
 }) {
   const styles: SxProps<Theme> = {
     cursor: onClick ? 'pointer' : 'auto',
@@ -26,7 +28,7 @@ export default function DesignText({
         ...styles,
         ...style,
       }}
-      textAlign={'center'}
+      textAlign={textAlign || 'center'}
       variant={variant}
       onClick={onClick}
     >

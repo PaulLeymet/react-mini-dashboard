@@ -1,11 +1,11 @@
-import { Star, StarOutline } from '@mui/icons-material'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
 import { ListItem } from '@mui/material'
 import { motion } from 'framer-motion'
 import { CSSProperties } from 'react'
 import DesignText from '../../../../design-system/DesignText/DesignText'
 import { color } from '../../../../theme/color'
-
 export default function Element({
   id,
   style,
@@ -46,16 +46,27 @@ export default function Element({
   // =================
   return (
     <ListItem style={styles.main} onClick={onShow}>
-      <DesignText style={styles.text}>{id}</DesignText>
+      {isRessource ? (
+        <DesignText textAlign={'left'} style={styles.text}>
+          {id}
+        </DesignText>
+      ) : null}
+
       <motion.div style={styles.iconContainer} initial={{ scale: 1 }} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} onClick={handleAdd}>
         {isRessource ? (
           <DeleteForeverIcon style={styles.deleteIcon} />
         ) : selected ? (
-          <Star style={styles.icon} />
+          <RemoveCircleIcon style={styles.icon} />
         ) : (
-          <StarOutline style={styles.icon} />
+          <AddCircleOutlineIcon style={styles.icon} />
         )}
       </motion.div>
+
+      {!isRessource ? (
+        <DesignText textAlign={'right'} style={styles.text}>
+          {id}
+        </DesignText>
+      ) : null}
     </ListItem>
   )
 }
@@ -82,7 +93,7 @@ const styles: {
   },
   iconContainer: {},
   icon: {
-    color: color.tertiary,
+    color: color.primary,
   },
   deleteIcon: {
     color: color.red,
