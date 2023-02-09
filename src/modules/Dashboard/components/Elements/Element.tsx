@@ -45,43 +45,34 @@ export default function Element({
   // Render
   // =================
   return (
-    <div style={styles.component} onClick={onShow}>
-      <ListItem style={styles.listItem}>
-        <DesignText style={styles.text}>{id}</DesignText>
-        <motion.div style={styles.iconContainer} initial={{ scale: 1 }} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} onClick={handleAdd}>
-          {isRessource ? (
-            <DeleteForeverIcon style={styles.deleteIcon} />
-          ) : selected ? (
-            <Star style={styles.icon} />
-          ) : (
-            <StarOutline style={styles.icon} />
-          )}
-        </motion.div>
-      </ListItem>
-    </div>
+    <ListItem style={styles.main} onClick={onShow}>
+      <DesignText style={styles.text}>{id}</DesignText>
+      <motion.div style={styles.iconContainer} initial={{ scale: 1 }} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} onClick={handleAdd}>
+        {isRessource ? (
+          <DeleteForeverIcon style={styles.deleteIcon} />
+        ) : selected ? (
+          <Star style={styles.icon} />
+        ) : (
+          <StarOutline style={styles.icon} />
+        )}
+      </motion.div>
+    </ListItem>
   )
 }
 
 const styles: {
   [key: string]: CSSProperties | undefined
 } = {
-  component: {
+  main: {
     cursor: 'pointer',
-    width: '10%',
-    height: '90%',
-    background: color.white + 'E9',
+    width: '80%',
+    height: 50,
+    background: color.secondary,
     margin: 4,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
-  },
-  listItem: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   text: {
     pointerEvents: 'none',
@@ -89,8 +80,7 @@ const styles: {
   },
   iconContainer: {
     position: 'absolute',
-    top: 5,
-    right: 5,
+    right: 10,
   },
   icon: {
     color: color.tertiary,

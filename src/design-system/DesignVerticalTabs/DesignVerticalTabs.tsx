@@ -1,7 +1,6 @@
 import { TabContext, TabPanel } from '@mui/lab'
 import { Tab, Tabs } from '@mui/material'
 import { CSSProperties, useState } from 'react'
-import { useIsMobile } from '../../hooks/useIsMobile'
 
 export default function DesignVerticalTabs({ tabs, style }: { tabs: { label: string; content: JSX.Element }[]; style?: CSSProperties }) {
   const [value, setValue] = useState(0)
@@ -10,17 +9,23 @@ export default function DesignVerticalTabs({ tabs, style }: { tabs: { label: str
     setValue(value)
   }
 
-  const isMobile = useIsMobile()
-
   const styles: {
     [key: string]: CSSProperties | undefined
   } = {
     elements: {
       width: '100%',
-      flexDirection: isMobile ? 'column' : 'row',
+      flexDirection: 'column',
       display: 'flex',
     },
-
+    tabSelector: {
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    tab: {
+      width: '20%',
+    },
     tabPanel: {
       width: '100%',
       overflow: 'hidden',
@@ -31,7 +36,7 @@ export default function DesignVerticalTabs({ tabs, style }: { tabs: { label: str
     <TabContext value={`${value}`}>
       <div style={{ ...styles.elements, ...style }}>
         <Tabs
-          orientation={isMobile ? 'horizontal' : 'vertical'}
+          style={styles.tabSelector}
           variant="scrollable"
           value={value}
           onChange={handleChange}
@@ -39,7 +44,7 @@ export default function DesignVerticalTabs({ tabs, style }: { tabs: { label: str
           sx={{ borderRight: 1, borderColor: 'divider' }}
         >
           {tabs.map((tab, index) => (
-            <Tab key={`${index}`} label={tab.label} />
+            <Tab style={styles.tab} key={`${index}`} label={tab.label} />
           ))}
         </Tabs>
         {tabs.map((tab, index) => (

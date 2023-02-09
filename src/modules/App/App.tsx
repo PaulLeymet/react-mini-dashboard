@@ -70,7 +70,7 @@ export default function App() {
   return (
     <div style={styles.app}>
       {authenticated ? (
-        <>
+        <div style={styles.content}>
           <AppBar style={{ display: 'flex', background: color.black }} position="static">
             <Toolbar>
               <DesignHeader color={color.white}>Star Wars Dashboard</DesignHeader>
@@ -83,7 +83,7 @@ export default function App() {
           <div style={styles.screenContent}>
             <RouterProvider router={router} />
           </div>
-        </>
+        </div>
       ) : (
         <Login />
       )}
@@ -96,11 +96,20 @@ const styles: {
   [key: string]: CSSProperties | undefined
 } = {
   app: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+  },
+  content: {
     width: '100%',
     height: '100%',
   },
   filler: {
     flexGrow: 1,
   },
-  screenContent: {},
+  screenContent: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+  },
 }

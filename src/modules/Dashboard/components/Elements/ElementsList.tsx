@@ -1,8 +1,5 @@
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import { Grid, List } from '@mui/material'
+import { List } from '@mui/material'
 import { CSSProperties, useState } from 'react'
-import DesignSpinner from '../../../../design-system/DesignSpinner/DesignSpinner'
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
 import { color } from '../../../../theme/color'
 import { ILLUSTRATIONS } from '../../../../theme/illustrations'
@@ -134,84 +131,23 @@ export default function ElementsList({
   }
 
   return (
-    <div style={{ ...styles.component, ...style }}>
-      <Grid
-        style={{
-          ...styles.content,
-          ...{
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            backgroundImage: `url(${renderBackground()})`,
-          },
-        }}
-        container
-        spacing={2}
-      >
-        {isRessourceList ? null : (
-          <Grid style={styles.gridItem} item xs={1}>
-            {fetching === 'BACKWARD' ? (
-              <DesignSpinner style={styles.spinner} size={30} />
-            ) : (
-              <ArrowBackIosIcon style={{ ...styles.chevron, ...(canBack ? null : styles.inactive) }} onClick={onBack} />
-            )}
-          </Grid>
-        )}
-
-        <Grid style={styles.gridItem} item xs={10}>
-          <List sx={styles.list}>
-            {elementsList?.map((element: any) => {
-              return renderElement(element)
-            })}
-          </List>
-        </Grid>
-
-        {isRessourceList ? null : (
-          <Grid style={styles.gridItem} item xs={1}>
-            {fetching === 'FORWARD' ? (
-              <DesignSpinner style={styles.spinner} size={30} />
-            ) : (
-              <ArrowForwardIosIcon style={{ ...styles.chevron, ...(canForward ? null : styles.inactive) }} onClick={onForward} />
-            )}
-          </Grid>
-        )}
-      </Grid>
-    </div>
+    <List sx={{ ...styles.main, ...style }}>
+      {elementsList?.map((element: any) => {
+        return renderElement(element)
+      })}
+    </List>
   )
 }
 
 const styles: {
   [key: string]: CSSProperties | undefined
 } = {
-  component: {
+  main: {
     display: 'flex',
     width: '100%',
     height: '100%',
-  },
-  content: {
-    display: 'flex',
-    width: '100%',
-    height: '100%',
+    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 10,
-    background: color.black,
-    margin: 0,
-  },
-  gridItem: {
-    display: 'flex',
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 0,
-  },
-  list: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
-    height: '100%',
-    padding: 0,
   },
   chevron: {
     cursor: 'pointer',

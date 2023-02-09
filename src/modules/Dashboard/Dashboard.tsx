@@ -1,10 +1,8 @@
 import { CSSProperties, useEffect } from 'react'
-import DesignHeader from '../../design-system/DesignText/DesignHeader'
 import DesignVerticalTabs from '../../design-system/DesignVerticalTabs/DesignVerticalTabs'
 import { useAppDispatch } from '../../store/hooks'
-import { color } from '../../theme/color'
 import { getApi } from '../../utils/api'
-import ElementsList from './components/Elements/ElementsList'
+import CategoryPanel from './components/Elements/CategoryPanel'
 import { AuthGenericType, updateData } from './stores/elementSlice'
 
 export default function Dashboard() {
@@ -57,69 +55,34 @@ export default function Dashboard() {
   // =================
   return (
     <div style={styles.page}>
-      <div style={styles.elementsSection}>
-        <DesignHeader style={styles.header}>Elements</DesignHeader>
-        <DesignVerticalTabs
-          tabs={[
-            {
-              label: 'Films',
-              content: <ElementsList style={styles.cardContainer} category="film" />,
-            },
-            {
-              label: 'People',
-              content: <ElementsList style={styles.cardContainer} category="people" />,
-            },
-            {
-              label: 'Planets',
-              content: <ElementsList style={styles.cardContainer} category="planets" />,
-            },
-            {
-              label: 'Species',
-              content: <ElementsList style={styles.cardContainer} category="species" />,
-            },
-            {
-              label: 'Starships',
-              content: <ElementsList style={styles.cardContainer} category="starships" />,
-            },
-            {
-              label: 'Vehicles',
-              content: <ElementsList style={styles.cardContainer} category="vehicles" />,
-            },
-          ]}
-        />
-      </div>
-
-      <div style={styles.ressourcesSection}>
-        <DesignHeader style={styles.header}>Ressources</DesignHeader>
-        <DesignVerticalTabs
-          tabs={[
-            {
-              label: 'Films',
-              content: <ElementsList style={styles.cardContainer} category="film" isRessourceList />,
-            },
-            {
-              label: 'People',
-              content: <ElementsList style={styles.cardContainer} category="people" isRessourceList />,
-            },
-            {
-              label: 'Planets',
-              content: <ElementsList style={styles.cardContainer} category="planets" isRessourceList />,
-            },
-            {
-              label: 'Species',
-              content: <ElementsList style={styles.cardContainer} category="species" isRessourceList />,
-            },
-            {
-              label: 'Starships',
-              content: <ElementsList style={styles.cardContainer} category="starships" isRessourceList />,
-            },
-            {
-              label: 'Vehicles',
-              content: <ElementsList style={styles.cardContainer} category="vehicles" isRessourceList />,
-            },
-          ]}
-        />
-      </div>
+      <DesignVerticalTabs
+        tabs={[
+          {
+            label: 'Films',
+            content: <CategoryPanel style={styles.categoryPanel} category="film" />,
+          },
+          {
+            label: 'People',
+            content: <CategoryPanel style={styles.categoryPanel} category="people" />,
+          },
+          {
+            label: 'Planets',
+            content: <CategoryPanel style={styles.categoryPanel} category="planets" />,
+          },
+          {
+            label: 'Species',
+            content: <CategoryPanel style={styles.categoryPanel} category="species" />,
+          },
+          {
+            label: 'Starships',
+            content: <CategoryPanel style={styles.categoryPanel} category="starships" />,
+          },
+          {
+            label: 'Vehicles',
+            content: <CategoryPanel style={styles.categoryPanel} category="vehicles" />,
+          },
+        ]}
+      />
     </div>
   )
 }
@@ -135,27 +98,5 @@ const styles: {
     justifyContent: 'self-start',
     flexDirection: 'column',
   },
-  cardContainer: {
-    background: color.secondary,
-    borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    height: '100%',
-  },
-  elementsSection: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-    width: '100%',
-  },
-  ressourcesSection: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-    width: '100%',
-  },
-  header: {
-    margin: 2,
-  },
+  categoryPanel: {},
 }
