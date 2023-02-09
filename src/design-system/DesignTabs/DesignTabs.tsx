@@ -23,6 +23,7 @@ export default function DesignTabs({ tabs, style }: { tabs: { label: string; con
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      marginTop: 10,
     },
     tab: {
       width: '20%',

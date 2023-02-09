@@ -73,7 +73,7 @@ export default function App() {
         <div style={styles.content}>
           <AppBar style={{ display: 'flex', background: color.black }} position="static">
             <Toolbar>
-              <DesignHeader color={color.white}>Star Wars Dashboard</DesignHeader>
+              <DesignHeader color={color.white}>Dashboard</DesignHeader>
               <div style={styles.filler} />
               <DesignText color={color.white} onClick={onLogout}>
                 Logout

@@ -17,9 +17,20 @@ export default function FilmDetailled({ film, style, isRessource }: { film: Film
   // =================
   // Methods
   // =================
+  console.log('TEST', film)
 
   // =================
   // Render
   // =================
-  return <></>
+  return <div style={styles.main}></div>
+}
+
+const styles: {
+  [key: string]: CSSProperties | undefined
+} = {
+  main: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+  },
 }

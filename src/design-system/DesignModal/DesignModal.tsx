@@ -21,7 +21,7 @@ export default function DesignModal() {
       aria-describedby="child-modal-description"
       children={
         <motion.div style={styles.modal} initial={{ scale: 1 }} animate={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          <div>{modal.content}</div>
+          {modal.content}
         </motion.div>
       }
     />
@@ -40,5 +40,6 @@ const styles: {
     background: color.white,
     borderRadius: 10,
     border: `1px solid ${color.primary}`,
+    overflow: 'hidden',
   },
 }
