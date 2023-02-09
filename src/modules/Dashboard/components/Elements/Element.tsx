@@ -78,19 +78,13 @@ const styles: {
   text: {
     pointerEvents: 'none',
     color: color.black,
+    flex: 1,
   },
-  iconContainer: {
-    position: 'absolute',
-    right: 10,
-  },
+  iconContainer: {},
   icon: {
     color: color.tertiary,
-    width: 30,
-    height: 30,
   },
   deleteIcon: {
     color: color.red,
-    width: 30,
-    height: 30,
   },
 }
