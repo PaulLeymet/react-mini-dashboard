@@ -1,28 +1,30 @@
 import { SxProps, Typography } from '@mui/material'
 import { Theme } from '@mui/system'
-import { color } from '../../theme/color'
+import { color as ThemeColor } from '../../theme/color'
 
 export default function DesignText({
   children,
-  sx,
+  style,
+  color,
   variant,
   onClick,
 }: {
   children: string
-  sx?: SxProps<Theme>
+  style?: SxProps<Theme>
   variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'caption' | 'button' | 'overline' | 'inherit'
+  color?: string
   onClick?: () => void
 }) {
   const styles: SxProps<Theme> = {
     cursor: onClick ? 'pointer' : 'auto',
-    color: color.black,
+    color: color || ThemeColor.black,
   }
 
   return (
     <Typography
       sx={{
         ...styles,
-        ...sx,
+        ...style,
       }}
       textAlign={'center'}
       variant={variant}

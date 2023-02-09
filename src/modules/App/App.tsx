@@ -1,7 +1,11 @@
+import { AppBar, Toolbar } from '@mui/material'
 import { CSSProperties, useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import DesignModal from '../../design-system/DesignModal/DesignModal'
+import DesignHeader from '../../design-system/DesignText/DesignHeader'
+import DesignText from '../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { color } from '../../theme/color'
 import Dashboard from '../Dashboard/Dashboard'
 import Login from '../Login/Login'
 import { resetAuth, selectAuth } from '../Login/stores/authSlice'
@@ -55,12 +59,34 @@ export default function App() {
     }
   }
 
+  const onLogout = () => {
+    setAuthenticated(false)
+    dispatch(resetAuth())
+  }
+
   // =================
   // Render
   // =================
   return (
     <div style={styles.app}>
-      {authenticated ? <RouterProvider router={router} /> : <Login />}
+      {authenticated ? (
+        <>
+          <AppBar style={{ display: 'flex', background: color.black }} position="static">
+            <Toolbar>
+              <DesignHeader color={color.white}>Star Wars Dashboard</DesignHeader>
+              <div style={styles.filler} />
+              <DesignText color={color.white} onClick={onLogout}>
+                Logout
+              </DesignText>
+            </Toolbar>
+          </AppBar>
+          <div style={styles.screenContent}>
+            <RouterProvider router={router} />
+          </div>
+        </>
+      ) : (
+        <Login />
+      )}
       <DesignModal />
     </div>
   )
@@ -73,4 +99,8 @@ const styles: {
     width: '100%',
     height: '100%',
   },
+  filler: {
+    flexGrow: 1,
+  },
+  screenContent: {},
 }

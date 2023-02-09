@@ -51,5 +51,5 @@ export default function Planet({ planet, style, isRessource }: { planet: PlanetT
   // =================
   // Render
   // =================
-  return <Element selected={selected} id={planet.name} onShow={onShowDetail} onAdd={onAddRessource} />
+  return <Element selected={selected} isRessource={isRessource} id={planet.name} onShow={onShowDetail} onAdd={onAddRessource} />
 }

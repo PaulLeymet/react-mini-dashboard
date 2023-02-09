@@ -1,4 +1,5 @@
 import { Star, StarOutline } from '@mui/icons-material'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { ListItem } from '@mui/material'
 import { motion } from 'framer-motion'
 import { CSSProperties } from 'react'
@@ -9,12 +10,14 @@ export default function Element({
   id,
   style,
   selected,
+  isRessource,
   onShow,
   onAdd,
 }: {
   id: string
   style?: CSSProperties
   selected: boolean
+  isRessource?: boolean
   onShow?: () => void
   onAdd?: () => void
 }) {
@@ -42,14 +45,20 @@ export default function Element({
   // Render
   // =================
   return (
-    <motion.div style={styles.component} initial={{ scale: 1 }} whileHover={{ scale: 1.05 }} onClick={onShow}>
+    <div style={styles.component} onClick={onShow}>
       <ListItem style={styles.listItem}>
-        <DesignText sx={styles.text}>{id}</DesignText>
+        <DesignText style={styles.text}>{id}</DesignText>
         <motion.div style={styles.iconContainer} initial={{ scale: 1 }} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} onClick={handleAdd}>
-          {selected ? <Star style={styles.icon} /> : <StarOutline style={styles.icon} />}
+          {isRessource ? (
+            <DeleteForeverIcon style={styles.deleteIcon} />
+          ) : selected ? (
+            <Star style={styles.icon} />
+          ) : (
+            <StarOutline style={styles.icon} />
+          )}
         </motion.div>
       </ListItem>
-    </motion.div>
+    </div>
   )
 }
 
@@ -85,6 +94,11 @@ const styles: {
   },
   icon: {
     color: color.tertiary,
+    width: 30,
+    height: 30,
+  },
+  deleteIcon: {
+    color: color.red,
     width: 30,
     height: 30,
   },

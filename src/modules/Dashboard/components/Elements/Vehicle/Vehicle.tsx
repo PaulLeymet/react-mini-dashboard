@@ -50,5 +50,5 @@ export default function Vehicle({ vehicle, style, isRessource }: { vehicle: Vehi
   // =================
   // Render
   // =================
-  return <Element selected={selected} id={vehicle.name} onShow={onShowDetail} onAdd={onAddRessource} />
+  return <Element selected={selected} isRessource={isRessource} id={vehicle.name} onShow={onShowDetail} onAdd={onAddRessource} />
 }

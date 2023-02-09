@@ -49,5 +49,5 @@ export default function People({ people, isRessource }: { people: PeopleType; is
   // =================
   // Render
   // =================
-  return <Element selected={selected} id={people.name} onShow={onShowDetail} onAdd={onAddRessource} />
+  return <Element selected={selected} isRessource={isRessource} id={people.name} onShow={onShowDetail} onAdd={onAddRessource} />
 }

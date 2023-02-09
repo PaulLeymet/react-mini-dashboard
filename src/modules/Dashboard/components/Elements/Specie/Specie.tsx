@@ -50,5 +50,5 @@ export default function Specie({ specie, style, isRessource }: { specie: SpecieT
   // =================
   // Render
   // =================
-  return <Element selected={selected} id={specie.name} onShow={onShowDetail} onAdd={onAddRessource} />
+  return <Element selected={selected} isRessource={isRessource} id={specie.name} onShow={onShowDetail} onAdd={onAddRessource} />
 }

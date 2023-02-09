@@ -50,5 +50,5 @@ export default function Film({ film, style, isRessource }: { film: FilmType; sty
   // =================
   // Render
   // =================
-  return <Element selected={selected} id={film.title} onShow={onShowDetail} onAdd={onAddRessource} />
+  return <Element selected={selected} isRessource={isRessource} id={film.title} onShow={onShowDetail} onAdd={onAddRessource} />
 }

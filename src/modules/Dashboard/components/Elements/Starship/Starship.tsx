@@ -50,5 +50,5 @@ export default function Starship({ starship, style, isRessource }: { starship: S
   // =================
   // Render
   // =================
-  return <Element selected={selected} id={starship.name} onShow={onShowDetail} onAdd={onAddRessource} />
+  return <Element selected={selected} isRessource={isRessource} id={starship.name} onShow={onShowDetail} onAdd={onAddRessource} />
 }

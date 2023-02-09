@@ -39,6 +39,6 @@ const styles: {
     bottom: '5%',
     background: color.white,
     borderRadius: 10,
-    border: `1px solid ${color.tertiary}`,
+    border: `1px solid ${color.primary}`,
   },
 }
