@@ -90,6 +90,10 @@ const styles: {
     pointerEvents: 'none',
     color: color.black,
     flex: 1,
+    display: '-webkit-box',
+    overflow: 'hidden',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: 1,
   },
   iconContainer: {},
   icon: {

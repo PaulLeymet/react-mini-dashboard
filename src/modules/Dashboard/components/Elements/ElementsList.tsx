@@ -178,6 +178,7 @@ const styles: {
     border: `2px solid ${color.white + '80'}`,
     padding: '10px 15px',
     backdropFilter: 'blur(3px)',
+    minWidth: 170,
   },
   rightContainer: {
     display: 'flex',
