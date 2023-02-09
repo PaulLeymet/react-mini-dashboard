@@ -3,6 +3,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { Grid, List } from '@mui/material'
 import { CSSProperties, useState } from 'react'
 import DesignSpinner from '../../../../design-system/DesignSpinner/DesignSpinner'
+import DesignHeader from '../../../../design-system/DesignText/DesignHeader'
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
 import { color } from '../../../../theme/color'
 import { getApi } from '../../../../utils/api'
@@ -124,6 +125,9 @@ export default function ElementsList({
       </Grid>
 
       <Grid style={styles.middleContainer} item xs={4}>
+        <DesignHeader color={color.white} style={styles.header}>
+          {isRessourceList ? 'Ressources' : 'Elements'}
+        </DesignHeader>
         <List sx={{ ...styles.list, ...style }}>
           {elementsList?.map((element: any) => {
             return renderElement(element)
@@ -167,8 +171,12 @@ const styles: {
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'column',
     margin: 0,
-    padding: 0,
+    background: color.white + '50',
+    borderRadius: 10,
+    border: `2px solid ${color.white + '80'}`,
+    padding: '10px 15px',
   },
   rightContainer: {
     display: 'flex',

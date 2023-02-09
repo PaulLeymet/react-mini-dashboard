@@ -1,5 +1,4 @@
 import { CSSProperties } from 'react'
-import DesignHeader from '../../../../design-system/DesignText/DesignHeader'
 import { color } from '../../../../theme/color'
 import { ILLUSTRATIONS } from '../../../../theme/illustrations'
 import { ElementsCategory } from '../../stores/types/CategoryType'
@@ -82,15 +81,9 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
       }}
     >
       <div style={styles.sectionLeft}>
-        <DesignHeader color={color.white} style={styles.header}>
-          Ressources
-        </DesignHeader>
         <ElementsList style={styles.cardContainer} category={category} isRessourceList />
       </div>
       <div style={styles.sectionRight}>
-        <DesignHeader color={color.white} style={styles.header}>
-          Elements
-        </DesignHeader>
         <ElementsList style={styles.cardContainer} category={category} />
       </div>
     </div>
