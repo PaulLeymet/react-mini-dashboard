@@ -1,12 +1,12 @@
+import { Chip } from '@mui/material'
 import { CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
-import DesignText from '../../../../design-system/DesignText/DesignText'
 import { useAppSelector } from '../../../../store/hooks'
 import { color } from '../../../../theme/color'
 import { selectElements } from '../../stores/elementSlice'
 import { ElementsCategory } from '../../stores/types/CategoryType'
 
-export default function PageLink({ category, url }: { category: ElementsCategory; url: string }) {
+export default function PageLink({ category, url, style }: { category: ElementsCategory; url: string; style?: CSSProperties }) {
   // =================
   // Stores
   // =================
@@ -70,18 +70,14 @@ export default function PageLink({ category, url }: { category: ElementsCategory
   // =================
   // Render
   // =================
-  return (
-    <DesignText key={url} style={styles.link} onClick={navigateTo}>
-      {element?.name || element?.title}
-    </DesignText>
-  )
+  return <Chip style={{ ...styles.link, ...style }} variant="outlined" label={element?.name || element?.title} clickable onClick={navigateTo} />
 }
 
 const styles: {
   [key: string]: CSSProperties | undefined
 } = {
-  link: {
-    cursor: 'pointer',
+  style: {
     color: color.primary,
+    background: color.primary,
   },
 }

@@ -18,12 +18,13 @@ export default function DesignTabs({ tabs, style }: { tabs: { label: string; con
       flexGrow: 1,
     },
     tabSelector: {
-      display: 'flex',
+      display: 'relative',
       alignItems: 'center',
       justifyContent: 'center',
+      borderWidth: 0,
     },
     tab: {
-      width: `${100 / 6}%`,
+      width: `${100 / tabs.length}%`,
     },
     tabPanel: {
       display: 'flex',

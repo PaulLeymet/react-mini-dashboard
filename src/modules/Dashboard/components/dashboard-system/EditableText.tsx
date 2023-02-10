@@ -1,5 +1,5 @@
-import { CSSProperties } from 'react'
-import DesignInput from '../../../../design-system/DesignInput/DesignInput'
+import { TextField } from '@mui/material'
+import { ChangeEvent, CSSProperties } from 'react'
 import DesignText, { DesignTextProps } from '../../../../design-system/DesignText/DesignText'
 
 export default function EditableText({ editable, onUpdate, ...props }: { editable?: boolean; onUpdate?: (text: string) => void } & DesignTextProps) {
@@ -22,15 +22,25 @@ export default function EditableText({ editable, onUpdate, ...props }: { editabl
   // =================
   // Methods
   // =================
+  const onChangeHandler = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    if (onUpdate) onUpdate(event.target.value)
+  }
 
   // =================
   // Render
   // =================
-  return editable ? <DesignInput text={props.children} onChange={onUpdate} /> : <DesignText {...props} />
+  return editable ? (
+    <TextField style={styles.input} variant="standard" value={props.children} onChange={onChangeHandler} />
+  ) : (
+    <DesignText {...props} />
+  )
 }
 
 const styles: {
   [key: string]: CSSProperties | undefined
 } = {
-  text: {},
+  input: {
+    display: 'flex',
+    flexGrow: 1,
+  },
 }

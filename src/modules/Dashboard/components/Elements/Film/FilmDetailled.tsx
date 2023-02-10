@@ -2,6 +2,8 @@ import { Grid } from '@mui/material'
 import { CSSProperties } from 'react'
 import { useParams } from 'react-router-dom'
 import DesignSpinner from '../../../../../design-system/DesignSpinner/DesignSpinner'
+import DesignTabs from '../../../../../design-system/DesignTabs/DesignTabs'
+import DesignHeader from '../../../../../design-system/DesignText/DesignHeader'
 import DesignText from '../../../../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
 import { ILLUSTRATIONS } from '../../../../../theme/illustrations'
@@ -38,13 +40,48 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
   // Methods
   // =================
   const onTitleUpdate = (text: string) => {
-    console.log('TEST', text)
     if (index) {
       dispatch(
         updateRessource({
           category: 'films',
           index: parseInt(index),
           ressource: { ...film, ...{ title: text } },
+        }),
+      )
+    }
+  }
+
+  const onDirectorUpdate = (text: string) => {
+    if (index) {
+      dispatch(
+        updateRessource({
+          category: 'films',
+          index: parseInt(index),
+          ressource: { ...film, ...{ director: text } },
+        }),
+      )
+    }
+  }
+
+  const onProducerUpdate = (text: string) => {
+    if (index) {
+      dispatch(
+        updateRessource({
+          category: 'films',
+          index: parseInt(index),
+          ressource: { ...film, ...{ producer: text } },
+        }),
+      )
+    }
+  }
+
+  const onCrawlUpdate = (text: string) => {
+    if (index) {
+      dispatch(
+        updateRessource({
+          category: 'films',
+          index: parseInt(index),
+          ressource: { ...film, ...{ opening_crawl: text } },
         }),
       )
     }
@@ -57,65 +94,103 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
     <div style={styles.main}>
       {!!film ? (
         <div style={styles.content}>
-          <Grid style={styles.gridSection} container spacing={4}>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={3}>
-              <DesignText bold>{`Created on`}</DesignText>
-              <EditableText>{`${dateFormat(film.created, 'dd/MM/yyyy')}`}</EditableText>
-              <DesignText style={{ marginTop: 2 }} bold>{`Released on`}</DesignText>
-              <EditableText>{`${dateFormat(film.release_date.replace('-', ':'), 'dd/MM/yyyy')}`}</EditableText>
-            </Grid>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={6}>
-              <EditableText onUpdate={onTitleUpdate} editable={isRessource}>{`${film.title}`}</EditableText>
-              <EditableText>{`Episode ${film.episode_id}`}</EditableText>
-            </Grid>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={3}>
-              <DesignText bold>{`Directed by`}</DesignText>
-              <EditableText>{`${film.director}`}</EditableText>
-              <DesignText style={{ marginTop: 2 }} bold>{`Produced by`}</DesignText>
-              <EditableText>{`${film.producer}`}</EditableText>
+          <Grid style={styles.gridContainer} container>
+            <Grid style={styles.gridIllustration} item sm={4} xs={0}></Grid>
+            <Grid style={styles.gridInformations} item sm={8} xs={12}>
+              <Grid style={styles.gridContainer} container spacing={4}>
+                {/* SECTION TITLE */}
+                <Grid item xs={12}>
+                  <DesignHeader variant="h5">{isRessource ? `Ressource - Film` : `Element - Film`}</DesignHeader>
+                  <EditableText editable={isRessource} onUpdate={onTitleUpdate} variant="h5">
+                    {isRessource ? `${film.title}` : `Episode ${film.episode_id} - ${film.title}`}
+                  </EditableText>
+                </Grid>
+                <Grid item xs={6}>
+                  <DesignText bold>Directed by</DesignText>
+                  <EditableText editable={isRessource} onUpdate={onDirectorUpdate}>{`${film.director}`}</EditableText>
+                  <DesignText style={{ marginTop: 2 }} bold>
+                    Produced by
+                  </DesignText>
+                  <EditableText editable={isRessource} onUpdate={onProducerUpdate}>{`${film.producer}`}</EditableText>
+                </Grid>
+                <Grid item xs={6}>
+                  <DesignText bold>Created in</DesignText>
+                  <EditableText>{`${dateFormat(film.created, 'dd/MM/yyyy')}`}</EditableText>
+                  <DesignText style={{ marginTop: 2 }} bold>
+                    Produced by
+                  </DesignText>
+                  <EditableText>{`${dateFormat(film.release_date.replace('-', ':'), 'dd/MM/yyyy')}`}</EditableText>
+                </Grid>
+                <Grid item xs={12}>
+                  <EditableText editable={isRessource} onUpdate={onCrawlUpdate}>{`${film.opening_crawl}`}</EditableText>
+                </Grid>
+                <Grid item xs={12}>
+                  <DesignTabs
+                    tabs={[
+                      {
+                        label: 'People',
+                        content: (
+                          <div style={styles.linkContainer}>
+                            {film.vehicles?.map((url) => (
+                              <PageLink style={styles.link} category="people" url={url} />
+                            ))}
+                          </div>
+                        ),
+                      },
+                      {
+                        label: 'Planets',
+                        content: (
+                          <div style={styles.linkContainer}>
+                            {film.vehicles?.map((url) => (
+                              <PageLink style={styles.link} category="planets" url={url} />
+                            ))}
+                          </div>
+                        ),
+                      },
+                      {
+                        label: 'Species',
+                        content: (
+                          <div style={styles.linkContainer}>
+                            {film.vehicles?.map((url) => (
+                              <PageLink style={styles.link} category="species" url={url} />
+                            ))}
+                          </div>
+                        ),
+                      },
+                      {
+                        label: 'Starships',
+                        content: (
+                          <div style={styles.linkContainer}>
+                            {film.vehicles?.map((url) => (
+                              <PageLink style={styles.link} category="starships" url={url} />
+                            ))}
+                          </div>
+                        ),
+                      },
+                      {
+                        label: 'Vehicles',
+                        content: (
+                          <div style={styles.linkContainer}>
+                            {film.vehicles?.map((url) => (
+                              <PageLink style={styles.link} category="vehicles" url={url} />
+                            ))}
+                          </div>
+                        ),
+                      },
+                    ]}
+                  />
+                </Grid>
+
+                {/* SECTION DATA */}
+                <Grid style={styles.gridInformations} item xs={12}></Grid>
+              </Grid>
             </Grid>
           </Grid>
-          <Grid style={styles.gridSection} container spacing={4}>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={12}>
-              <EditableText>{`${film.opening_crawl}`}</EditableText>
-            </Grid>
-          </Grid>
-          <Grid style={styles.gridSection} container spacing={4}>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
-              <DesignText bold>{`People`}</DesignText>
-              {film.characters?.map((url) => (
-                <PageLink category="people" url={url} />
-              ))}
-            </Grid>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
-              <DesignText bold>{`Planets`}</DesignText>
-              {film.planets?.map((url) => (
-                <PageLink category="planets" url={url} />
-              ))}
-            </Grid>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
-              <DesignText bold>{`Species`}</DesignText>
-              {film.species?.map((url) => (
-                <PageLink category="species" url={url} />
-              ))}
-            </Grid>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
-              <DesignText bold>{`Starships`}</DesignText>
-              {film.starships?.map((url) => (
-                <PageLink category="starships" url={url} />
-              ))}
-            </Grid>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
-              <DesignText bold>{`Vehicles`}</DesignText>
-              {film.vehicles?.map((url) => (
-                <PageLink category="vehicles" url={url} />
-              ))}
-            </Grid>
-          </Grid>
-          {true ? null : <></>}
         </div>
       ) : (
-        <DesignSpinner />
+        <div style={styles.spinnerContent}>
+          <DesignSpinner />
+        </div>
       )}
     </div>
   )
@@ -128,37 +203,42 @@ const styles: {
     display: 'flex',
     justifyContent: 'center',
     flexGrow: 1,
-    alignItems: 'center',
   },
-  background: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundImage: `url(${ILLUSTRATIONS.films})`,
-    backgroundSize: 'cover',
-    opacity: 0.1,
+  spinnerContent: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexGrow: 1,
   },
   content: {
+    display: 'flex',
+    flexGrow: 1,
+  },
+  gridContainer: {
+    display: 'flex',
+    flexGrow: 1,
+  },
+  gridIllustration: {
+    display: 'flex',
+    flexGrow: 1,
+    backgroundImage: `url(${ILLUSTRATIONS.films})`,
+    backgroundSize: 'cover',
+    opacity: 0.8,
+  },
+  gridInformations: {
+    display: 'relative',
+    flexGrow: 1,
+    padding: 20,
+    flexDirection: 'column',
+  },
+  linkContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexGrow: 1,
     margin: 20,
-    display: 'flex',
-    flexDirection: 'column',
   },
-  accordionContent: {},
-  gridSection: {
-    display: 'flex',
-    height: `${100 / 3}%`,
-    margin: 0,
-    padding: 0,
-  },
-  grid: {
-    display: 'flex',
-    margin: 0,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    flexDirection: 'column',
-    padding: 30,
-    overflow: 'scroll',
+  link: {
+    flexBasis: 'calc(20% - 20px)',
+    margin: '10px',
   },
 }
