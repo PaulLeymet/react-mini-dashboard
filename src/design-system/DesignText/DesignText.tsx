@@ -10,6 +10,7 @@ export default function DesignText({
   onClick,
   textAlign,
   bold,
+  numberOfLines,
 }: {
   children: string
   style?: SxProps<Theme>
@@ -18,11 +19,10 @@ export default function DesignText({
   onClick?: () => void
   textAlign?: 'center' | 'left' | 'right'
   bold?: boolean
+  numberOfLines?: number
 }) {
   const styles: SxProps<Theme> = {
-    cursor: onClick ? 'pointer' : 'auto',
-    color: color || ThemeColor.black,
-    fontWeight: bold ? 'bold' : undefined,
+    ...{ cursor: onClick ? 'pointer' : 'auto', color: color || ThemeColor.black, fontWeight: bold ? 'bold' : undefined },
   }
 
   return (

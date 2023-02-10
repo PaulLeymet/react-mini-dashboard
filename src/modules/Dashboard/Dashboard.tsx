@@ -84,6 +84,7 @@ export default function Dashboard() {
   return (
     <div style={styles.page}>
       <DesignTabs
+        style={styles.tabs}
         tabs={[
           {
             label: 'Films',
@@ -121,10 +122,12 @@ const styles: {
 } = {
   page: {
     width: '100%',
-    height: '100%',
     display: 'flex',
     alignItems: 'self-start',
     justifyContent: 'self-start',
     flexDirection: 'column',
+  },
+  tabs: {
+    marginTop: 4,
   },
 }

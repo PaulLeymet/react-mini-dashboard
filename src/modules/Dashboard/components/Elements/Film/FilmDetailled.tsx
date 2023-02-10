@@ -69,42 +69,45 @@ export default function FilmDetailled({ id, url, style, isRessource }: { id?: st
       {!!film ? (
         <div style={styles.content}>
           <Grid style={styles.gridSection} container spacing={4}>
-            <Grid style={styles.grid} item xs={3}>
+            <Grid className="hide-scrollbar" style={styles.grid} item xs={3}>
               <DesignText color={color.white} bold>{`Created on`}</DesignText>
               <DesignText color={color.white}>{`${dateFormat(film.created, 'dd/MM/yyyy')}`}</DesignText>
-              <DesignText color={color.white} bold>{`Released on`}</DesignText>
+              <DesignText style={{ marginTop: 2 }} color={color.white} bold>{`Released on`}</DesignText>
               <DesignText color={color.white}>{`${dateFormat(film.release_date.replace('-', ':'), 'dd/MM/yyyy')}`}</DesignText>
             </Grid>
-            <Grid style={styles.grid} item xs={6}>
+            <Grid className="hide-scrollbar" style={styles.grid} item xs={6}>
               <DesignHeader color={color.white}>{`${film.title}`}</DesignHeader>
               <DesignText color={color.white}>{`Episode ${film.episode_id}`}</DesignText>
             </Grid>
-            <Grid style={styles.grid} item xs={3}>
+            <Grid className="hide-scrollbar" style={styles.grid} item xs={3}>
               <DesignText color={color.white} bold>{`Directed by`}</DesignText>
               <DesignText color={color.white}>{`${film.director}`}</DesignText>
-              <DesignText color={color.white} bold>{`Produced by`}</DesignText>
+              <DesignText style={{ marginTop: 2 }} color={color.white} bold>{`Produced by`}</DesignText>
               <DesignText color={color.white}>{`${film.producer}`}</DesignText>
             </Grid>
           </Grid>
           <Grid style={styles.gridSection} container spacing={4}>
-            <Grid style={styles.grid} item xs={12}>
+            <Grid className="hide-scrollbar" style={styles.grid} item xs={12}>
               <DesignText color={color.white}>{`${film.opening_crawl}`}</DesignText>
             </Grid>
           </Grid>
           <Grid style={styles.gridSection} container spacing={4}>
-            <Grid style={styles.grid} item xs={12 / 5}>
+            <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
               <DesignText color={color.white} bold>{`People`}</DesignText>
+              {film.characters?.map((people) => (
+                <DesignText color={color.white}>{people}</DesignText>
+              ))}
             </Grid>
-            <Grid style={styles.grid} item xs={12 / 5}>
+            <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
               <DesignText color={color.white} bold>{`Plantes`}</DesignText>
             </Grid>
-            <Grid style={styles.grid} item xs={12 / 5}>
+            <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
               <DesignText color={color.white} bold>{`Species`}</DesignText>
             </Grid>
-            <Grid style={styles.grid} item xs={12 / 5}>
+            <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
               <DesignText color={color.white} bold>{`Starships`}</DesignText>
             </Grid>
-            <Grid style={styles.grid} item xs={12 / 5}>
+            <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
               <DesignText color={color.white} bold>{`Vehicles`}</DesignText>
             </Grid>
           </Grid>
@@ -144,7 +147,6 @@ const styles: {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-
     backdropFilter: 'blur(2px)',
   },
   accordionContent: {},
@@ -164,5 +166,6 @@ const styles: {
     alignItems: 'center',
     flexDirection: 'column',
     padding: 30,
+    overflow: 'scroll',
   },
 }

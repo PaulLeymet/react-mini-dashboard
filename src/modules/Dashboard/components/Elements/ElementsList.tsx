@@ -1,6 +1,6 @@
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import { Grid, List } from '@mui/material'
+import { List } from '@mui/material'
 import { CSSProperties, useState } from 'react'
 import DesignSpinner from '../../../../design-system/DesignSpinner/DesignSpinner'
 import DesignHeader from '../../../../design-system/DesignText/DesignHeader'
@@ -115,34 +115,45 @@ export default function ElementsList({
   }
 
   return (
-    <Grid style={styles.main} container spacing={4}>
-      <Grid style={styles.leftContainer} item xs={4}>
-        {isRessourceList ? null : fetching === 'BACKWARD' ? (
-          <DesignSpinner style={styles.spinner} size={30} />
-        ) : (
-          <ArrowBackIosIcon style={{ ...styles.chevron, ...(canBack ? null : styles.inactive) }} onClick={onBack} />
-        )}
-      </Grid>
+    <div style={styles.main}>
+      <DesignHeader color={color.white} style={styles.header}>
+        {isRessourceList ? 'Ressources' : 'Elements'}
+      </DesignHeader>
 
-      <Grid style={styles.middleContainer} item xs={4}>
-        <DesignHeader color={color.white} style={styles.header}>
-          {isRessourceList ? 'Ressources' : 'Elements'}
-        </DesignHeader>
-        <List sx={{ ...styles.list, ...style }}>
-          {elementsList?.map((element: any) => {
-            return renderElement(element)
-          })}
-        </List>
-      </Grid>
-
-      <Grid style={styles.rightContainer} item xs={4}>
-        {isRessourceList ? null : fetching === 'FORWARD' ? (
-          <DesignSpinner style={styles.spinner} size={30} />
+      <div style={styles.listContainer}>
+        {isRessourceList ? (
+          <div style={styles.spinner} />
         ) : (
-          <ArrowForwardIosIcon style={{ ...styles.chevron, ...(canForward ? null : styles.inactive) }} onClick={onForward} />
+          <div style={styles.leftContainer}>
+            {fetching === 'BACKWARD' ? (
+              <DesignSpinner style={styles.spinner} size={30} />
+            ) : (
+              <ArrowBackIosIcon style={{ ...styles.chevron, ...(canBack ? null : styles.inactive) }} onClick={onBack} />
+            )}
+          </div>
         )}
-      </Grid>
-    </Grid>
+
+        <div style={styles.middleContainer}>
+          <List className="hide-scrollbar" sx={{ ...styles.list, ...style }}>
+            {elementsList?.map((element: any) => {
+              return renderElement(element)
+            })}
+          </List>
+        </div>
+
+        {isRessourceList ? (
+          <div style={styles.spinner} />
+        ) : (
+          <div style={styles.rightContainer}>
+            {fetching === 'FORWARD' ? (
+              <DesignSpinner style={styles.spinner} size={30} />
+            ) : (
+              <ArrowForwardIosIcon style={{ ...styles.chevron, ...(canForward ? null : styles.inactive) }} onClick={onForward} />
+            )}
+          </div>
+        )}
+      </div>
+    </div>
   )
 }
 
@@ -153,12 +164,21 @@ const styles: {
     display: 'flex',
     width: '100%',
     height: '100%',
-    margin: 0,
-    padding: 0,
+    margin: 10,
+    padding: 10,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+  listContainer: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
   },
   leftContainer: {
     display: 'flex',
-    width: '100%',
     height: '100%',
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -176,13 +196,10 @@ const styles: {
     background: color.white + '50',
     borderRadius: 10,
     border: `2px solid ${color.white + '80'}`,
-    padding: '10px 15px',
     backdropFilter: 'blur(3px)',
-    minWidth: 170,
   },
   rightContainer: {
     display: 'flex',
-    width: '100%',
     height: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -193,9 +210,9 @@ const styles: {
     display: 'flex',
     width: '100%',
     height: '100%',
-    flexDirection: 'column',
+    flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 5,
+    overflowX: 'scroll',
   },
   chevron: {
     cursor: 'pointer',

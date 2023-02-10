@@ -6,6 +6,7 @@ import DesignText from '../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { color } from '../../theme/color'
 import Dashboard from '../Dashboard/Dashboard'
+import { closeModal } from '../Dashboard/stores/modalSlice'
 import Login from '../Login/Login'
 import { resetAuth, selectAuth } from '../Login/stores/authSlice'
 
@@ -40,6 +41,7 @@ export default function App() {
   // =================
   useEffect(() => {
     authenticate()
+    resetStores()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.token])
 
@@ -56,6 +58,10 @@ export default function App() {
       setAuthenticated(false)
       dispatch(resetAuth())
     }
+  }
+
+  const resetStores = () => {
+    dispatch(closeModal())
   }
 
   const onLogout = () => {

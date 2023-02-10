@@ -45,29 +45,22 @@ export default function Element({
   // Render
   // =================
   return (
-    <ListItem style={styles.main} onClick={onShow}>
-      {isRessource ? (
-        <DesignText textAlign={'left'} style={styles.text}>
+    <motion.div style={styles.main} initial={{ scale: 1 }} whileHover={{ scale: 1.05 }} onClick={onShow}>
+      <ListItem style={styles.listItem}>
+        <DesignText textAlign={'center'} style={styles.text}>
           {id}
         </DesignText>
-      ) : null}
-
-      <motion.div style={styles.iconContainer} initial={{ scale: 1 }} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} onClick={handleAdd}>
-        {isRessource ? (
-          <DeleteForeverIcon style={styles.deleteIcon} />
-        ) : selected ? (
-          <RemoveCircleIcon style={styles.icon} />
-        ) : (
-          <AddCircleOutlineIcon style={styles.icon} />
-        )}
-      </motion.div>
-
-      {!isRessource ? (
-        <DesignText textAlign={'right'} style={styles.text}>
-          {id}
-        </DesignText>
-      ) : null}
-    </ListItem>
+        <motion.div style={styles.iconContainer} initial={{ scale: 1 }} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} onClick={handleAdd}>
+          {isRessource ? (
+            <DeleteForeverIcon style={styles.deleteIcon} />
+          ) : selected ? (
+            <RemoveCircleIcon style={styles.icon} />
+          ) : (
+            <AddCircleOutlineIcon style={styles.icon} />
+          )}
+        </motion.div>
+      </ListItem>
+    </motion.div>
   )
 }
 
@@ -76,15 +69,21 @@ const styles: {
 } = {
   main: {
     cursor: 'pointer',
-    maxWidth: 400,
+    width: '10%',
     minWidth: 80,
-    height: 50,
+    height: '60%',
     background: color.white + 'E8',
     margin: 4,
+
+    borderRadius: 5,
+  },
+  listItem: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 5,
+    flexDirection: 'column',
+    height: '100%',
+    padding: 30,
   },
   text: {
     pointerEvents: 'none',

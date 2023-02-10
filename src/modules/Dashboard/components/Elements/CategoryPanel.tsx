@@ -27,42 +27,36 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
           backgroundColor: color.black,
           backgroundImage: `url(${ILLUSTRATIONS.films})`,
           backgroundSize: 'cover',
-          borderRadius: 15,
         }
       case 'people':
         return {
           backgroundColor: color.black,
           backgroundImage: `url(${ILLUSTRATIONS.people})`,
           backgroundSize: 'cover',
-          borderRadius: 15,
         }
       case 'planets':
         return {
           backgroundColor: color.black,
           backgroundImage: `url(${ILLUSTRATIONS.planets})`,
           backgroundSize: 'cover',
-          borderRadius: 15,
         }
       case 'species':
         return {
           backgroundColor: color.black,
           backgroundImage: `url(${ILLUSTRATIONS.species})`,
           backgroundSize: 'cover',
-          borderRadius: 15,
         }
       case 'starships':
         return {
           backgroundColor: color.black,
           backgroundImage: `url(${ILLUSTRATIONS.starships})`,
           backgroundSize: 'cover',
-          borderRadius: 15,
         }
       case 'vehicles':
         return {
           backgroundColor: color.black,
           backgroundImage: `url(${ILLUSTRATIONS.vehicles})`,
           backgroundSize: 'cover',
-          borderRadius: 15,
         }
       default:
         return null
@@ -80,11 +74,11 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
         ...renderBackgroundStyle(),
       }}
     >
-      <div style={styles.sectionLeft}>
-        <ElementsList style={styles.cardContainer} category={category} isRessourceList />
-      </div>
-      <div style={styles.sectionRight}>
+      <div style={styles.elementSection}>
         <ElementsList style={styles.cardContainer} category={category} />
+      </div>
+      <div style={styles.ressourceSection}>
+        <ElementsList style={styles.cardContainer} category={category} isRessourceList />
       </div>
     </div>
   )
@@ -96,20 +90,24 @@ const styles: {
   main: {
     display: 'flex',
     flex: 1,
-    flexDirection: 'row',
-    margin: 10,
+    flexDirection: 'column',
+    marginTop: 4,
+    height: '100%',
   },
-  sectionLeft: {
+  elementSection: {
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
-    margin: 10,
+    marginTop: 10,
+    marginBottom: 10,
   },
-  sectionRight: {
+  ressourceSection: {
     display: 'flex',
     flex: 1,
+    width: '100%',
     flexDirection: 'column',
-    margin: 10,
+    marginTop: 10,
+    marginBottom: 10,
   },
   header: {},
 }

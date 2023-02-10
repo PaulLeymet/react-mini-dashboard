@@ -1,8 +1,9 @@
-import { TabContext, TabPanel } from '@mui/lab'
+import { TabContext } from '@mui/lab'
 import { Tab, Tabs } from '@mui/material'
 import { CSSProperties, useState } from 'react'
+import { color } from '../../theme/color'
 
-export default function DesignTabs({ tabs, style }: { tabs: { label: string; content: JSX.Element }[]; style?: CSSProperties }) {
+export default function DesignLinkTabs({ tabs, style }: { tabs: { label: string; href: string }[]; style?: CSSProperties }) {
   const [value, setValue] = useState(0)
 
   const handleChange = (event: React.SyntheticEvent<Element, Event>, value: any) => {
@@ -26,6 +27,8 @@ export default function DesignTabs({ tabs, style }: { tabs: { label: string; con
     },
     tab: {
       width: `${100 / 6}%`,
+      color: color.white,
+      borderColor: color.white,
     },
     tabPanel: {
       width: '100%',
@@ -38,23 +41,11 @@ export default function DesignTabs({ tabs, style }: { tabs: { label: string; con
   return (
     <TabContext value={`${value}`}>
       <div style={{ ...styles.elements, ...style }}>
-        <Tabs
-          style={styles.tabSelector}
-          variant="scrollable"
-          value={value}
-          onChange={handleChange}
-          aria-label="Vertical tabs"
-          sx={{ borderRight: 1, borderColor: 'divider' }}
-        >
+        <Tabs style={styles.tabSelector} variant="scrollable" value={value} onChange={handleChange} aria-label="Vertical tabs">
           {tabs.map((tab, index) => (
-            <Tab style={styles.tab} key={`${index}`} label={tab.label} />
+            <Tab style={styles.tab} key={`${index}`} label={tab.label} href={tab.href} />
           ))}
         </Tabs>
-        {tabs.map((tab, index) => (
-          <TabPanel style={styles.tabPanel} key={`${index}`} value={`${index}`}>
-            {tab.content}
-          </TabPanel>
-        ))}
       </div>
     </TabContext>
   )

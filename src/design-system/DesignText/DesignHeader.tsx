@@ -31,4 +31,5 @@ export default function DesignHeader({
 
 const styles: CSSProperties = {
   fontFamily: 'Starjedi',
+  paddingBottom: '4px',
 }
