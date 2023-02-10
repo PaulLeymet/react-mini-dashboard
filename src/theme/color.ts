@@ -36,7 +36,7 @@ export const color = {
   /**
    * Primary color
    */
-  primary: '#136DD7',
+  primary: '#004AAD',
   /**
    * Secondary color
    */
@@ -44,5 +44,5 @@ export const color = {
   /**
    * Tertiary color
    */
-  tertiary: palette.yellow,
+  tertiary: '#E6C660',
 }

@@ -30,7 +30,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'revert-layer',
+    fontFamily: 'Roboto',
   },
 })
 

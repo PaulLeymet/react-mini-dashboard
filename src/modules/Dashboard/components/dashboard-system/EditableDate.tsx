@@ -2,6 +2,7 @@ import { TextField } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { CSSProperties } from 'react'
 import DesignText, { DesignTextProps } from '../../../../design-system/DesignText/DesignText'
+import { color } from '../../../../theme/color'
 import { dateFormat } from '../../../../utils/date'
 
 export default function EditableDate({
@@ -44,6 +45,11 @@ export default function EditableDate({
       renderInput={(params) => (
         <TextField
           style={styles.input}
+          sx={{
+            svg: { color: color.primary },
+            '& .MuiInput-underline:before': { borderBottomColor: color.secondary },
+            '& .MuiInput-underline:after': { borderBottomColor: color.secondary },
+          }}
           inputProps={{ min: 0, style: { textAlign: 'center' } }}
           variant="standard"
           placeholder={placeholder}

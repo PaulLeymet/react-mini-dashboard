@@ -1,6 +1,7 @@
 import { TextField } from '@mui/material'
 import { ChangeEvent, CSSProperties } from 'react'
 import DesignText, { DesignTextProps } from '../../../../design-system/DesignText/DesignText'
+import { color } from '../../../../theme/color'
 
 export default function EditableText({
   style,
@@ -38,6 +39,10 @@ export default function EditableText({
   return editable ? (
     <TextField
       style={{ ...styles.input, ...style }}
+      sx={{
+        '& .MuiInput-underline:before': { borderBottomColor: color.secondary },
+        '& .MuiInput-underline:after': { borderBottomColor: color.secondary },
+      }}
       inputProps={{ min: 0, style: { textAlign: 'center' } }}
       variant="standard"
       placeholder={placeholder}

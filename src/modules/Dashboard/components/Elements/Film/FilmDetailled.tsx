@@ -6,6 +6,7 @@ import DesignTabs from '../../../../../design-system/DesignTabs/DesignTabs'
 import DesignHeader from '../../../../../design-system/DesignText/DesignHeader'
 import DesignText from '../../../../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
+import { color } from '../../../../../theme/color'
 import { ILLUSTRATIONS } from '../../../../../theme/illustrations'
 import { selectElements } from '../../../stores/elementSlice'
 import { selectRessources, updateRessource } from '../../../stores/ressourceSlice'
@@ -124,7 +125,9 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
               <Grid style={styles.gridContainer} container spacing={4}>
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
-                  <DesignHeader variant="h5">{isRessource ? `Ressource - Film` : `Element - Film`}</DesignHeader>
+                  <DesignHeader color={color.primary} variant="h5">
+                    {isRessource ? `Ressource - Film` : `Element - Film`}
+                  </DesignHeader>
                   <EditableText placeholder={'Title'} editable={isRessource} onUpdate={onTitleUpdate} variant="h5">
                     {isRessource ? `${film.title}` : `Episode ${film.episode_id} - ${film.title}`}
                   </EditableText>
