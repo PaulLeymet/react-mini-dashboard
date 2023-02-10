@@ -13,13 +13,11 @@ export default function DesignTabs({ tabs, style }: { tabs: { label: string; con
     [key: string]: CSSProperties | undefined
   } = {
     elements: {
-      width: '100%',
-      height: '100%',
       flexDirection: 'column',
       display: 'flex',
+      flexGrow: 1,
     },
     tabSelector: {
-      width: '100%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -28,10 +26,9 @@ export default function DesignTabs({ tabs, style }: { tabs: { label: string; con
       width: `${100 / 6}%`,
     },
     tabPanel: {
-      width: '100%',
-      height: '100%',
-      overflow: 'hidden',
+      display: 'flex',
       padding: 0,
+      flexGrow: 1,
     },
   }
 
@@ -50,11 +47,13 @@ export default function DesignTabs({ tabs, style }: { tabs: { label: string; con
             <Tab style={styles.tab} key={`${index}`} label={tab.label} />
           ))}
         </Tabs>
-        {tabs.map((tab, index) => (
-          <TabPanel style={styles.tabPanel} key={`${index}`} value={`${index}`}>
-            {tab.content}
-          </TabPanel>
-        ))}
+        {tabs.map((tab, index) =>
+          value === index ? (
+            <TabPanel style={styles.tabPanel} key={`${index}`} value={`${index}`}>
+              {tab.content}
+            </TabPanel>
+          ) : null,
+        )}
       </div>
     </TabContext>
   )

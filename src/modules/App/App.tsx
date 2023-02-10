@@ -76,7 +76,7 @@ export default function App() {
     <div style={styles.app}>
       {authenticated ? (
         <div style={styles.content}>
-          <AppBar style={{ display: 'flex', background: color.black }} position="static">
+          <AppBar style={styles.navbar}>
             <Toolbar>
               <DesignHeader color={color.white}>Dashboard</DesignHeader>
               <div style={styles.filler} />
@@ -101,19 +101,22 @@ const styles: {
 } = {
   app: {
     display: 'flex',
-    width: '100%',
-    height: '100%',
+    flexGrow: 1,
   },
   content: {
-    width: '100%',
-    height: '100%',
+    display: 'flex',
+    flexGrow: 1,
   },
   filler: {
     flexGrow: 1,
   },
+  navbar: {
+    height: 65,
+    background: color.black,
+  },
   screenContent: {
     display: 'flex',
-    width: '100%',
-    height: '100%',
+    marginTop: 65,
+    flexGrow: 1,
   },
 }

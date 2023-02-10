@@ -108,11 +108,8 @@ const styles: {
   [key: string]: CSSProperties | undefined
 } = {
   page: {
-    width: '100%',
     display: 'flex',
-    alignItems: 'self-start',
-    justifyContent: 'self-start',
-    flexDirection: 'column',
+    flexGrow: 1,
   },
   tabs: {
     marginTop: 4,

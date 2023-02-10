@@ -1,5 +1,5 @@
-import { List } from '@mui/material'
 import { CSSProperties } from 'react'
+import DesignSlick from '../../../../design-system/DesignSlick/DesignSlick'
 import DesignHeader from '../../../../design-system/DesignText/DesignHeader'
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
 import { color } from '../../../../theme/color'
@@ -51,7 +51,7 @@ export default function ElementsList({
   // =================
   // Render
   // =================
-  const renderElement = (data: any) => {
+  const renderElement = (data: any, index: number) => {
     switch (category) {
       case 'films':
         return <Film key={data.title} film={data as FilmType} isRessource={isRessourceList} />
@@ -66,23 +66,14 @@ export default function ElementsList({
       case 'vehicles':
         return <Vehicle key={data.name} vehicle={data as VehicleType} isRessource={isRessourceList} />
       default:
-        break
+        return <></>
     }
   }
 
   return (
     <div style={styles.main}>
-      <DesignHeader color={color.white} style={styles.header}>
-        {isRessourceList ? 'Ressources' : 'Elements'}
-      </DesignHeader>
-
-      <div style={styles.middleContainer}>
-        <List className="hide-scrollbar" sx={{ ...styles.list, ...style }}>
-          {elements?.map((element: any) => {
-            return renderElement(element)
-          })}
-        </List>
-      </div>
+      <DesignHeader color={color.white}>{isRessourceList ? 'Ressources' : 'Elements'}</DesignHeader>
+      <DesignSlick data={elements} renderElement={renderElement} />
     </div>
   )
 }
@@ -92,73 +83,9 @@ const styles: {
 } = {
   main: {
     display: 'flex',
-    width: '100%',
-    height: '100%',
+    flexGrow: 1,
     margin: 10,
     padding: 10,
     flexDirection: 'column',
-    alignItems: 'flex-start',
-  },
-  listContainer: {
-    display: 'flex',
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 20,
-  },
-  leftContainer: {
-    display: 'flex',
-    height: '100%',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    margin: 0,
-    padding: 0,
-  },
-  middleContainer: {
-    display: 'flex',
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    margin: 0,
-    background: color.white + '50',
-    borderRadius: 10,
-    border: `2px solid ${color.white + '80'}`,
-    backdropFilter: 'blur(3px)',
-  },
-  rightContainer: {
-    display: 'flex',
-    height: '100%',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    margin: 0,
-    padding: 0,
-  },
-  list: {
-    display: 'flex',
-    width: '100%',
-    height: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    overflowX: 'scroll',
-  },
-  chevron: {
-    cursor: 'pointer',
-    width: 30,
-    height: 30,
-    color: color.white,
-    margin: '10px',
-  },
-  spinner: {
-    width: 30,
-    height: 30,
-    color: color.white,
-    margin: '10px',
-  },
-  inactive: {
-    opacity: 0.2,
-    cursor: 'auto',
   },
 }

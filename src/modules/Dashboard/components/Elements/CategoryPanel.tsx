@@ -150,25 +150,17 @@ const styles: {
 } = {
   main: {
     display: 'flex',
-    flex: 1,
+    flexGrow: 1,
     flexDirection: 'column',
     marginTop: 4,
-    height: '100%',
   },
   elementSection: {
     display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-    marginTop: 10,
-    marginBottom: 10,
+    flexGrow: 1,
   },
   ressourceSection: {
     display: 'flex',
-    flex: 1,
-    width: '100%',
-    flexDirection: 'column',
-    marginTop: 10,
-    marginBottom: 10,
+    flexGrow: 1,
   },
   header: {},
 }

@@ -1,0 +1,23 @@
+.horizontal-scroll-wrapper {
+  display: flex;
+  flex-grow: 1;
+}
+
+.react-horizontal-scrolling-menu--inner-wrapper {
+  display: flex;
+  flex-grow: 1;
+}
+
+.horizontal-scroll-container {
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+  align-items: center;
+}
+
+.horizontal-scroll-separator {
+}
+
+.horizontal-scroll-list-item {
+  display: flex;
+}

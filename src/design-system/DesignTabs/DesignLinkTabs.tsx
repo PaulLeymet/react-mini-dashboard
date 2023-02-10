@@ -14,13 +14,10 @@ export default function DesignLinkTabs({ tabs, style }: { tabs: { label: string;
     [key: string]: CSSProperties | undefined
   } = {
     elements: {
-      width: '100%',
-      height: '100%',
       flexDirection: 'column',
       display: 'flex',
     },
     tabSelector: {
-      width: '100%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -31,8 +28,6 @@ export default function DesignLinkTabs({ tabs, style }: { tabs: { label: string;
       borderColor: color.white,
     },
     tabPanel: {
-      width: '100%',
-      height: '100%',
       overflow: 'hidden',
       padding: 0,
     },

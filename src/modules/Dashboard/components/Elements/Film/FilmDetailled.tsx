@@ -122,8 +122,6 @@ const styles: {
   [key: string]: CSSProperties | undefined
 } = {
   main: {
-    width: '100%',
-    height: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -141,8 +139,7 @@ const styles: {
   },
   content: {
     margin: 20,
-    width: '100%',
-    height: '100%',
+
     display: 'flex',
     flexDirection: 'column',
     backdropFilter: 'blur(2px)',
@@ -150,15 +147,13 @@ const styles: {
   accordionContent: {},
   gridSection: {
     display: 'flex',
-    width: '100%',
     height: `${100 / 3}%`,
     margin: 0,
     padding: 0,
   },
   grid: {
     display: 'flex',
-    width: '100%',
-    height: '100%',
+
     margin: 0,
     justifyContent: 'flex-start',
     alignItems: 'center',

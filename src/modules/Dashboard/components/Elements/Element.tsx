@@ -1,11 +1,11 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
-import { ListItem } from '@mui/material'
 import { motion } from 'framer-motion'
-import { CSSProperties } from 'react'
+import { CSSProperties, useState } from 'react'
 import DesignText from '../../../../design-system/DesignText/DesignText'
 import { color } from '../../../../theme/color'
+
 export default function Element({
   id,
   style,
@@ -28,6 +28,7 @@ export default function Element({
   // =================
   // States
   // =================
+  const [hovered, setHovered] = useState(false)
 
   // =================
   // Hooks
@@ -41,25 +42,44 @@ export default function Element({
     if (onAdd) onAdd()
   }
 
+  const onHoverStart = () => {
+    setHovered(true)
+  }
+
+  const onHoverEnd = () => {
+    setHovered(false)
+  }
+
   // =================
   // Render
   // =================
   return (
-    <motion.div style={styles.main} initial={{ scale: 1 }} whileHover={{ scale: 1.05 }} onClick={onShow}>
-      <ListItem style={styles.listItem}>
-        <DesignText textAlign={'center'} style={styles.text}>
-          {id}
-        </DesignText>
-        <motion.div style={styles.iconContainer} initial={{ scale: 1 }} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} onClick={handleAdd}>
-          {isRessource ? (
-            <DeleteForeverIcon style={styles.deleteIcon} />
-          ) : selected ? (
-            <RemoveCircleIcon style={styles.icon} />
-          ) : (
-            <AddCircleOutlineIcon style={styles.icon} />
-          )}
-        </motion.div>
-      </ListItem>
+    <motion.div
+      style={styles.main}
+      initial={{ scale: 1 }}
+      whileHover={{ scale: 1.05 }}
+      onHoverStart={onHoverStart}
+      onHoverEnd={onHoverEnd}
+      onClick={onShow}
+    >
+      <DesignText textAlign={'center'} style={styles.text}>
+        {id}
+      </DesignText>
+      {hovered ? (
+        isRessource ? (
+          <div style={styles.deleteIconContainer}>
+            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} onClick={handleAdd}>
+              <DeleteForeverIcon style={styles.deleteIcon} />
+            </motion.div>
+          </div>
+        ) : (
+          <div style={styles.addIconContainer}>
+            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} onClick={handleAdd}>
+              {selected ? <RemoveCircleIcon style={styles.icon} /> : <AddCircleOutlineIcon style={styles.icon} />}
+            </motion.div>
+          </div>
+        )
+      ) : null}
     </motion.div>
   )
 }
@@ -68,33 +88,30 @@ const styles: {
   [key: string]: CSSProperties | undefined
 } = {
   main: {
-    cursor: 'pointer',
-    width: '10%',
-    minWidth: 80,
-    height: '60%',
+    width: 300,
+    height: 200,
     background: color.white + 'E8',
-    margin: 4,
-
-    borderRadius: 5,
-  },
-  listItem: {
+    borderRadius: 10,
+    margin: 20,
     display: 'flex',
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column',
-    height: '100%',
-    padding: 30,
+    WebkitBoxShadow: '0px 0px  20px 3px rgba(0,0,0,0.4)',
+    boxShadow: ' 0px 0px  20px 3px rgba(0,0,0,0.4)',
   },
   text: {
-    pointerEvents: 'none',
-    color: color.black,
-    flex: 1,
-    display: '-webkit-box',
-    overflow: 'hidden',
-    WebkitBoxOrient: 'vertical',
-    WebkitLineClamp: 1,
+    fontFamily: 'Starjedi',
   },
-  iconContainer: {},
+  addIconContainer: {
+    position: 'absolute',
+    bottom: 10,
+  },
+  deleteIconContainer: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+  },
   icon: {
     color: color.primary,
   },

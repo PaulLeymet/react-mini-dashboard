@@ -95,11 +95,11 @@ const styles: {
   [key: string]: CSSProperties | undefined
 } = {
   page: {
-    width: '100%',
-    height: 400,
+    flexGrow: 1,
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
+    marginTop: 50,
   },
   cardContainer: {
     background: color.secondary,
@@ -112,7 +112,6 @@ const styles: {
   login: {
     display: 'flex',
     alignItems: 'center',
-    width: '100%',
   },
   textContainer: {
     display: 'flex',
