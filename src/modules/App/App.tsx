@@ -140,7 +140,7 @@ export default function App() {
                 Dashboard
               </DesignHeader>
               <div style={styles.filler} />
-              <DesignText color={color.white} onClick={onLogout}>
+              <DesignText bold color={color.white} onClick={onLogout}>
                 Logout
               </DesignText>
             </Toolbar>

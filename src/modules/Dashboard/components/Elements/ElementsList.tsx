@@ -70,12 +70,12 @@ export default function ElementsList({
     }
   }
 
-  return (
+  return elements?.length ? (
     <div style={styles.main}>
       <DesignHeader color={color.white}>{isRessourceList ? 'Ressources' : 'Elements'}</DesignHeader>
       <DesignSlick data={elements} renderElement={renderElement} />
     </div>
-  )
+  ) : null
 }
 
 const styles: {

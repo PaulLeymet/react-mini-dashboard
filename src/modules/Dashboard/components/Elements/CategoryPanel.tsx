@@ -1,7 +1,5 @@
 import { CSSProperties, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
-import { color } from '../../../../theme/color'
-import { ILLUSTRATIONS } from '../../../../theme/illustrations'
 import axiosGet, { isError } from '../../../../utils/api'
 import { CHUNK_SIZE, selectElements, storeCategoryElements, storeCategoryInfos } from '../../stores/elementSlice'
 import { ElementsCategory } from '../../stores/types/CategoryType'
@@ -81,49 +79,6 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
     )
   }
 
-  const renderBackgroundStyle = (): CSSProperties | null => {
-    switch (category) {
-      case 'films':
-        return {
-          backgroundColor: color.black,
-          backgroundImage: `url(${ILLUSTRATIONS.films})`,
-          backgroundSize: 'cover',
-        }
-      case 'people':
-        return {
-          backgroundColor: color.black,
-          backgroundImage: `url(${ILLUSTRATIONS.people})`,
-          backgroundSize: 'cover',
-        }
-      case 'planets':
-        return {
-          backgroundColor: color.black,
-          backgroundImage: `url(${ILLUSTRATIONS.planets})`,
-          backgroundSize: 'cover',
-        }
-      case 'species':
-        return {
-          backgroundColor: color.black,
-          backgroundImage: `url(${ILLUSTRATIONS.species})`,
-          backgroundSize: 'cover',
-        }
-      case 'starships':
-        return {
-          backgroundColor: color.black,
-          backgroundImage: `url(${ILLUSTRATIONS.starships})`,
-          backgroundSize: 'cover',
-        }
-      case 'vehicles':
-        return {
-          backgroundColor: color.black,
-          backgroundImage: `url(${ILLUSTRATIONS.vehicles})`,
-          backgroundSize: 'cover',
-        }
-      default:
-        return null
-    }
-  }
-
   // =================
   // Render
   // =================
@@ -132,7 +87,6 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
       style={{
         ...styles.main,
         ...style,
-        ...renderBackgroundStyle(),
       }}
     >
       <div style={styles.elementSection}>

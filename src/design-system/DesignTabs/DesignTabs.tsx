@@ -1,12 +1,22 @@
 import { TabContext, TabPanel } from '@mui/lab'
 import { Tab, Tabs } from '@mui/material'
 import { CSSProperties, useState } from 'react'
+import { color } from '../../theme/color'
 
-export default function DesignTabs({ tabs, style }: { tabs: { label: string; content: JSX.Element }[]; style?: CSSProperties }) {
+export default function DesignTabs({
+  tabs,
+  style,
+  onTabChange,
+}: {
+  tabs: { label: string; content: JSX.Element }[]
+  style?: CSSProperties
+  onTabChange?: (value: number) => void
+}) {
   const [value, setValue] = useState(0)
 
   const handleChange = (event: React.SyntheticEvent<Element, Event>, value: any) => {
     setValue(value)
+    if (onTabChange) onTabChange(value)
   }
 
   const styles: {
@@ -22,14 +32,19 @@ export default function DesignTabs({ tabs, style }: { tabs: { label: string; con
       alignItems: 'center',
       justifyContent: 'center',
       borderWidth: 0,
+      background: color.white + 'C0',
     },
     tab: {
       width: `${100 / tabs.length}%`,
+      fontWeight: 'bold',
     },
     tabPanel: {
       display: 'flex',
       padding: 0,
       flexGrow: 1,
+    },
+    active: {
+      color: color.primary,
     },
   }
 
@@ -45,7 +60,7 @@ export default function DesignTabs({ tabs, style }: { tabs: { label: string; con
           sx={{ borderRight: 1, borderColor: 'divider' }}
         >
           {tabs.map((tab, index) => (
-            <Tab style={styles.tab} key={`${index}`} label={tab.label} />
+            <Tab style={{ ...styles.tab, ...(value === index ? styles.active : null) }} key={`${index}`} label={tab.label} />
           ))}
         </Tabs>
         {tabs.map((tab, index) =>

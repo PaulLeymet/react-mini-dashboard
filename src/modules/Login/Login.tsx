@@ -2,9 +2,11 @@ import { CSSProperties, useState } from 'react'
 import DesignButton from '../../design-system/DesignButton/DesignButton'
 import DesignInput from '../../design-system/DesignInput/DesignInput'
 import DesignPasswordInput from '../../design-system/DesignInput/DesignPasswordInput'
+import DesignHeader from '../../design-system/DesignText/DesignHeader'
 import DesignText from '../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { color } from '../../theme/color'
+import { ILLUSTRATIONS } from '../../theme/illustrations'
 import { hashString } from '../../utils/crypt'
 import { resetAuth, selectAuth, setToken } from './stores/authSlice'
 
@@ -77,7 +79,7 @@ export default function Login() {
         ) : (
           <>
             <div style={styles.textContainer}>
-              <DesignText>{`Welcome to the mini react dashboard`}</DesignText>
+              <DesignHeader color={color.white}>{`Login`}</DesignHeader>
             </div>
             <div style={styles.login}>
               <DesignInput sx={styles.loginElement} placeholder="Username" text={username} onChange={onUsernameChange} />
@@ -99,10 +101,13 @@ const styles: {
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    marginTop: 50,
+    backgroundColor: color.black,
+    backgroundImage: `url(${ILLUSTRATIONS.people})`,
+    backgroundSize: 'cover',
   },
   cardContainer: {
-    background: color.secondary,
+    marginTop: 50,
+    background: color.black,
     padding: 50,
     borderRadius: 20,
     alignItems: 'center',
@@ -110,15 +115,18 @@ const styles: {
     flexDirection: 'column',
   },
   login: {
-    display: 'flex',
+    display: 'relative',
     alignItems: 'center',
+    flexDirection: 'column',
   },
   textContainer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 20,
   },
   loginElement: {
+    width: '100%',
     margin: 1,
   },
 }

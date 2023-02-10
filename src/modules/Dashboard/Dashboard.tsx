@@ -1,7 +1,9 @@
-import { CSSProperties } from 'react'
+import { CSSProperties, useState } from 'react'
 import DesignTabs from '../../design-system/DesignTabs/DesignTabs'
 import { useMount } from '../../hooks/useMount'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { color } from '../../theme/color'
+import { ILLUSTRATIONS } from '../../theme/illustrations'
 import axiosGet, { isError } from '../../utils/api'
 import CategoryPanel from './components/elements/CategoryPanel'
 import { storeCategoriesUrl } from './stores/elementSlice'
@@ -17,6 +19,7 @@ export default function Dashboard() {
   // =================
   // States
   // =================
+  const [tabIndex, setTabIndex] = useState(0)
 
   // =================
   // Hooks
@@ -39,13 +42,57 @@ export default function Dashboard() {
     dispatch(storeCategoriesUrl(data))
   }
 
+  const renderBackgroundStyle = (): CSSProperties | null => {
+    switch (tabIndex) {
+      case 0:
+        return {
+          backgroundColor: color.black,
+          backgroundImage: `url(${ILLUSTRATIONS.films})`,
+          backgroundSize: 'cover',
+        }
+      case 1:
+        return {
+          backgroundColor: color.black,
+          backgroundImage: `url(${ILLUSTRATIONS.people})`,
+          backgroundSize: 'cover',
+        }
+      case 2:
+        return {
+          backgroundColor: color.black,
+          backgroundImage: `url(${ILLUSTRATIONS.planets})`,
+          backgroundSize: 'cover',
+        }
+      case 3:
+        return {
+          backgroundColor: color.black,
+          backgroundImage: `url(${ILLUSTRATIONS.species})`,
+          backgroundSize: 'cover',
+        }
+      case 4:
+        return {
+          backgroundColor: color.black,
+          backgroundImage: `url(${ILLUSTRATIONS.starships})`,
+          backgroundSize: 'cover',
+        }
+      case 5:
+        return {
+          backgroundColor: color.black,
+          backgroundImage: `url(${ILLUSTRATIONS.vehicles})`,
+          backgroundSize: 'cover',
+        }
+      default:
+        return null
+    }
+  }
+
   // =================
   // Render
   // =================
   return (
-    <div style={styles.page}>
+    <div style={{ ...styles.page, ...renderBackgroundStyle() }}>
       <DesignTabs
         style={styles.tabs}
+        onTabChange={setTabIndex}
         tabs={[
           {
             label: 'Films',
@@ -83,8 +130,8 @@ const styles: {
   page: {
     display: 'flex',
     flexGrow: 1,
-  },
-  tabs: {
-    marginTop: 4,
+    backgroundColor: color.black,
+    backgroundImage: `url(${ILLUSTRATIONS.people})`,
+    backgroundSize: 'cover',
   },
 }

@@ -62,7 +62,7 @@ export default function Element({
       onHoverEnd={onHoverEnd}
       onClick={onShow}
     >
-      <DesignText textAlign={'center'} style={styles.text}>
+      <DesignText color={color.white} textAlign={'center'} style={styles.text}>
         {id}
       </DesignText>
       {hovered ? (
@@ -90,7 +90,7 @@ const styles: {
   main: {
     width: 300,
     height: 200,
-    background: color.white + 'E8',
+    background: color.black + 'F0',
     borderRadius: 10,
     margin: 20,
     display: 'flex',
@@ -115,12 +115,18 @@ const styles: {
     right: 10,
   },
   addIcon: {
-    color: color.primary,
+    width: 30,
+    height: 30,
+    color: color.white,
   },
   removeIcon: {
-    color: color.red,
+    width: 30,
+    height: 30,
+    color: color.white,
   },
   deleteIcon: {
-    color: color.red,
+    width: 30,
+    height: 30,
+    color: color.white,
   },
 }
