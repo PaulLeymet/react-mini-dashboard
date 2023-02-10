@@ -75,7 +75,7 @@ export default function Element({
         ) : (
           <div style={styles.addIconContainer}>
             <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} onClick={handleAdd}>
-              {selected ? <RemoveCircleIcon style={styles.icon} /> : <AddCircleOutlineIcon style={styles.icon} />}
+              {selected ? <RemoveCircleIcon style={styles.removeIcon} /> : <AddCircleOutlineIcon style={styles.addIcon} />}
             </motion.div>
           </div>
         )
@@ -114,8 +114,11 @@ const styles: {
     top: 10,
     right: 10,
   },
-  icon: {
+  addIcon: {
     color: color.primary,
+  },
+  removeIcon: {
+    color: color.red,
   },
   deleteIcon: {
     color: color.red,
