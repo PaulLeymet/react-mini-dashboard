@@ -1,5 +1,8 @@
 import { createTheme } from '@mui/material'
 import { ThemeProvider } from '@mui/system'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import 'dayjs/locale/fr'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
@@ -42,7 +45,9 @@ root.render(
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <App />
+          <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'fr'}>
+            <App />
+          </LocalizationProvider>
         </PersistGate>
       </Provider>
     </ThemeProvider>

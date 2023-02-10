@@ -7,10 +7,10 @@ import DesignHeader from '../../../../../design-system/DesignText/DesignHeader'
 import DesignText from '../../../../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
 import { ILLUSTRATIONS } from '../../../../../theme/illustrations'
-import { dateFormat } from '../../../../../utils/date'
 import { selectElements } from '../../../stores/elementSlice'
 import { selectRessources, updateRessource } from '../../../stores/ressourceSlice'
 import { FilmType } from '../../../stores/types/FilmType'
+import EditableDate from '../../dashboard-system/EditableDate'
 import EditableText from '../../dashboard-system/EditableText'
 import PageLink from '../../dashboard-system/PageLink'
 
@@ -87,6 +87,30 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
     }
   }
 
+  const onCreatedDateUpdate = (date: Date) => {
+    if (index) {
+      dispatch(
+        updateRessource({
+          category: 'films',
+          index: parseInt(index),
+          ressource: { ...film, ...{ created: date.toISOString() } },
+        }),
+      )
+    }
+  }
+
+  const onReleasedDateUpdate = (date: Date) => {
+    if (index) {
+      dispatch(
+        updateRessource({
+          category: 'films',
+          index: parseInt(index),
+          ressource: { ...film, ...{ release_date: date.toISOString() } },
+        }),
+      )
+    }
+  }
+
   // =================
   // Render
   // =================
@@ -99,30 +123,35 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
             <Grid style={styles.gridInformations} item sm={8} xs={12}>
               <Grid style={styles.gridContainer} container spacing={4}>
                 {/* SECTION TITLE */}
-                <Grid item xs={12}>
+                <Grid style={styles.grid} item xs={12}>
                   <DesignHeader variant="h5">{isRessource ? `Ressource - Film` : `Element - Film`}</DesignHeader>
-                  <EditableText editable={isRessource} onUpdate={onTitleUpdate} variant="h5">
+                  <EditableText placeholder={'Title'} editable={isRessource} onUpdate={onTitleUpdate} variant="h5">
                     {isRessource ? `${film.title}` : `Episode ${film.episode_id} - ${film.title}`}
                   </EditableText>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid style={styles.grid} item xs={6}>
                   <DesignText bold>Directed by</DesignText>
-                  <EditableText editable={isRessource} onUpdate={onDirectorUpdate}>{`${film.director}`}</EditableText>
+                  <EditableText placeholder={'Director'} editable={isRessource} onUpdate={onDirectorUpdate}>{`${film.director}`}</EditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Produced by
                   </DesignText>
-                  <EditableText editable={isRessource} onUpdate={onProducerUpdate}>{`${film.producer}`}</EditableText>
+                  <EditableText placeholder={'Producer'} editable={isRessource} onUpdate={onProducerUpdate}>{`${film.producer}`}</EditableText>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid style={styles.grid} item xs={6}>
                   <DesignText bold>Created in</DesignText>
-                  <EditableText>{`${dateFormat(film.created, 'dd/MM/yyyy')}`}</EditableText>
+                  <EditableDate placeholder={'Creation'} editable={isRessource} date={new Date(film.created)} onUpdate={onCreatedDateUpdate} />
                   <DesignText style={{ marginTop: 2 }} bold>
-                    Produced by
+                    Released in
                   </DesignText>
-                  <EditableText>{`${dateFormat(film.release_date.replace('-', ':'), 'dd/MM/yyyy')}`}</EditableText>
+                  <EditableDate placeholder={'Release'} editable={isRessource} date={new Date(film.release_date)} onUpdate={onReleasedDateUpdate} />
                 </Grid>
                 <Grid item xs={12}>
-                  <EditableText editable={isRessource} onUpdate={onCrawlUpdate}>{`${film.opening_crawl}`}</EditableText>
+                  <EditableText
+                    style={{ display: 'flex', flexGrow: 1 }}
+                    placeholder={'Opening crawl'}
+                    editable={isRessource}
+                    onUpdate={onCrawlUpdate}
+                  >{`${film.opening_crawl}`}</EditableText>
                 </Grid>
                 <Grid item xs={12}>
                   <DesignTabs
@@ -132,7 +161,7 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
                         content: (
                           <div style={styles.linkContainer}>
                             {film.vehicles?.map((url) => (
-                              <PageLink style={styles.link} category="people" url={url} />
+                              <PageLink key={url} style={styles.link} category="people" url={url} />
                             ))}
                           </div>
                         ),
@@ -142,7 +171,7 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
                         content: (
                           <div style={styles.linkContainer}>
                             {film.vehicles?.map((url) => (
-                              <PageLink style={styles.link} category="planets" url={url} />
+                              <PageLink key={url} style={styles.link} category="planets" url={url} />
                             ))}
                           </div>
                         ),
@@ -152,7 +181,7 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
                         content: (
                           <div style={styles.linkContainer}>
                             {film.vehicles?.map((url) => (
-                              <PageLink style={styles.link} category="species" url={url} />
+                              <PageLink key={url} style={styles.link} category="species" url={url} />
                             ))}
                           </div>
                         ),
@@ -162,7 +191,7 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
                         content: (
                           <div style={styles.linkContainer}>
                             {film.vehicles?.map((url) => (
-                              <PageLink style={styles.link} category="starships" url={url} />
+                              <PageLink key={url} style={styles.link} category="starships" url={url} />
                             ))}
                           </div>
                         ),
@@ -172,7 +201,7 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
                         content: (
                           <div style={styles.linkContainer}>
                             {film.vehicles?.map((url) => (
-                              <PageLink style={styles.link} category="vehicles" url={url} />
+                              <PageLink key={url} style={styles.link} category="vehicles" url={url} />
                             ))}
                           </div>
                         ),
@@ -240,5 +269,11 @@ const styles: {
   link: {
     flexBasis: 'calc(20% - 20px)',
     margin: '10px',
+  },
+  grid: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 }

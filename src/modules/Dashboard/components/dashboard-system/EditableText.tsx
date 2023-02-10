@@ -2,7 +2,13 @@ import { TextField } from '@mui/material'
 import { ChangeEvent, CSSProperties } from 'react'
 import DesignText, { DesignTextProps } from '../../../../design-system/DesignText/DesignText'
 
-export default function EditableText({ editable, onUpdate, ...props }: { editable?: boolean; onUpdate?: (text: string) => void } & DesignTextProps) {
+export default function EditableText({
+  style,
+  editable,
+  onUpdate,
+  placeholder,
+  ...props
+}: { style?: CSSProperties; editable?: boolean; onUpdate?: (text: string) => void; placeholder?: string } & DesignTextProps) {
   // =================
   // Stores
   // =================
@@ -30,7 +36,14 @@ export default function EditableText({ editable, onUpdate, ...props }: { editabl
   // Render
   // =================
   return editable ? (
-    <TextField style={styles.input} variant="standard" value={props.children} onChange={onChangeHandler} />
+    <TextField
+      style={{ ...styles.input, ...style }}
+      inputProps={{ min: 0, style: { textAlign: 'center' } }}
+      variant="standard"
+      placeholder={placeholder}
+      value={props.children}
+      onChange={onChangeHandler}
+    />
   ) : (
     <DesignText {...props} />
   )
@@ -39,8 +52,5 @@ export default function EditableText({ editable, onUpdate, ...props }: { editabl
 const styles: {
   [key: string]: CSSProperties | undefined
 } = {
-  input: {
-    display: 'flex',
-    flexGrow: 1,
-  },
+  input: {},
 }
