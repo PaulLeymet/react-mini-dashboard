@@ -14,7 +14,7 @@ export default function DesignInput({
   placeholder?: string
   text: string
   sx?: SxProps<Theme>
-  onChange: (text: string) => void
+  onChange?: (text: string) => void
   type?: React.HTMLInputTypeAttribute
 }) {
   const styles: SxProps<Theme> = {
@@ -27,7 +27,7 @@ export default function DesignInput({
   }
 
   const onChangeHandler = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    onChange(event.target.value)
+    if (onChange) onChange(event.target.value)
   }
 
   return (

@@ -1,16 +1,4 @@
-import { CSSProperties } from 'react'
-
-export default function StarshipDetailled({
-  id,
-  url,
-  style,
-  isRessource,
-}: {
-  id?: string
-  url?: string
-  style?: CSSProperties
-  isRessource?: boolean
-}) {
+export default function StarshipDetailled({ isRessource }: { isRessource?: boolean }) {
   // =================
   // Stores
   // =================

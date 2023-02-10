@@ -5,6 +5,12 @@ import DesignHeader from '../../design-system/DesignText/DesignHeader'
 import DesignText from '../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { color } from '../../theme/color'
+import FilmDetailled from '../Dashboard/components/elements/Film/FilmDetailled'
+import PeopleDetailled from '../Dashboard/components/elements/People/PeopleDetailled'
+import PlanetDetailled from '../Dashboard/components/elements/Planet/PlanetDetailled'
+import SpecieDetailled from '../Dashboard/components/elements/Specie/SpecieDetailled'
+import StarshipDetailled from '../Dashboard/components/elements/Starship/StarshipDetailled'
+import VehicleDetailled from '../Dashboard/components/elements/Vehicle/VehicleDetailled'
 import Dashboard from '../Dashboard/Dashboard'
 import { closeModal } from '../Dashboard/stores/modalSlice'
 import Login from '../Login/Login'
@@ -21,6 +27,54 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+  },
+  {
+    path: '/film/:index',
+    element: <FilmDetailled />,
+  },
+  {
+    path: '/people/:index',
+    element: <PeopleDetailled />,
+  },
+  {
+    path: '/planet/:index',
+    element: <PlanetDetailled />,
+  },
+  {
+    path: '/specie/:index',
+    element: <SpecieDetailled />,
+  },
+  {
+    path: '/starship/:index',
+    element: <StarshipDetailled />,
+  },
+  {
+    path: '/vehicle/:index',
+    element: <VehicleDetailled />,
+  },
+  {
+    path: 'ressource/film/:index',
+    element: <FilmDetailled isRessource />,
+  },
+  {
+    path: 'ressource/people/:index',
+    element: <PeopleDetailled isRessource />,
+  },
+  {
+    path: 'ressource/planet/:index',
+    element: <PlanetDetailled isRessource />,
+  },
+  {
+    path: 'ressource/specie/:index',
+    element: <SpecieDetailled isRessource />,
+  },
+  {
+    path: 'ressource/starship/:index',
+    element: <StarshipDetailled isRessource />,
+  },
+  {
+    path: 'ressource/vehicle/:index',
+    element: <VehicleDetailled isRessource />,
   },
 ])
 
@@ -69,6 +123,10 @@ export default function App() {
     dispatch(resetAuth())
   }
 
+  const onTitleClick = () => {
+    window.location.href = '/'
+  }
+
   // =================
   // Render
   // =================
@@ -78,7 +136,9 @@ export default function App() {
         <div style={styles.content}>
           <AppBar style={styles.navbar}>
             <Toolbar>
-              <DesignHeader color={color.white}>Dashboard</DesignHeader>
+              <DesignHeader onClick={onTitleClick} color={color.white}>
+                Dashboard
+              </DesignHeader>
               <div style={styles.filler} />
               <DesignText color={color.white} onClick={onLogout}>
                 Logout

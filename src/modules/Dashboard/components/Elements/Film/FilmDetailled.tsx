@@ -1,60 +1,52 @@
 import { Grid } from '@mui/material'
-import { CSSProperties, useState } from 'react'
+import { CSSProperties } from 'react'
+import { useParams } from 'react-router-dom'
 import DesignSpinner from '../../../../../design-system/DesignSpinner/DesignSpinner'
-import DesignHeader from '../../../../../design-system/DesignText/DesignHeader'
 import DesignText from '../../../../../design-system/DesignText/DesignText'
-import { useMount } from '../../../../../hooks/useMount'
-import { useAppSelector } from '../../../../../store/hooks'
-import { color } from '../../../../../theme/color'
+import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
 import { ILLUSTRATIONS } from '../../../../../theme/illustrations'
-import { getApi } from '../../../../../utils/api'
 import { dateFormat } from '../../../../../utils/date'
-import { selectRessources } from '../../../stores/ressourceSlice'
+import { selectElements } from '../../../stores/elementSlice'
+import { selectRessources, updateRessource } from '../../../stores/ressourceSlice'
 import { FilmType } from '../../../stores/types/FilmType'
+import EditableText from '../../dashboard-system/EditableText'
+import PageLink from '../../dashboard-system/PageLink'
 
-export default function FilmDetailled({ id, url, style, isRessource }: { id?: string; url?: string; style?: CSSProperties; isRessource?: boolean }) {
+export default function FilmDetailled({ isRessource }: { isRessource?: boolean }) {
   // =================
   // Stores
   // =================
+  const dispatch = useAppDispatch()
+  const elements = useAppSelector(selectElements)
+  const ressources = useAppSelector(selectRessources)
+
+  // =================
+  // Navigation
+  // =================
+  const { index } = useParams()
 
   // =================
   // States
   // =================
-  const [fetching, setFetching] = useState(true)
-  const ressources = useAppSelector(selectRessources)
-  const [film, setFilm] = useState<FilmType | undefined>(undefined)
+  const film: FilmType = index ? (isRessource ? ressources.films[parseInt(index)] : elements.films.elements[parseInt(index)]) : null
 
   // =================
   // Hooks
   // =================
-  useMount(() => {
-    fetchData()
-  })
 
   // =================
   // Methods
   // =================
-  const fetchData = async () => {
-    // First check locally if allready stored
-    if (false) {
-      const data = ressources.films.find((e) => e.title === id)
-      if (data) {
-        setFilm(data)
-        setFetching(false)
-        return
-      }
-    }
-    // If not fetch from url if provided
-    if (url) {
-      const response = await getApi(url)
-      if (response?.status === 200) {
-        const data = response.data
-        if (data) {
-          setFilm(data)
-          setFetching(false)
-          return
-        }
-      }
+  const onTitleUpdate = (text: string) => {
+    console.log('TEST', text)
+    if (index) {
+      dispatch(
+        updateRessource({
+          category: 'films',
+          index: parseInt(index),
+          ressource: { ...film, ...{ title: text } },
+        }),
+      )
     }
   }
 
@@ -63,50 +55,61 @@ export default function FilmDetailled({ id, url, style, isRessource }: { id?: st
   // =================
   return (
     <div style={styles.main}>
-      <div style={styles.background} />
       {!!film ? (
         <div style={styles.content}>
           <Grid style={styles.gridSection} container spacing={4}>
             <Grid className="hide-scrollbar" style={styles.grid} item xs={3}>
-              <DesignText color={color.white} bold>{`Created on`}</DesignText>
-              <DesignText color={color.white}>{`${dateFormat(film.created, 'dd/MM/yyyy')}`}</DesignText>
-              <DesignText style={{ marginTop: 2 }} color={color.white} bold>{`Released on`}</DesignText>
-              <DesignText color={color.white}>{`${dateFormat(film.release_date.replace('-', ':'), 'dd/MM/yyyy')}`}</DesignText>
+              <DesignText bold>{`Created on`}</DesignText>
+              <EditableText>{`${dateFormat(film.created, 'dd/MM/yyyy')}`}</EditableText>
+              <DesignText style={{ marginTop: 2 }} bold>{`Released on`}</DesignText>
+              <EditableText>{`${dateFormat(film.release_date.replace('-', ':'), 'dd/MM/yyyy')}`}</EditableText>
             </Grid>
             <Grid className="hide-scrollbar" style={styles.grid} item xs={6}>
-              <DesignHeader color={color.white}>{`${film.title}`}</DesignHeader>
-              <DesignText color={color.white}>{`Episode ${film.episode_id}`}</DesignText>
+              <EditableText onUpdate={onTitleUpdate} editable={isRessource}>{`${film.title}`}</EditableText>
+              <EditableText>{`Episode ${film.episode_id}`}</EditableText>
             </Grid>
             <Grid className="hide-scrollbar" style={styles.grid} item xs={3}>
-              <DesignText color={color.white} bold>{`Directed by`}</DesignText>
-              <DesignText color={color.white}>{`${film.director}`}</DesignText>
-              <DesignText style={{ marginTop: 2 }} color={color.white} bold>{`Produced by`}</DesignText>
-              <DesignText color={color.white}>{`${film.producer}`}</DesignText>
+              <DesignText bold>{`Directed by`}</DesignText>
+              <EditableText>{`${film.director}`}</EditableText>
+              <DesignText style={{ marginTop: 2 }} bold>{`Produced by`}</DesignText>
+              <EditableText>{`${film.producer}`}</EditableText>
             </Grid>
           </Grid>
           <Grid style={styles.gridSection} container spacing={4}>
             <Grid className="hide-scrollbar" style={styles.grid} item xs={12}>
-              <DesignText color={color.white}>{`${film.opening_crawl}`}</DesignText>
+              <EditableText>{`${film.opening_crawl}`}</EditableText>
             </Grid>
           </Grid>
           <Grid style={styles.gridSection} container spacing={4}>
             <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
-              <DesignText color={color.white} bold>{`People`}</DesignText>
-              {film.characters?.map((people) => (
-                <DesignText color={color.white}>{people}</DesignText>
+              <DesignText bold>{`People`}</DesignText>
+              {film.characters?.map((url) => (
+                <PageLink category="people" url={url} />
               ))}
             </Grid>
             <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
-              <DesignText color={color.white} bold>{`Plantes`}</DesignText>
+              <DesignText bold>{`Planets`}</DesignText>
+              {film.planets?.map((url) => (
+                <PageLink category="planets" url={url} />
+              ))}
             </Grid>
             <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
-              <DesignText color={color.white} bold>{`Species`}</DesignText>
+              <DesignText bold>{`Species`}</DesignText>
+              {film.species?.map((url) => (
+                <PageLink category="species" url={url} />
+              ))}
             </Grid>
             <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
-              <DesignText color={color.white} bold>{`Starships`}</DesignText>
+              <DesignText bold>{`Starships`}</DesignText>
+              {film.starships?.map((url) => (
+                <PageLink category="starships" url={url} />
+              ))}
             </Grid>
             <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
-              <DesignText color={color.white} bold>{`Vehicles`}</DesignText>
+              <DesignText bold>{`Vehicles`}</DesignText>
+              {film.vehicles?.map((url) => (
+                <PageLink category="vehicles" url={url} />
+              ))}
             </Grid>
           </Grid>
           {true ? null : <></>}
@@ -124,9 +127,8 @@ const styles: {
   main: {
     display: 'flex',
     justifyContent: 'center',
+    flexGrow: 1,
     alignItems: 'center',
-    backgroundImage: `url(${ILLUSTRATIONS.films})`,
-    backgroundSize: 'cover',
   },
   background: {
     position: 'absolute',
@@ -134,15 +136,14 @@ const styles: {
     left: 0,
     right: 0,
     bottom: 0,
-    background: color.black,
-    opacity: 0.7,
+    backgroundImage: `url(${ILLUSTRATIONS.films})`,
+    backgroundSize: 'cover',
+    opacity: 0.1,
   },
   content: {
     margin: 20,
-
     display: 'flex',
     flexDirection: 'column',
-    backdropFilter: 'blur(2px)',
   },
   accordionContent: {},
   gridSection: {
@@ -153,7 +154,6 @@ const styles: {
   },
   grid: {
     display: 'flex',
-
     margin: 0,
     justifyContent: 'flex-start',
     alignItems: 'center',

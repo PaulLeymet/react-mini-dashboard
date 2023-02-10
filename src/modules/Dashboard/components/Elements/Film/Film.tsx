@@ -1,6 +1,7 @@
 import { CSSProperties } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
-import { displayInModal } from '../../../stores/modalSlice'
+import { selectElements } from '../../../stores/elementSlice'
 import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
 import { FilmType } from '../../../stores/types/FilmType'
 import Element from '../Element'
@@ -11,6 +12,7 @@ export default function Film({ film, style, isRessource }: { film: FilmType; sty
   // =================
   const dispatch = useAppDispatch()
   const ressources = useAppSelector(selectRessources)
+  const elements = useAppSelector(selectElements)
 
   // =================
   // States
@@ -20,18 +22,14 @@ export default function Film({ film, style, isRessource }: { film: FilmType; sty
   // =================
   // Hooks
   // =================
+  const navigate = useNavigate()
 
   // =================
   // Methods
   // =================
   const onShowDetail = () => {
-    dispatch(
-      displayInModal({
-        id: film.title,
-        category: 'films',
-        url: film.url,
-      }),
-    )
+    if (isRessource) navigate('/ressource/film/' + ressources.films.findIndex((e) => e.title === film.title))
+    else navigate('/film/' + elements.films.elements.findIndex((e) => e.title === film.title))
   }
 
   const onAddRessource = () => {

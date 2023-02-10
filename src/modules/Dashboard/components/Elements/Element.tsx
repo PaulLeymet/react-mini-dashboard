@@ -99,9 +99,11 @@ const styles: {
     justifyContent: 'center',
     WebkitBoxShadow: '0px 0px  20px 3px rgba(0,0,0,0.4)',
     boxShadow: ' 0px 0px  20px 3px rgba(0,0,0,0.4)',
+    cursor: 'pointer',
   },
   text: {
     fontFamily: 'Starjedi',
+    pointerEvents: 'none',
   },
   addIconContainer: {
     position: 'absolute',

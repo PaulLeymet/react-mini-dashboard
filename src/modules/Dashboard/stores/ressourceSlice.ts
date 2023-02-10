@@ -87,6 +87,10 @@ export const ressourceSlice = createSlice({
           break
       }
     },
+    updateRessource: (state, action: PayloadAction<{ category: ElementsCategory; index: number; ressource: any }>) => {
+      const payload = action.payload
+      state[`${payload.category}`][payload.index] = payload.ressource
+    },
   },
   name: 'ressourceSlice',
   initialState: initialState,
@@ -95,7 +99,7 @@ export const ressourceSlice = createSlice({
 // =================
 // Actions
 // =================
-export const { addRessource, removeRessource } = ressourceSlice.actions
+export const { addRessource, removeRessource, updateRessource } = ressourceSlice.actions
 
 // =================
 // Selectors

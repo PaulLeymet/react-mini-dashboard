@@ -16,8 +16,8 @@ export default function DesignModal({ children }: { children: JSX.Element }) {
   return (
     <Modal
       style={styles.modal}
-      unselectable={'on'}
       open={modal.open}
+      disableAutoFocus
       onClose={handleClose}
       aria-labelledby="child-modal-title"
       aria-describedby="child-modal-description"
@@ -35,6 +35,9 @@ const styles: {
 } = {
   modal: {
     border: `1px solid ${color.white}`,
+    display: 'flex',
+    width: '100%',
+    height: '100%',
   },
   modalContent: {
     position: 'absolute',

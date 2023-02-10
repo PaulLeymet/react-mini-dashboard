@@ -11,8 +11,8 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
   // =================
   // Stores
   // =================
-  const elements = useAppSelector(selectElements)
   const dispatch = useAppDispatch()
+  const elements = useAppSelector(selectElements)
   const categoryElements = elements[`${category}`]
 
   // =================

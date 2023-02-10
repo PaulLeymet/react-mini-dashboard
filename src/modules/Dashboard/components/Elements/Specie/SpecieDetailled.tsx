@@ -1,16 +1,4 @@
-import { CSSProperties } from 'react'
-
-export default function SpecieDetailled({
-  id,
-  url,
-  style,
-  isRessource,
-}: {
-  id?: string
-  url?: string
-  style?: CSSProperties
-  isRessource?: boolean
-}) {
+export default function SpecieDetailled({ isRessource }: { isRessource?: boolean }) {
   // =================
   // Stores
   // =================
