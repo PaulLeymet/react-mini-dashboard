@@ -40,7 +40,7 @@ export const ressourceSlice = createSlice({
     addRessource: (state, action: PayloadAction<{ category: ElementsCategory; ressource: any }>) => {
       const payload = action.payload
       switch (payload.category) {
-        case 'film':
+        case 'films':
           if (!state.films.some((e) => e.title === payload.ressource.title)) state.films.push(payload.ressource)
           break
         case 'people':
@@ -65,7 +65,7 @@ export const ressourceSlice = createSlice({
     removeRessource: (state, action: PayloadAction<{ category: ElementsCategory; ressource: any }>) => {
       const payload = action.payload
       switch (payload.category) {
-        case 'film':
+        case 'films':
           state.films = state.films.filter((e) => e.title !== payload.ressource.title)
           break
         case 'people':

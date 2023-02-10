@@ -1,13 +1,9 @@
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { List } from '@mui/material'
-import { CSSProperties, useState } from 'react'
-import DesignSpinner from '../../../../design-system/DesignSpinner/DesignSpinner'
+import { CSSProperties } from 'react'
 import DesignHeader from '../../../../design-system/DesignText/DesignHeader'
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
 import { color } from '../../../../theme/color'
-import { getApi } from '../../../../utils/api'
-import { selectElements, updateData } from '../../stores/elementSlice'
+import { selectElements } from '../../stores/elementSlice'
 import { selectRessources } from '../../stores/ressourceSlice'
 import { ElementsCategory } from '../../stores/types/CategoryType'
 import { FilmType } from '../../stores/types/FilmType'
@@ -42,29 +38,7 @@ export default function ElementsList({
   // =================
   // States
   // =================
-  const getElements = (): any => {
-    switch (category) {
-      case 'film':
-        return isRessourceList ? ressources.films : dashboard.films
-      case 'people':
-        return isRessourceList ? ressources.people : dashboard.people
-      case 'planets':
-        return isRessourceList ? ressources.planets : dashboard.planets
-      case 'species':
-        return isRessourceList ? ressources.species : dashboard.species
-      case 'starships':
-        return isRessourceList ? ressources.starships : dashboard.starships
-      case 'vehicles':
-        return isRessourceList ? ressources.vehicles : dashboard.vehicles
-      default:
-        return null
-    }
-  }
-  const elements = getElements()
-  const elementsList = isRessourceList ? elements : elements.results
-  const canBack = !isRessourceList && !!elements?.previous
-  const canForward = !isRessourceList && !!elements?.next
-  const [fetching, setFetching] = useState<'FORWARD' | 'BACKWARD' | 'NONE'>('NONE')
+  const elements = isRessourceList ? ressources[`${category}`] : dashboard[`${category}`].elements
 
   // =================
   // Hooks
@@ -74,30 +48,12 @@ export default function ElementsList({
   // Methods
   // =================
 
-  const onBack = async () => {
-    if (elements?.previous) {
-      setFetching('BACKWARD')
-      const { data } = await getApi(elements.previous)
-      dispatch(updateData({ category, data }))
-      setFetching('NONE')
-    }
-  }
-
-  const onForward = async () => {
-    if (elements?.next) {
-      setFetching('FORWARD')
-      const { data } = await getApi(elements.next)
-      dispatch(updateData({ category, data }))
-      setFetching('NONE')
-    }
-  }
-
   // =================
   // Render
   // =================
   const renderElement = (data: any) => {
     switch (category) {
-      case 'film':
+      case 'films':
         return <Film key={data.title} film={data as FilmType} isRessource={isRessourceList} />
       case 'people':
         return <People key={data.name} people={data as PeopleType} isRessource={isRessourceList} />
@@ -120,38 +76,12 @@ export default function ElementsList({
         {isRessourceList ? 'Ressources' : 'Elements'}
       </DesignHeader>
 
-      <div style={styles.listContainer}>
-        {isRessourceList ? (
-          <div style={styles.spinner} />
-        ) : (
-          <div style={styles.leftContainer}>
-            {fetching === 'BACKWARD' ? (
-              <DesignSpinner style={styles.spinner} size={30} />
-            ) : (
-              <ArrowBackIosIcon style={{ ...styles.chevron, ...(canBack ? null : styles.inactive) }} onClick={onBack} />
-            )}
-          </div>
-        )}
-
-        <div style={styles.middleContainer}>
-          <List className="hide-scrollbar" sx={{ ...styles.list, ...style }}>
-            {elementsList?.map((element: any) => {
-              return renderElement(element)
-            })}
-          </List>
-        </div>
-
-        {isRessourceList ? (
-          <div style={styles.spinner} />
-        ) : (
-          <div style={styles.rightContainer}>
-            {fetching === 'FORWARD' ? (
-              <DesignSpinner style={styles.spinner} size={30} />
-            ) : (
-              <ArrowForwardIosIcon style={{ ...styles.chevron, ...(canForward ? null : styles.inactive) }} onClick={onForward} />
-            )}
-          </div>
-        )}
+      <div style={styles.middleContainer}>
+        <List className="hide-scrollbar" sx={{ ...styles.list, ...style }}>
+          {elements?.map((element: any) => {
+            return renderElement(element)
+          })}
+        </List>
       </div>
     </div>
   )

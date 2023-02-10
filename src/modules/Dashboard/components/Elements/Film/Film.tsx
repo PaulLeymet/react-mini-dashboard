@@ -28,7 +28,7 @@ export default function Film({ film, style, isRessource }: { film: FilmType; sty
     dispatch(
       displayInModal({
         id: film.title,
-        category: 'film',
+        category: 'films',
         url: film.url,
       }),
     )
@@ -38,14 +38,14 @@ export default function Film({ film, style, isRessource }: { film: FilmType; sty
     if (selected) {
       dispatch(
         removeRessource({
-          category: 'film',
+          category: 'films',
           ressource: film,
         }),
       )
     } else {
       dispatch(
         addRessource({
-          category: 'film',
+          category: 'films',
           ressource: film,
         }),
       )

@@ -1,1 +1,1 @@
-export type ElementsCategory = 'film' | 'people' | 'planets' | 'species' | 'starships' | 'vehicles'
+export type ElementsCategory = 'films' | 'people' | 'planets' | 'species' | 'starships' | 'vehicles'

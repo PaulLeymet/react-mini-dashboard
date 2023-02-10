@@ -58,8 +58,6 @@ export default function FilmDetailled({ id, url, style, isRessource }: { id?: st
     }
   }
 
-  console.log(film)
-
   // =================
   // Render
   // =================

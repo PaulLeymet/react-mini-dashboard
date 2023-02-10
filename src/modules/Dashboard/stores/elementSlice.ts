@@ -11,21 +11,22 @@ import { VehicleType } from './types/VehicleType'
 // =================
 // Types
 // =================
+export const CHUNK_SIZE = 10
 
 export interface AuthGenericType {
   count: number
-  next: string | null
-  previous: string | null
-  results: Array<any>
+  elements: Array<any>
+  url: string
+  elementRootUrl: string
 }
 
 export interface AuthType {
-  films: AuthGenericType & { results: Array<FilmType> }
-  people: AuthGenericType & { results: Array<PeopleType> }
-  planets: AuthGenericType & { results: Array<PlanetType> }
-  species: AuthGenericType & { results: Array<SpecieType> }
-  starships: AuthGenericType & { results: Array<StarshipType> }
-  vehicles: AuthGenericType & { results: Array<VehicleType> }
+  films: AuthGenericType & { elements: Array<FilmType> }
+  people: AuthGenericType & { elements: Array<PeopleType> }
+  planets: AuthGenericType & { elements: Array<PlanetType> }
+  species: AuthGenericType & { elements: Array<SpecieType> }
+  starships: AuthGenericType & { elements: Array<StarshipType> }
+  vehicles: AuthGenericType & { elements: Array<VehicleType> }
 }
 // =================
 // Initial state
@@ -33,39 +34,39 @@ export interface AuthType {
 const initialState: AuthType = {
   films: {
     count: 0,
-    next: null,
-    previous: null,
-    results: [],
+    elements: [],
+    url: '',
+    elementRootUrl: '',
   },
   people: {
     count: 0,
-    next: null,
-    previous: null,
-    results: [],
+    elements: [],
+    url: '',
+    elementRootUrl: '',
   },
   planets: {
     count: 0,
-    next: null,
-    previous: null,
-    results: [],
+    elements: [],
+    url: '',
+    elementRootUrl: '',
   },
   species: {
     count: 0,
-    next: null,
-    previous: null,
-    results: [],
+    elements: [],
+    url: '',
+    elementRootUrl: '',
   },
   starships: {
     count: 0,
-    next: null,
-    previous: null,
-    results: [],
+    elements: [],
+    url: '',
+    elementRootUrl: '',
   },
   vehicles: {
     count: 0,
-    next: null,
-    previous: null,
-    results: [],
+    elements: [],
+    url: '',
+    elementRootUrl: '',
   },
 }
 
@@ -74,29 +75,26 @@ const initialState: AuthType = {
 // =================
 export const elementSlice = createSlice({
   reducers: {
-    updateData: (state, action: PayloadAction<{ category: ElementsCategory; data: AuthGenericType }>) => {
-      switch (action.payload.category) {
-        case 'film':
-          state.films = action.payload.data
-          break
-        case 'people':
-          state.people = action.payload.data
-          break
-        case 'planets':
-          state.planets = action.payload.data
-          break
-        case 'species':
-          state.species = action.payload.data
-          break
-        case 'starships':
-          state.starships = action.payload.data
-          break
-        case 'vehicles':
-          state.vehicles = action.payload.data
-          break
-        default:
-          break
-      }
+    storeCategoriesUrl: (
+      state,
+      action: PayloadAction<{ films: string; people: string; planets: string; species: string; starships: string; vehicles: string }>,
+    ) => {
+      const payload = action.payload
+      state.films.url = payload.films
+      state.people.url = payload.people
+      state.planets.url = payload.planets
+      state.species.url = payload.species
+      state.starships.url = payload.starships
+      state.vehicles.url = payload.vehicles
+    },
+    storeCategoryInfos: (state, action: PayloadAction<{ category: ElementsCategory; count: number; elementRootUrl: string }>) => {
+      const payload = action.payload
+      state[`${payload.category}`].count = payload.count
+      state[`${payload.category}`].elementRootUrl = payload.elementRootUrl
+    },
+    storeCategoryElements: (state, action: PayloadAction<{ category: ElementsCategory; elements: Array<any> }>) => {
+      const payload = action.payload
+      state[`${payload.category}`].elements = state[`${payload.category}`].elements.concat(payload.elements)
     },
   },
   name: 'elementSlice',
@@ -106,7 +104,7 @@ export const elementSlice = createSlice({
 // =================
 // Actions
 // =================
-export const { updateData } = elementSlice.actions
+export const { storeCategoriesUrl, storeCategoryInfos, storeCategoryElements } = elementSlice.actions
 
 // =================
 // Selectors
