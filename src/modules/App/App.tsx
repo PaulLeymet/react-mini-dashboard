@@ -16,6 +16,7 @@ import { selectCategory } from '../Dashboard/stores/elementSlice'
 import { closeModal } from '../Dashboard/stores/modalSlice'
 import Login from '../Login/Login'
 import { resetAuth, selectAuth } from '../Login/stores/authSlice'
+import FallbackPage from './FallbackPage'
 
 // =================
 // Routes
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
   {
     path: 'ressource/vehicle/:index',
     element: <VehicleDetailled isRessource />,
+  },
+  {
+    path: '*',
+    element: <FallbackPage />,
   },
 ])
 
