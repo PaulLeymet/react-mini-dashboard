@@ -1,22 +1,22 @@
 import { Grid } from '@mui/material'
 import { CSSProperties } from 'react'
 import { useParams } from 'react-router-dom'
-import DesignSpinner from '../../../../../design-system/DesignSpinner/DesignSpinner'
-import DesignTabs from '../../../../../design-system/DesignTabs/DesignTabs'
-import DesignHeader from '../../../../../design-system/DesignText/DesignHeader'
-import DesignText from '../../../../../design-system/DesignText/DesignText'
-import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
-import { color } from '../../../../../theme/color'
-import { ILLUSTRATIONS } from '../../../../../theme/illustrations'
-import { selectElements } from '../../../stores/elementSlice'
-import { selectResources, updateRessource } from '../../../stores/resourceSlice'
-import { FilmType } from '../../../stores/types/FilmType'
-import EditableDate from '../../dashboard-system/EditableDate'
-import EditableText from '../../dashboard-system/EditableText'
-import PageLink from '../../dashboard-system/PageLink'
-import CacheManager from '../CacheManager'
+import DesignEditableDate from '../../../design-system/DesignEditable/DesignEditableDate'
+import DesignEditableText from '../../../design-system/DesignEditable/DesignEditableText'
+import DesignPageLink from '../../../design-system/DesignEditable/DesignPageLink'
+import DesignSpinner from '../../../design-system/DesignSpinner/DesignSpinner'
+import DesignTabs from '../../../design-system/DesignTabs/DesignTabs'
+import DesignHeader from '../../../design-system/DesignText/DesignHeader'
+import DesignText from '../../../design-system/DesignText/DesignText'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import { color } from '../../../theme/color'
+import { ILLUSTRATIONS } from '../../../theme/illustrations'
+import CacheManager from '../components/CacheManager'
+import { selectElements } from '../stores/elementSlice'
+import { selectResources, updateRessource } from '../stores/resourceSlice'
+import { FilmType } from '../stores/types/FilmType'
 
-export default function FilmDetailled({ isRessource }: { isRessource?: boolean }) {
+export default function FilmPage({ isRessource }: { isRessource?: boolean }) {
   // =================
   // Stores
   // =================
@@ -129,33 +129,46 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
                   <DesignHeader color={color.primary} variant="h5">
                     {isRessource ? `Ressource - Film` : `Element - Film`}
                   </DesignHeader>
-                  <EditableText placeholder={'Title'} editable={isRessource} onUpdate={onTitleUpdate} variant="h5">
+                  <DesignEditableText placeholder={'Title'} editable={isRessource} onUpdate={onTitleUpdate} variant="h5">
                     {isRessource ? `${film.title}` : `Episode ${film.episode_id} - ${film.title}`}
-                  </EditableText>
+                  </DesignEditableText>
                 </Grid>
                 <Grid style={styles.grid} item xs={6}>
                   <DesignText bold>Directed by</DesignText>
-                  <EditableText placeholder={'Director'} editable={isRessource} onUpdate={onDirectorUpdate}>{`${film.director}`}</EditableText>
+                  <DesignEditableText
+                    placeholder={'Director'}
+                    editable={isRessource}
+                    onUpdate={onDirectorUpdate}
+                  >{`${film.director}`}</DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Produced by
                   </DesignText>
-                  <EditableText placeholder={'Producer'} editable={isRessource} onUpdate={onProducerUpdate}>{`${film.producer}`}</EditableText>
+                  <DesignEditableText
+                    placeholder={'Producer'}
+                    editable={isRessource}
+                    onUpdate={onProducerUpdate}
+                  >{`${film.producer}`}</DesignEditableText>
                 </Grid>
                 <Grid style={styles.grid} item xs={6}>
                   <DesignText bold>Created in</DesignText>
-                  <EditableDate placeholder={'Creation'} editable={isRessource} date={new Date(film.created)} onUpdate={onCreatedDateUpdate} />
+                  <DesignEditableDate placeholder={'Creation'} editable={isRessource} date={new Date(film.created)} onUpdate={onCreatedDateUpdate} />
                   <DesignText style={{ marginTop: 2 }} bold>
                     Released in
                   </DesignText>
-                  <EditableDate placeholder={'Release'} editable={isRessource} date={new Date(film.release_date)} onUpdate={onReleasedDateUpdate} />
+                  <DesignEditableDate
+                    placeholder={'Release'}
+                    editable={isRessource}
+                    date={new Date(film.release_date)}
+                    onUpdate={onReleasedDateUpdate}
+                  />
                 </Grid>
                 <Grid item xs={12}>
-                  <EditableText
+                  <DesignEditableText
                     style={{ display: 'flex', flexGrow: 1 }}
                     placeholder={'Opening crawl'}
                     editable={isRessource}
                     onUpdate={onCrawlUpdate}
-                  >{`${film.opening_crawl}`}</EditableText>
+                  >{`${film.opening_crawl}`}</DesignEditableText>
                 </Grid>
                 <Grid item xs={12}>
                   <DesignTabs
@@ -165,7 +178,7 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
                         content: (
                           <div style={styles.linkContainer}>
                             {film.characters?.map((url) => (
-                              <PageLink key={url} style={styles.link} category="people" url={url} />
+                              <DesignPageLink key={url} style={styles.link} category="people" url={url} />
                             ))}
                           </div>
                         ),
@@ -175,7 +188,7 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
                         content: (
                           <div style={styles.linkContainer}>
                             {film.planets?.map((url) => (
-                              <PageLink key={url} style={styles.link} category="planets" url={url} />
+                              <DesignPageLink key={url} style={styles.link} category="planets" url={url} />
                             ))}
                           </div>
                         ),
@@ -185,7 +198,7 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
                         content: (
                           <div style={styles.linkContainer}>
                             {film.species?.map((url) => (
-                              <PageLink key={url} style={styles.link} category="species" url={url} />
+                              <DesignPageLink key={url} style={styles.link} category="species" url={url} />
                             ))}
                           </div>
                         ),
@@ -195,7 +208,7 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
                         content: (
                           <div style={styles.linkContainer}>
                             {film.starships?.map((url) => (
-                              <PageLink key={url} style={styles.link} category="starships" url={url} />
+                              <DesignPageLink key={url} style={styles.link} category="starships" url={url} />
                             ))}
                           </div>
                         ),
@@ -205,7 +218,7 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
                         content: (
                           <div style={styles.linkContainer}>
                             {film.vehicles?.map((url) => (
-                              <PageLink key={url} style={styles.link} category="vehicles" url={url} />
+                              <DesignPageLink key={url} style={styles.link} category="vehicles" url={url} />
                             ))}
                           </div>
                         ),

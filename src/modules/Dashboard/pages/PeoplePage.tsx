@@ -1,22 +1,22 @@
 import { Grid } from '@mui/material'
 import { CSSProperties } from 'react'
 import { useParams } from 'react-router-dom'
-import DesignSpinner from '../../../../../design-system/DesignSpinner/DesignSpinner'
-import DesignTabs from '../../../../../design-system/DesignTabs/DesignTabs'
-import DesignHeader from '../../../../../design-system/DesignText/DesignHeader'
-import DesignText from '../../../../../design-system/DesignText/DesignText'
-import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
-import { color } from '../../../../../theme/color'
-import { ILLUSTRATIONS } from '../../../../../theme/illustrations'
-import { selectElements } from '../../../stores/elementSlice'
-import { selectResources, updateRessource } from '../../../stores/resourceSlice'
-import { PeopleType } from '../../../stores/types/PeopleType'
-import EditableDate from '../../dashboard-system/EditableDate'
-import EditableText from '../../dashboard-system/EditableText'
-import PageLink from '../../dashboard-system/PageLink'
-import CacheManager from '../CacheManager'
+import DesignEditableDate from '../../../design-system/DesignEditable/DesignEditableDate'
+import DesignEditableText from '../../../design-system/DesignEditable/DesignEditableText'
+import DesignPageLink from '../../../design-system/DesignEditable/DesignPageLink'
+import DesignSpinner from '../../../design-system/DesignSpinner/DesignSpinner'
+import DesignTabs from '../../../design-system/DesignTabs/DesignTabs'
+import DesignHeader from '../../../design-system/DesignText/DesignHeader'
+import DesignText from '../../../design-system/DesignText/DesignText'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import { color } from '../../../theme/color'
+import { ILLUSTRATIONS } from '../../../theme/illustrations'
+import CacheManager from '../components/CacheManager'
+import { selectElements } from '../stores/elementSlice'
+import { selectResources, updateRessource } from '../stores/resourceSlice'
+import { PeopleType } from '../stores/types/PeopleType'
 
-export default function PeopleDetailled({ isRessource }: { isRessource?: boolean }) {
+export default function PeoplePage({ isRessource }: { isRessource?: boolean }) {
   // =================
   // Stores
   // =================
@@ -165,58 +165,63 @@ export default function PeopleDetailled({ isRessource }: { isRessource?: boolean
                   <DesignHeader color={color.primary} variant="h5">
                     {isRessource ? `Ressource - People` : `Element - People`}
                   </DesignHeader>
-                  <EditableText placeholder={'Title'} editable={isRessource} onUpdate={onNameUpdate} variant="h5">
+                  <DesignEditableText placeholder={'Title'} editable={isRessource} onUpdate={onNameUpdate} variant="h5">
                     {`${people.name}`}
-                  </EditableText>
+                  </DesignEditableText>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
                   <DesignText bold>Gender</DesignText>
-                  <EditableText placeholder={'Gender'} editable={isRessource} onUpdate={onGenderUpdate}>
+                  <DesignEditableText placeholder={'Gender'} editable={isRessource} onUpdate={onGenderUpdate}>
                     {`${people.gender}`}
-                  </EditableText>
+                  </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Height
                   </DesignText>
-                  <EditableText placeholder={'Height'} editable={isRessource} onUpdate={onHeightUpdate}>
+                  <DesignEditableText placeholder={'Height'} editable={isRessource} onUpdate={onHeightUpdate}>
                     {`${people.height}`}
-                  </EditableText>
+                  </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Mass
                   </DesignText>
-                  <EditableText placeholder={'Mass'} editable={isRessource} onUpdate={onMassUpdate}>
+                  <DesignEditableText placeholder={'Mass'} editable={isRessource} onUpdate={onMassUpdate}>
                     {`${people.mass}`}
-                  </EditableText>
+                  </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Eye color
                   </DesignText>
-                  <EditableText placeholder={'Eye color'} editable={isRessource} onUpdate={onEyeColorUpdate}>
+                  <DesignEditableText placeholder={'Eye color'} editable={isRessource} onUpdate={onEyeColorUpdate}>
                     {`${people.eye_color}`}
-                  </EditableText>
+                  </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Hair color
                   </DesignText>
-                  <EditableText placeholder={'Hair color'} editable={isRessource} onUpdate={onHairColorUpdate}>
+                  <DesignEditableText placeholder={'Hair color'} editable={isRessource} onUpdate={onHairColorUpdate}>
                     {`${people.hair_color}`}
-                  </EditableText>
+                  </DesignEditableText>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
                   <DesignText bold>Created in</DesignText>
-                  <EditableDate placeholder={'Creation'} editable={isRessource} date={new Date(people.created)} onUpdate={onCreatedDateUpdate} />
+                  <DesignEditableDate
+                    placeholder={'Creation'}
+                    editable={isRessource}
+                    date={new Date(people.created)}
+                    onUpdate={onCreatedDateUpdate}
+                  />
                   <DesignText style={{ marginTop: 2 }} bold>
                     Edited in
                   </DesignText>
-                  <EditableDate placeholder={'Edition'} editable={isRessource} date={new Date(people.edited)} onUpdate={onEditedDateUpdate} />
+                  <DesignEditableDate placeholder={'Edition'} editable={isRessource} date={new Date(people.edited)} onUpdate={onEditedDateUpdate} />
 
                   <DesignText style={{ marginTop: 2 }} bold>
                     Birth year
                   </DesignText>
-                  <EditableText placeholder={'Birth'} editable={isRessource} onUpdate={onBirthYearUpdate}>
+                  <DesignEditableText placeholder={'Birth'} editable={isRessource} onUpdate={onBirthYearUpdate}>
                     {`${people.birth_year}`}
-                  </EditableText>
+                  </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Homeworld
                   </DesignText>
-                  <PageLink style={styles.link} category="planets" url={people.homeworld} />
+                  <DesignPageLink style={styles.link} category="planets" url={people.homeworld} />
                 </Grid>
 
                 <Grid item xs={12}>
@@ -227,7 +232,7 @@ export default function PeopleDetailled({ isRessource }: { isRessource?: boolean
                         content: (
                           <div style={styles.linkContainer}>
                             {people.films?.map((url) => (
-                              <PageLink key={url} style={styles.link} category="films" url={url} />
+                              <DesignPageLink key={url} style={styles.link} category="films" url={url} />
                             ))}
                           </div>
                         ),
@@ -237,7 +242,7 @@ export default function PeopleDetailled({ isRessource }: { isRessource?: boolean
                         content: (
                           <div style={styles.linkContainer}>
                             {people.species?.map((url) => (
-                              <PageLink key={url} style={styles.link} category="species" url={url} />
+                              <DesignPageLink key={url} style={styles.link} category="species" url={url} />
                             ))}
                           </div>
                         ),
@@ -247,7 +252,7 @@ export default function PeopleDetailled({ isRessource }: { isRessource?: boolean
                         content: (
                           <div style={styles.linkContainer}>
                             {people.starships?.map((url) => (
-                              <PageLink key={url} style={styles.link} category="starships" url={url} />
+                              <DesignPageLink key={url} style={styles.link} category="starships" url={url} />
                             ))}
                           </div>
                         ),
@@ -257,7 +262,7 @@ export default function PeopleDetailled({ isRessource }: { isRessource?: boolean
                         content: (
                           <div style={styles.linkContainer}>
                             {people.vehicles?.map((url) => (
-                              <PageLink key={url} style={styles.link} category="vehicles" url={url} />
+                              <DesignPageLink key={url} style={styles.link} category="vehicles" url={url} />
                             ))}
                           </div>
                         ),

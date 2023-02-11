@@ -1,9 +1,9 @@
 import { TextField } from '@mui/material'
 import { ChangeEvent, CSSProperties } from 'react'
-import DesignText, { DesignTextProps } from '../../../../design-system/DesignText/DesignText'
-import { color } from '../../../../theme/color'
+import { color } from '../../theme/color'
+import DesignText, { DesignTextProps } from '../DesignText/DesignText'
 
-export default function EditableText({
+export default function DesignEditableText({
   style,
   editable,
   onUpdate,

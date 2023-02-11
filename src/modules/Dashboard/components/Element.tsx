@@ -3,8 +3,8 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
 import { motion } from 'framer-motion'
 import { CSSProperties, useState } from 'react'
-import DesignText from '../../../../design-system/DesignText/DesignText'
-import { color } from '../../../../theme/color'
+import DesignText from '../../../design-system/DesignText/DesignText'
+import { color } from '../../../theme/color'
 
 export default function Element({
   id,

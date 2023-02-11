@@ -1,22 +1,22 @@
 import { Grid } from '@mui/material'
 import { CSSProperties } from 'react'
 import { useParams } from 'react-router-dom'
-import DesignSpinner from '../../../../../design-system/DesignSpinner/DesignSpinner'
-import DesignTabs from '../../../../../design-system/DesignTabs/DesignTabs'
-import DesignHeader from '../../../../../design-system/DesignText/DesignHeader'
-import DesignText from '../../../../../design-system/DesignText/DesignText'
-import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
-import { color } from '../../../../../theme/color'
-import { ILLUSTRATIONS } from '../../../../../theme/illustrations'
-import { selectElements } from '../../../stores/elementSlice'
-import { selectResources, updateRessource } from '../../../stores/resourceSlice'
-import { PlanetType } from '../../../stores/types/PlanetType'
-import EditableDate from '../../dashboard-system/EditableDate'
-import EditableText from '../../dashboard-system/EditableText'
-import PageLink from '../../dashboard-system/PageLink'
-import CacheManager from '../CacheManager'
+import DesignEditableDate from '../../../design-system/DesignEditable/DesignEditableDate'
+import DesignEditableText from '../../../design-system/DesignEditable/DesignEditableText'
+import DesignPageLink from '../../../design-system/DesignEditable/DesignPageLink'
+import DesignSpinner from '../../../design-system/DesignSpinner/DesignSpinner'
+import DesignTabs from '../../../design-system/DesignTabs/DesignTabs'
+import DesignHeader from '../../../design-system/DesignText/DesignHeader'
+import DesignText from '../../../design-system/DesignText/DesignText'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import { color } from '../../../theme/color'
+import { ILLUSTRATIONS } from '../../../theme/illustrations'
+import CacheManager from '../components/CacheManager'
+import { selectElements } from '../stores/elementSlice'
+import { selectResources, updateRessource } from '../stores/resourceSlice'
+import { PlanetType } from '../stores/types/PlanetType'
 
-export default function PlanetDetailled({ isRessource }: { isRessource?: boolean }) {
+export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
   // =================
   // Stores
   // =================
@@ -201,67 +201,72 @@ export default function PlanetDetailled({ isRessource }: { isRessource?: boolean
                   <DesignHeader color={color.primary} variant="h5">
                     {isRessource ? `Ressource - Planet` : `Element - Planet`}
                   </DesignHeader>
-                  <EditableText placeholder={'Title'} editable={isRessource} onUpdate={onNameUpdate} variant="h5">
+                  <DesignEditableText placeholder={'Title'} editable={isRessource} onUpdate={onNameUpdate} variant="h5">
                     {`${planet.name}`}
-                  </EditableText>
+                  </DesignEditableText>
                 </Grid>
                 <Grid style={styles.grid} item xs={6}>
                   <DesignText bold>Climate</DesignText>
-                  <EditableText placeholder={'Climate'} editable={isRessource} onUpdate={onClimateUpdate}>
+                  <DesignEditableText placeholder={'Climate'} editable={isRessource} onUpdate={onClimateUpdate}>
                     {`${planet.climate}`}
-                  </EditableText>
+                  </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Population
                   </DesignText>
-                  <EditableText placeholder={'Population'} editable={isRessource} onUpdate={onPopulationUpdate}>
+                  <DesignEditableText placeholder={'Population'} editable={isRessource} onUpdate={onPopulationUpdate}>
                     {`${planet.population}`}
-                  </EditableText>
+                  </DesignEditableText>
                 </Grid>
                 <Grid style={styles.grid} item xs={6}>
                   <DesignText bold>Created in</DesignText>
-                  <EditableDate placeholder={'Creation'} editable={isRessource} date={new Date(planet.created)} onUpdate={onCreatedDateUpdate} />
+                  <DesignEditableDate
+                    placeholder={'Creation'}
+                    editable={isRessource}
+                    date={new Date(planet.created)}
+                    onUpdate={onCreatedDateUpdate}
+                  />
                   <DesignText style={{ marginTop: 2 }} bold>
                     Edited in
                   </DesignText>
-                  <EditableDate placeholder={'Edition'} editable={isRessource} date={new Date(planet.edited)} onUpdate={onEditedDateUpdate} />
+                  <DesignEditableDate placeholder={'Edition'} editable={isRessource} date={new Date(planet.edited)} onUpdate={onEditedDateUpdate} />
                 </Grid>
                 <Grid item xs={12} container>
                   <Grid style={styles.grid} item xs={4}>
                     <DesignText bold>Orbital period</DesignText>
-                    <EditableText placeholder={'Orbital period'} editable={isRessource} onUpdate={onOrbitalUpdate}>
+                    <DesignEditableText placeholder={'Orbital period'} editable={isRessource} onUpdate={onOrbitalUpdate}>
                       {`${planet.orbital_period}`}
-                    </EditableText>
+                    </DesignEditableText>
                     <DesignText style={{ marginTop: 2 }} bold>
                       Rotation period
                     </DesignText>
-                    <EditableText placeholder={'Rotation period'} editable={isRessource} onUpdate={onRotationUpdate}>
+                    <DesignEditableText placeholder={'Rotation period'} editable={isRessource} onUpdate={onRotationUpdate}>
                       {`${planet.rotation_period}`}
-                    </EditableText>
+                    </DesignEditableText>
                   </Grid>
 
                   <Grid style={styles.grid} item xs={4}>
                     <DesignText bold>Diameter</DesignText>
-                    <EditableText placeholder={'Diameter'} editable={isRessource} onUpdate={onDiameterUpdate}>
+                    <DesignEditableText placeholder={'Diameter'} editable={isRessource} onUpdate={onDiameterUpdate}>
                       {`${planet.diameter}`}
-                    </EditableText>
+                    </DesignEditableText>
                     <DesignText style={{ marginTop: 2 }} bold>
                       Gravity
                     </DesignText>
-                    <EditableText placeholder={'Gravity'} editable={isRessource} onUpdate={onGravityUpdate}>
+                    <DesignEditableText placeholder={'Gravity'} editable={isRessource} onUpdate={onGravityUpdate}>
                       {`${planet.gravity}`}
-                    </EditableText>
+                    </DesignEditableText>
                   </Grid>
                   <Grid style={styles.grid} item xs={4}>
                     <DesignText bold>Terrain</DesignText>
-                    <EditableText placeholder={'Terrain'} editable={isRessource} onUpdate={onTerrainUpdate}>
+                    <DesignEditableText placeholder={'Terrain'} editable={isRessource} onUpdate={onTerrainUpdate}>
                       {`${planet.terrain}`}
-                    </EditableText>
+                    </DesignEditableText>
                     <DesignText style={{ marginTop: 2 }} bold>
                       Surface water
                     </DesignText>
-                    <EditableText placeholder={'Surface water'} editable={isRessource} onUpdate={onSurfaceWaterUpdate}>
+                    <DesignEditableText placeholder={'Surface water'} editable={isRessource} onUpdate={onSurfaceWaterUpdate}>
                       {`${planet.surface_water}`}
-                    </EditableText>
+                    </DesignEditableText>
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
@@ -272,7 +277,7 @@ export default function PlanetDetailled({ isRessource }: { isRessource?: boolean
                         content: (
                           <div style={styles.linkContainer}>
                             {planet.films?.map((url) => (
-                              <PageLink key={url} style={styles.link} category="films" url={url} />
+                              <DesignPageLink key={url} style={styles.link} category="films" url={url} />
                             ))}
                           </div>
                         ),
@@ -282,7 +287,7 @@ export default function PlanetDetailled({ isRessource }: { isRessource?: boolean
                         content: (
                           <div style={styles.linkContainer}>
                             {planet.residents?.map((url) => (
-                              <PageLink key={url} style={styles.link} category="people" url={url} />
+                              <DesignPageLink key={url} style={styles.link} category="people" url={url} />
                             ))}
                           </div>
                         ),

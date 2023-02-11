@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
-import { selectElements } from '../../../stores/elementSlice'
-import { addRessource, removeRessource, selectResources } from '../../../stores/resourceSlice'
-import { PeopleType } from '../../../stores/types/PeopleType'
-import Element from '../Element'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import { selectElements } from '../stores/elementSlice'
+import { addRessource, removeRessource, selectResources } from '../stores/resourceSlice'
+import { PeopleType } from '../stores/types/PeopleType'
+import Element from './Element'
 
 export default function People({ people, isRessource }: { people: PeopleType; isRessource?: boolean }) {
   // =================

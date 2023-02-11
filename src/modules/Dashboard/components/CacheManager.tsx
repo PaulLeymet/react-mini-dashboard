@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
-import axiosGet, { isError } from '../../../../utils/api'
-import { CHUNK_SIZE, selectElements, storeCategoryElements, storeCategoryInfos } from '../../stores/elementSlice'
-import { ElementsCategory } from '../../stores/types/CategoryType'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import axiosGet, { isError } from '../../../utils/api'
+import { CHUNK_SIZE, selectElements, storeCategoryElements, storeCategoryInfos } from '../stores/elementSlice'
+import { ElementsCategory } from '../stores/types/CategoryType'
 
 export default function CacheManager({ categories }: { categories: ElementsCategory[] }) {
   // =================

@@ -1,10 +1,10 @@
 import { CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
-import { selectElements } from '../../../stores/elementSlice'
-import { addRessource, removeRessource, selectResources } from '../../../stores/resourceSlice'
-import { SpecieType } from '../../../stores/types/SpecieType'
-import Element from '../Element'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import { selectElements } from '../stores/elementSlice'
+import { addRessource, removeRessource, selectResources } from '../stores/resourceSlice'
+import { SpecieType } from '../stores/types/SpecieType'
+import Element from './Element'
 
 export default function Specie({ specie, style, isRessource }: { specie: SpecieType; style?: CSSProperties; isRessource?: boolean }) {
   // =================

@@ -1,10 +1,10 @@
 import { CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
-import { selectElements } from '../../../stores/elementSlice'
-import { addRessource, removeRessource, selectResources } from '../../../stores/resourceSlice'
-import { PlanetType } from '../../../stores/types/PlanetType'
-import Element from '../Element'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import { selectElements } from '../stores/elementSlice'
+import { addRessource, removeRessource, selectResources } from '../stores/resourceSlice'
+import { PlanetType } from '../stores/types/PlanetType'
+import Element from './Element'
 
 export default function Planet({ planet, style, isRessource }: { planet: PlanetType; style?: CSSProperties; isRessource?: boolean }) {
   // =================

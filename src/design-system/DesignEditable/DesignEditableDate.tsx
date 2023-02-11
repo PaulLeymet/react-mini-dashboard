@@ -1,11 +1,11 @@
 import { TextField } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { CSSProperties } from 'react'
-import DesignText, { DesignTextProps } from '../../../../design-system/DesignText/DesignText'
-import { color } from '../../../../theme/color'
-import { dateFormat } from '../../../../utils/date'
+import { color } from '../../theme/color'
+import { dateFormat } from '../../utils/date'
+import DesignText, { DesignTextProps } from '../DesignText/DesignText'
 
-export default function EditableDate({
+export default function DesignEditableDate({
   date,
   editable,
   onUpdate,

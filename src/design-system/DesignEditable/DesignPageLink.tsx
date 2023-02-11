@@ -1,12 +1,12 @@
 import { Chip } from '@mui/material'
 import { CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAppSelector } from '../../../../store/hooks'
-import { color } from '../../../../theme/color'
-import { selectElements } from '../../stores/elementSlice'
-import { ElementsCategory } from '../../stores/types/CategoryType'
+import { selectElements } from '../../modules/Dashboard/stores/elementSlice'
+import { ElementsCategory } from '../../modules/Dashboard/stores/types/CategoryType'
+import { useAppSelector } from '../../store/hooks'
+import { color } from '../../theme/color'
 
-export default function PageLink({ category, url, style }: { category: ElementsCategory; url: string; style?: CSSProperties }) {
+export default function DesignPageLink({ category, url, style }: { category: ElementsCategory; url: string; style?: CSSProperties }) {
   // =================
   // Stores
   // =================

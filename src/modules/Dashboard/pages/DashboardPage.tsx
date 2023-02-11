@@ -1,17 +1,17 @@
 import { CSSProperties } from 'react'
-import DesignTabs from '../../design-system/DesignTabs/DesignTabs'
-import { useMount } from '../../hooks/useMount'
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { color } from '../../theme/color'
-import { ILLUSTRATIONS } from '../../theme/illustrations'
-import axiosGet, { isError } from '../../utils/api'
-import CategoryPanel from './components/elements/CategoryPanel'
-import { selectCategory, selectElements, storeCategoriesUrl } from './stores/elementSlice'
-import { ElementsCategory } from './stores/types/CategoryType'
+import DesignTabs from '../../../design-system/DesignTabs/DesignTabs'
+import { useMount } from '../../../hooks/useMount'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import { color } from '../../../theme/color'
+import { ILLUSTRATIONS } from '../../../theme/illustrations'
+import axiosGet, { isError } from '../../../utils/api'
+import CategoryPanel from '../components/CategoryPanel'
+import { selectCategory, selectElements, storeCategoriesUrl } from '../stores/elementSlice'
+import { ElementsCategory } from '../stores/types/CategoryType'
 
 const CATEGORIES_ORDER: ElementsCategory[] = ['films', 'people', 'planets', 'species', 'starships', 'vehicles']
 
-export default function Dashboard() {
+export default function DashboardPage() {
   // =================
   // Stores
   // =================

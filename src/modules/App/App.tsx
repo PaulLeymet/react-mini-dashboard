@@ -5,13 +5,13 @@ import DesignHeader from '../../design-system/DesignText/DesignHeader'
 import DesignText from '../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { color } from '../../theme/color'
-import FilmDetailled from '../Dashboard/components/elements/Film/FilmDetailled'
-import PeopleDetailled from '../Dashboard/components/elements/People/PeopleDetailled'
-import PlanetDetailled from '../Dashboard/components/elements/Planet/PlanetDetailled'
-import SpecieDetailled from '../Dashboard/components/elements/Specie/SpecieDetailled'
-import StarshipDetailled from '../Dashboard/components/elements/Starship/StarshipDetailled'
-import VehicleDetailled from '../Dashboard/components/elements/Vehicle/VehicleDetailled'
-import Dashboard from '../Dashboard/Dashboard'
+import DashboardPage from '../Dashboard/pages/DashboardPage'
+import FilmPage from '../Dashboard/pages/FilmPage'
+import PeoplePage from '../Dashboard/pages/PeoplePage'
+import PlanetPage from '../Dashboard/pages/PlanetPage'
+import SpeciePage from '../Dashboard/pages/SpeciePage'
+import StarshipPage from '../Dashboard/pages/StarshipPage'
+import VehiclePage from '../Dashboard/pages/VehiclePage'
 import { selectCategory } from '../Dashboard/stores/elementSlice'
 import { closeModal } from '../Dashboard/stores/modalSlice'
 import Login from '../Login/Login'
@@ -24,7 +24,7 @@ import FallbackPage from './FallbackPage'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Dashboard />,
+    element: <DashboardPage />,
   },
   {
     path: '/login',
@@ -32,51 +32,51 @@ const router = createBrowserRouter([
   },
   {
     path: '/film/:index',
-    element: <FilmDetailled />,
+    element: <FilmPage />,
   },
   {
     path: '/people/:index',
-    element: <PeopleDetailled />,
+    element: <PeoplePage />,
   },
   {
     path: '/planet/:index',
-    element: <PlanetDetailled />,
+    element: <PlanetPage />,
   },
   {
     path: '/specie/:index',
-    element: <SpecieDetailled />,
+    element: <SpeciePage />,
   },
   {
     path: '/starship/:index',
-    element: <StarshipDetailled />,
+    element: <StarshipPage />,
   },
   {
     path: '/vehicle/:index',
-    element: <VehicleDetailled />,
+    element: <VehiclePage />,
   },
   {
     path: 'ressource/film/:index',
-    element: <FilmDetailled isRessource />,
+    element: <FilmPage isRessource />,
   },
   {
     path: 'ressource/people/:index',
-    element: <PeopleDetailled isRessource />,
+    element: <PeoplePage isRessource />,
   },
   {
     path: 'ressource/planet/:index',
-    element: <PlanetDetailled isRessource />,
+    element: <PlanetPage isRessource />,
   },
   {
     path: 'ressource/specie/:index',
-    element: <SpecieDetailled isRessource />,
+    element: <SpeciePage isRessource />,
   },
   {
     path: 'ressource/starship/:index',
-    element: <StarshipDetailled isRessource />,
+    element: <StarshipPage isRessource />,
   },
   {
     path: 'ressource/vehicle/:index',
-    element: <VehicleDetailled isRessource />,
+    element: <VehiclePage isRessource />,
   },
   {
     path: '*',

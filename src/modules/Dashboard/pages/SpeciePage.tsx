@@ -1,22 +1,22 @@
 import { Grid } from '@mui/material'
 import { CSSProperties } from 'react'
 import { useParams } from 'react-router-dom'
-import DesignSpinner from '../../../../../design-system/DesignSpinner/DesignSpinner'
-import DesignTabs from '../../../../../design-system/DesignTabs/DesignTabs'
-import DesignHeader from '../../../../../design-system/DesignText/DesignHeader'
-import DesignText from '../../../../../design-system/DesignText/DesignText'
-import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
-import { color } from '../../../../../theme/color'
-import { ILLUSTRATIONS } from '../../../../../theme/illustrations'
-import { selectElements } from '../../../stores/elementSlice'
-import { selectResources, updateRessource } from '../../../stores/resourceSlice'
-import { SpecieType } from '../../../stores/types/SpecieType'
-import EditableDate from '../../dashboard-system/EditableDate'
-import EditableText from '../../dashboard-system/EditableText'
-import PageLink from '../../dashboard-system/PageLink'
-import CacheManager from '../CacheManager'
+import DesignEditableDate from '../../../design-system/DesignEditable/DesignEditableDate'
+import DesignEditableText from '../../../design-system/DesignEditable/DesignEditableText'
+import DesignPageLink from '../../../design-system/DesignEditable/DesignPageLink'
+import DesignSpinner from '../../../design-system/DesignSpinner/DesignSpinner'
+import DesignTabs from '../../../design-system/DesignTabs/DesignTabs'
+import DesignHeader from '../../../design-system/DesignText/DesignHeader'
+import DesignText from '../../../design-system/DesignText/DesignText'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import { color } from '../../../theme/color'
+import { ILLUSTRATIONS } from '../../../theme/illustrations'
+import CacheManager from '../components/CacheManager'
+import { selectElements } from '../stores/elementSlice'
+import { selectResources, updateRessource } from '../stores/resourceSlice'
+import { SpecieType } from '../stores/types/SpecieType'
 
-export default function SpecieDetailled({ isRessource }: { isRessource?: boolean }) {
+export default function SpeciePage({ isRessource }: { isRessource?: boolean }) {
   // =================
   // Stores
   // =================
@@ -189,72 +189,77 @@ export default function SpecieDetailled({ isRessource }: { isRessource?: boolean
                   <DesignHeader color={color.primary} variant="h5">
                     {isRessource ? `Ressource - Specie` : `Element - Specie`}
                   </DesignHeader>
-                  <EditableText placeholder={'Title'} editable={isRessource} onUpdate={onNameUpdate} variant="h5">
+                  <DesignEditableText placeholder={'Title'} editable={isRessource} onUpdate={onNameUpdate} variant="h5">
                     {`${specie.name}`}
-                  </EditableText>
+                  </DesignEditableText>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
                   <DesignText bold>Classification</DesignText>
-                  <EditableText placeholder={'Classification'} editable={isRessource} onUpdate={onClassificationUpdate}>
+                  <DesignEditableText placeholder={'Classification'} editable={isRessource} onUpdate={onClassificationUpdate}>
                     {`${specie.classification}`}
-                  </EditableText>
+                  </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Designation
                   </DesignText>
-                  <EditableText placeholder={'Designation'} editable={isRessource} onUpdate={onDesignationUpdate}>
+                  <DesignEditableText placeholder={'Designation'} editable={isRessource} onUpdate={onDesignationUpdate}>
                     {`${specie.designation}`}
-                  </EditableText>
+                  </DesignEditableText>
 
                   <DesignText style={{ marginTop: 2 }} bold>
                     Average height
                   </DesignText>
-                  <EditableText placeholder={'Average height'} editable={isRessource} onUpdate={onHeightUpdate}>
+                  <DesignEditableText placeholder={'Average height'} editable={isRessource} onUpdate={onHeightUpdate}>
                     {`${specie.average_height}`}
-                  </EditableText>
+                  </DesignEditableText>
 
                   <DesignText style={{ marginTop: 2 }} bold>
                     Average lifespan
                   </DesignText>
-                  <EditableText placeholder={'Average lifespan'} editable={isRessource} onUpdate={onLifespanceUpdate}>
+                  <DesignEditableText placeholder={'Average lifespan'} editable={isRessource} onUpdate={onLifespanceUpdate}>
                     {`${specie.average_lifespan}`}
-                  </EditableText>
+                  </DesignEditableText>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
                   <DesignText bold>Created in</DesignText>
-                  <EditableDate placeholder={'Creation'} editable={isRessource} date={new Date(specie.created)} onUpdate={onCreatedDateUpdate} />
+                  <DesignEditableDate
+                    placeholder={'Creation'}
+                    editable={isRessource}
+                    date={new Date(specie.created)}
+                    onUpdate={onCreatedDateUpdate}
+                  />
                   <DesignText style={{ marginTop: 2 }} bold>
                     Edited in
                   </DesignText>
-                  <EditableDate placeholder={'Edition'} editable={isRessource} date={new Date(specie.edited)} onUpdate={onEditedDateUpdate} />
+                  <DesignEditableDate placeholder={'Edition'} editable={isRessource} date={new Date(specie.edited)} onUpdate={onEditedDateUpdate} />
                   <DesignText style={{ marginTop: 2 }} bold>
                     Language
                   </DesignText>
-                  <EditableText placeholder={'Language'} editable={isRessource} onUpdate={onLanguageUpdate}>
+                  <DesignEditableText placeholder={'Language'} editable={isRessource} onUpdate={onLanguageUpdate}>
                     {`${specie.language}`}
-                  </EditableText>
+                  </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Homeworld
                   </DesignText>
-                  <PageLink style={styles.link} category="planets" url={specie.homeworld} />
+                  <DesignPageLink style={styles.link} category="planets" url={specie.homeworld} />
                 </Grid>
                 <Grid item xs={12} container>
                   <Grid style={styles.grid} item xs={4}>
                     <DesignText bold>Skin colors</DesignText>
-                    <EditableText placeholder={'Skin colors'} editable={isRessource} onUpdate={onSkinColorsUpdate}>
+                    <DesignEditableText placeholder={'Skin colors'} editable={isRessource} onUpdate={onSkinColorsUpdate}>
                       {`${specie.skin_colors}`}
-                    </EditableText>
+                    </DesignEditableText>
                   </Grid>
                   <Grid style={styles.grid} item xs={4}>
                     <DesignText bold>Eye colors</DesignText>
-                    <EditableText placeholder={'Eye colors'} editable={isRessource} onUpdate={onEyeColorsUpdate}>
+                    <DesignEditableText placeholder={'Eye colors'} editable={isRessource} onUpdate={onEyeColorsUpdate}>
                       {`${specie.eye_colors}`}
-                    </EditableText>
+                    </DesignEditableText>
                   </Grid>
                   <Grid style={styles.grid} item xs={4}>
                     <DesignText bold>Hairs colors</DesignText>
-                    <EditableText placeholder={'Hairs colors'} editable={isRessource} onUpdate={onHairColorUpdate}>
+                    <DesignEditableText placeholder={'Hairs colors'} editable={isRessource} onUpdate={onHairColorUpdate}>
                       {`${specie.hair_colors}`}
-                    </EditableText>
+                    </DesignEditableText>
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
@@ -265,7 +270,7 @@ export default function SpecieDetailled({ isRessource }: { isRessource?: boolean
                         content: (
                           <div style={styles.linkContainer}>
                             {specie.films?.map((url) => (
-                              <PageLink key={url} style={styles.link} category="films" url={url} />
+                              <DesignPageLink key={url} style={styles.link} category="films" url={url} />
                             ))}
                           </div>
                         ),
@@ -275,7 +280,7 @@ export default function SpecieDetailled({ isRessource }: { isRessource?: boolean
                         content: (
                           <div style={styles.linkContainer}>
                             {specie.people?.map((url) => (
-                              <PageLink key={url} style={styles.link} category="people" url={url} />
+                              <DesignPageLink key={url} style={styles.link} category="people" url={url} />
                             ))}
                           </div>
                         ),
