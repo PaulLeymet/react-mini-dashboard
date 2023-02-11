@@ -1,6 +1,7 @@
 import { CSSProperties } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
-import { displayInModal } from '../../../stores/modalSlice'
+import { selectElements } from '../../../stores/elementSlice'
 import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
 import { VehicleType } from '../../../stores/types/VehicleType'
 import Element from '../Element'
@@ -11,6 +12,7 @@ export default function Vehicle({ vehicle, style, isRessource }: { vehicle: Vehi
   // =================
   const dispatch = useAppDispatch()
   const ressources = useAppSelector(selectRessources)
+  const elements = useAppSelector(selectElements)
 
   // =================
   // States
@@ -20,18 +22,14 @@ export default function Vehicle({ vehicle, style, isRessource }: { vehicle: Vehi
   // =================
   // Hooks
   // =================
+  const navigate = useNavigate()
 
   // =================
   // Methods
   // =================
   const onShowDetail = () => {
-    dispatch(
-      displayInModal({
-        id: vehicle.name,
-        category: 'vehicles',
-        url: vehicle.url,
-      }),
-    )
+    if (isRessource) navigate('/ressource/vehicle/' + ressources.vehicles.findIndex((e) => e.name === vehicle.name))
+    else navigate('/vehicle/' + elements.vehicles.elements.findIndex((e) => e.name === vehicle.name))
   }
 
   const onAddRessource = () => {

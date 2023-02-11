@@ -185,8 +185,6 @@ export default function PlanetDetailled({ isRessource }: { isRessource?: boolean
     }
   }
 
-  console.log(planet)
-
   // =================
   // Render
   // =================

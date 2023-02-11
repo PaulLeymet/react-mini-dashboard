@@ -209,8 +209,6 @@ export default function StarshipDetailled({ isRessource }: { isRessource?: boole
     }
   }
 
-  console.log(starship)
-
   // =================
   // Render
   // =================

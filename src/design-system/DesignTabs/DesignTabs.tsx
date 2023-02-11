@@ -16,8 +16,6 @@ export default function DesignTabs({
 }) {
   const [value, setValue] = useState(initialIndex || 0)
 
-  console.log('initialIndex', initialIndex)
-
   const handleChange = (event: React.SyntheticEvent<Element, Event>, value: any) => {
     setValue(value)
     if (onTabChange) onTabChange(value)
