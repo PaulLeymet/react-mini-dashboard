@@ -95,8 +95,10 @@ export default function Dashboard() {
   return (
     <div style={{ ...styles.page, ...renderBackgroundStyle() }}>
       <DesignTabs
-        style={styles.tabs}
+        selectorStyle={styles.selector}
         initialIndex={CATEGORIES_ORDER.findIndex((e) => e === elements.selectedCategory)}
+        color={color.white}
+        backgroundColor={color.black + '60'}
         onTabChange={onTabChange}
         tabs={[
           {

@@ -1,17 +1,24 @@
 import { TabContext, TabPanel } from '@mui/lab'
-import { Tab, Tabs } from '@mui/material'
+import { createTheme, Tab, Tabs, ThemeProvider } from '@mui/material'
 import { CSSProperties, useState } from 'react'
-import { color } from '../../theme/color'
+import { color as ThemeColor } from '../../theme/color'
 
 export default function DesignTabs({
   tabs,
   initialIndex,
   style,
+  color,
+  backgroundColor,
   onTabChange,
 }: {
   tabs: { label: string; content: JSX.Element }[]
   initialIndex?: number
   style?: CSSProperties
+  tabStyle?: CSSProperties
+  selectorStyle?: CSSProperties
+  selectorActiveStyle?: CSSProperties
+  color?: string
+  backgroundColor?: string
   onTabChange?: (value: number) => void
 }) {
   const [value, setValue] = useState(initialIndex || 0)
@@ -34,11 +41,12 @@ export default function DesignTabs({
       alignItems: 'center',
       justifyContent: 'center',
       borderWidth: 0,
-      background: color.white + 'C0',
+      background: backgroundColor || ThemeColor.white + 'C0',
     },
     tab: {
       width: `${100 / tabs.length}%`,
       fontWeight: 'bold',
+      color: color,
     },
     tabPanel: {
       display: 'flex',
@@ -46,33 +54,43 @@ export default function DesignTabs({
       flexGrow: 1,
     },
     active: {
-      color: color.primary,
+      color: color || ThemeColor.primary,
     },
   }
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: color || ThemeColor.primary,
+      },
+    },
+  })
+
   return (
-    <TabContext value={`${value}`}>
-      <div style={{ ...styles.elements, ...style }}>
-        <Tabs
-          style={styles.tabSelector}
-          variant="scrollable"
-          value={value}
-          onChange={handleChange}
-          aria-label="Vertical tabs"
-          sx={{ borderRight: 1, borderColor: 'divider' }}
-        >
-          {tabs.map((tab, index) => (
-            <Tab style={{ ...styles.tab, ...(value === index ? styles.active : null) }} key={`${index}`} label={tab.label} />
-          ))}
-        </Tabs>
-        {tabs.map((tab, index) =>
-          value === index ? (
-            <TabPanel style={styles.tabPanel} key={`${index}`} value={`${index}`}>
-              {tab.content}
-            </TabPanel>
-          ) : null,
-        )}
-      </div>
-    </TabContext>
+    <ThemeProvider theme={theme}>
+      <TabContext value={`${value}`}>
+        <div style={{ ...styles.elements, ...style }}>
+          <Tabs
+            style={styles.tabSelector}
+            variant="scrollable"
+            value={value}
+            onChange={handleChange}
+            aria-label="Vertical tabs"
+            sx={{ borderRight: 1, borderColor: 'divider' }}
+          >
+            {tabs.map((tab, index) => (
+              <Tab style={{ ...styles.tab, ...(value === index ? styles.active : null) }} key={`${index}`} label={tab.label} />
+            ))}
+          </Tabs>
+          {tabs.map((tab, index) =>
+            value === index ? (
+              <TabPanel style={styles.tabPanel} key={`${index}`} value={`${index}`}>
+                {tab.content}
+              </TabPanel>
+            ) : null,
+          )}
+        </div>
+      </TabContext>
+    </ThemeProvider>
   )
 }
