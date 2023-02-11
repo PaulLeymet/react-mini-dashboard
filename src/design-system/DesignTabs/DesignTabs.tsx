@@ -2,6 +2,7 @@ import { TabContext, TabPanel } from '@mui/lab'
 import { createTheme, Tab, Tabs, ThemeProvider } from '@mui/material'
 import { CSSProperties, useState } from 'react'
 import { color as ThemeColor } from '../../theme/color'
+import DesignBox from '../DesignBox/DesignBox'
 
 export default function DesignTabs({
   tabs,
@@ -33,8 +34,6 @@ export default function DesignTabs({
   } = {
     elements: {
       flexDirection: 'column',
-      display: 'flex',
-      flexGrow: 1,
     },
     tabSelector: {
       display: 'relative',
@@ -42,11 +41,13 @@ export default function DesignTabs({
       justifyContent: 'center',
       borderWidth: 0,
       background: backgroundColor || ThemeColor.white + 'C0',
+      maxWidth: '100%',
     },
     tab: {
       width: `${100 / tabs.length}%`,
       fontWeight: 'bold',
       color: color,
+      maxWidth: '100%',
     },
     tabPanel: {
       display: 'flex',
@@ -69,7 +70,7 @@ export default function DesignTabs({
   return (
     <ThemeProvider theme={theme}>
       <TabContext value={`${value}`}>
-        <div style={{ ...styles.elements, ...style }}>
+        <DesignBox style={{ ...styles.elements, ...style }}>
           <Tabs
             style={styles.tabSelector}
             variant="scrollable"
@@ -82,14 +83,16 @@ export default function DesignTabs({
               <Tab style={{ ...styles.tab, ...(value === index ? styles.active : null) }} key={`${index}`} label={tab.label} />
             ))}
           </Tabs>
-          {tabs.map((tab, index) =>
-            value === index ? (
-              <TabPanel style={styles.tabPanel} key={`${index}`} value={`${index}`}>
-                {tab.content}
-              </TabPanel>
-            ) : null,
-          )}
-        </div>
+          <>
+            {tabs.map((tab, index) =>
+              value === index ? (
+                <TabPanel style={styles.tabPanel} key={`${index}`} value={`${index}`}>
+                  {tab.content}
+                </TabPanel>
+              ) : null,
+            )}
+          </>
+        </DesignBox>
       </TabContext>
     </ThemeProvider>
   )

@@ -1,5 +1,7 @@
 import { CSSProperties } from 'react'
+import DesignBox from '../../../design-system/DesignBox/DesignBox'
 import DesignTabs from '../../../design-system/DesignTabs/DesignTabs'
+import { useIsMobile } from '../../../hooks/useIsMobile'
 import { useMount } from '../../../hooks/useMount'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { color } from '../../../theme/color'
@@ -29,6 +31,7 @@ export default function DashboardPage() {
     fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   })
+  const isMobile = useIsMobile()
 
   // =================
   // Methods
@@ -50,7 +53,6 @@ export default function DashboardPage() {
           backgroundColor: color.black,
           backgroundImage: `url(${ILLUSTRATIONS.films})`,
           backgroundSize: 'cover',
-          backgroundPositionY: -250,
         }
       case 'people':
         return {
@@ -94,7 +96,7 @@ export default function DashboardPage() {
   // Render
   // =================
   return (
-    <div style={styles.page}>
+    <DesignBox>
       <div style={{ ...styles.background, ...renderBackgroundStyle() }} />
       <DesignTabs
         style={styles.tabsContainer}
@@ -130,17 +132,13 @@ export default function DashboardPage() {
           },
         ]}
       />
-    </div>
+    </DesignBox>
   )
 }
 
 const styles: {
   [key: string]: CSSProperties | undefined
 } = {
-  page: {
-    display: 'flex',
-    flexGrow: 1,
-  },
   background: {
     position: 'absolute',
     left: 0,

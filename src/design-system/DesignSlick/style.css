@@ -1,11 +1,13 @@
 .horizontal-scroll-wrapper {
   display: flex;
   flex-grow: 1;
+  max-width: 100%;
 }
 
 .react-horizontal-scrolling-menu--inner-wrapper {
   display: flex;
   flex-grow: 1;
+  max-width: 100%;
 }
 
 .horizontal-scroll-container {
@@ -13,6 +15,7 @@
   flex-grow: 1;
   height: 100%;
   align-items: center;
+  max-width: 100%;
 }
 
 .horizontal-scroll-separator {

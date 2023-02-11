@@ -1,6 +1,7 @@
 import { AppBar, Toolbar } from '@mui/material'
 import { CSSProperties, useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import DesignBox from '../../design-system/DesignBox/DesignBox'
 import DesignHeader from '../../design-system/DesignText/DesignHeader'
 import DesignText from '../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
@@ -139,9 +140,9 @@ export default function App() {
   // Render
   // =================
   return (
-    <div style={styles.app}>
+    <DesignBox>
       {authenticated ? (
-        <div style={styles.content}>
+        <DesignBox>
           <AppBar style={styles.navbar}>
             <Toolbar>
               <DesignHeader onClick={onTitleClick} color={color.white}>
@@ -153,28 +154,20 @@ export default function App() {
               </DesignText>
             </Toolbar>
           </AppBar>
-          <div style={styles.screenContent}>
+          <DesignBox style={styles.screenContent}>
             <RouterProvider router={router} />
-          </div>
-        </div>
+          </DesignBox>
+        </DesignBox>
       ) : (
         <Login />
       )}
-    </div>
+    </DesignBox>
   )
 }
 
 const styles: {
   [key: string]: CSSProperties | undefined
 } = {
-  app: {
-    display: 'flex',
-    flexGrow: 1,
-  },
-  content: {
-    display: 'flex',
-    flexGrow: 1,
-  },
   filler: {
     flexGrow: 1,
   },
@@ -183,8 +176,6 @@ const styles: {
     background: color.black,
   },
   screenContent: {
-    display: 'flex',
     marginTop: 65,
-    flexGrow: 1,
   },
 }

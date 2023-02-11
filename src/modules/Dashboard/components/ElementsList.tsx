@@ -1,4 +1,5 @@
 import { CSSProperties } from 'react'
+import DesignBox from '../../../design-system/DesignBox/DesignBox'
 import DesignSlick from '../../../design-system/DesignSlick/DesignSlick'
 import DesignSpinner from '../../../design-system/DesignSpinner/DesignSpinner'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
@@ -71,15 +72,15 @@ export default function ElementsList({
   }
 
   return (
-    <div style={styles.main}>
+    <DesignBox style={styles.main}>
       {elements?.length ? (
         <DesignSlick data={elements} renderElement={renderElement} />
       ) : (
-        <div style={styles.spinnerContainer}>
+        <DesignBox style={styles.spinnerContainer}>
           <DesignSpinner size={60} color={color.white} />
-        </div>
+        </DesignBox>
       )}
-    </div>
+    </DesignBox>
   )
 }
 
@@ -87,15 +88,11 @@ const styles: {
   [key: string]: CSSProperties | undefined
 } = {
   main: {
-    display: 'flex',
-    flexGrow: 1,
     margin: 10,
     padding: 10,
     flexDirection: 'column',
   },
   spinnerContainer: {
-    display: 'flex',
-    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },

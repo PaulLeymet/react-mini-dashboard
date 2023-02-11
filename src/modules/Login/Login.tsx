@@ -1,4 +1,5 @@
 import { CSSProperties, useState } from 'react'
+import DesignBox from '../../design-system/DesignBox/DesignBox'
 import DesignButton from '../../design-system/DesignButton/DesignButton'
 import DesignInput from '../../design-system/DesignInput/DesignInput'
 import DesignPasswordInput from '../../design-system/DesignInput/DesignPasswordInput'
@@ -65,7 +66,7 @@ export default function Login() {
   // Render
   // =================
   return (
-    <div style={styles.page}>
+    <DesignBox style={styles.page}>
       <div style={styles.cardContainer}>
         {auth.token ? (
           <>
@@ -89,7 +90,7 @@ export default function Login() {
           </>
         )}
       </div>
-    </div>
+    </DesignBox>
   )
 }
 
@@ -97,8 +98,6 @@ const styles: {
   [key: string]: CSSProperties | undefined
 } = {
   page: {
-    flexGrow: 1,
-    display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
     backgroundColor: color.black,

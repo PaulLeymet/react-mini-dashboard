@@ -4,6 +4,7 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
 import { motion } from 'framer-motion'
 import { CSSProperties, useState } from 'react'
 import DesignText from '../../../design-system/DesignText/DesignText'
+import { useIsMobile } from '../../../hooks/useIsMobile'
 import { color } from '../../../theme/color'
 
 export default function Element({
@@ -33,6 +34,7 @@ export default function Element({
   // =================
   // Hooks
   // =================
+  const isMobile = useIsMobile()
 
   // =================
   // Methods
@@ -55,7 +57,7 @@ export default function Element({
   // =================
   return (
     <motion.div
-      style={styles.main}
+      style={{ ...styles.main, ...(isMobile && { width: 160, height: 160 }) }}
       initial={{ scale: 1 }}
       whileHover={{ scale: 1.05 }}
       onHoverStart={onHoverStart}
@@ -88,7 +90,7 @@ const styles: {
   [key: string]: CSSProperties | undefined
 } = {
   main: {
-    width: 300,
+    width: 250,
     height: 200,
     background: color.black + 'F0',
     borderRadius: 10,

@@ -1,8 +1,10 @@
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import { motion } from 'framer-motion'
 import { CSSProperties, useContext } from 'react'
 import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu'
 import { color } from '../../theme/color'
+import DesignBox from '../DesignBox/DesignBox'
 import './style.css'
 
 export default function DesignSlick({ data, renderElement }: { data: any[]; renderElement: (element: any, index: number) => JSX.Element }) {
@@ -13,7 +15,13 @@ export default function DesignSlick({ data, renderElement }: { data: any[]; rend
       scrollPrev()
     }
 
-    return <ArrowBackIosIcon style={{ ...styles.arrow, ...(isFirstItemVisible ? styles.inactive : null) }} onClick={prev} />
+    return (
+      <div style={styles.arrowContainer}>
+        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} onClick={prev}>
+          <ArrowBackIosIcon style={{ ...styles.arrow, ...(isFirstItemVisible ? styles.inactive : null) }} />
+        </motion.div>
+      </div>
+    )
   }
 
   const RightArrow = () => {
@@ -23,11 +31,17 @@ export default function DesignSlick({ data, renderElement }: { data: any[]; rend
       scrollNext()
     }
 
-    return <ArrowForwardIosIcon style={{ ...styles.arrow, ...(isFirstItemVisible ? styles.inactive : null) }} onClick={next} />
+    return (
+      <div style={styles.arrowContainer}>
+        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} onClick={next}>
+          <ArrowForwardIosIcon style={{ ...styles.arrow, ...(isFirstItemVisible ? styles.inactive : null) }} />
+        </motion.div>
+      </div>
+    )
   }
 
   return (
-    <div style={styles.container}>
+    <DesignBox>
       <ScrollMenu
         wrapperClassName="horizontal-scroll-wrapper"
         scrollContainerClassName="horizontal-scroll-container hide-scrollbar"
@@ -38,16 +52,20 @@ export default function DesignSlick({ data, renderElement }: { data: any[]; rend
       >
         {data.map((element, index) => renderElement(element, index))}
       </ScrollMenu>
-    </div>
+    </DesignBox>
   )
 }
 
 const styles: {
   [key: string]: CSSProperties | undefined
 } = {
-  container: {
-    display: 'block',
-    maxWidth: 1800, // @FIXME
+  arrowContainer: {
+    width: 60,
+    height: '100%',
+    display: 'flex',
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   arrow: {
     display: 'flex',
@@ -56,5 +74,6 @@ const styles: {
     justifyContent: 'center',
     alignItems: 'center',
     color: color.white,
+    cursor: 'pointer',
   },
 }

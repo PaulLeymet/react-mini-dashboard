@@ -1,4 +1,5 @@
 import { CSSProperties } from 'react'
+import DesignBox from '../../../design-system/DesignBox/DesignBox'
 import DesignHeader from '../../../design-system/DesignText/DesignHeader'
 import { useAppSelector } from '../../../store/hooks'
 import { color } from '../../../theme/color'
@@ -29,30 +30,30 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
   // Render
   // =================
   return (
-    <div
+    <DesignBox
       style={{
         ...styles.main,
         ...style,
       }}
     >
-      <div style={styles.elementSection}>
+      <DesignBox style={styles.elementSection}>
         <DesignHeader style={styles.header} color={color.white}>
           {'Category elements'}
         </DesignHeader>
         <ElementsList style={styles.cardContainer} category={category} />
-      </div>
-      <div style={styles.resourceSection}>
+      </DesignBox>
+      <DesignBox style={styles.resourceSection}>
         {resources[`${category}`].length ? (
           <>
             <DesignHeader style={styles.header} color={color.white}>
               {'My resources'}
             </DesignHeader>
-            <ElementsList style={styles.cardContainer} category={category} isResourceList />
+            <ElementsList category={category} isResourceList />
           </>
         ) : null}
-      </div>
+      </DesignBox>
       <CacheManager categories={[`${category}`]} />
-    </div>
+    </DesignBox>
   )
 }
 
@@ -60,22 +61,18 @@ const styles: {
   [key: string]: CSSProperties | undefined
 } = {
   main: {
-    display: 'flex',
-    flexGrow: 1,
     flexDirection: 'column',
     marginTop: 4,
   },
   elementSection: {
-    display: 'flex',
-    flexGrow: 1,
     flexDirection: 'column',
     margin: 10,
+    flex: 1,
   },
   resourceSection: {
-    display: 'flex',
-    flexGrow: 1,
     flexDirection: 'column',
     margin: 10,
+    flex: 1,
   },
   header: {
     marginTop: 2,
