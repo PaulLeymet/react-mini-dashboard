@@ -2,11 +2,11 @@ import { CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { selectElements } from '../stores/elementSlice'
-import { addRessource, removeRessource, selectResources } from '../stores/resourceSlice'
+import { addResource, removeResource, selectResources } from '../stores/resourceSlice'
 import { PlanetType } from '../stores/types/PlanetType'
 import Element from './Element'
 
-export default function Planet({ planet, style, isRessource }: { planet: PlanetType; style?: CSSProperties; isRessource?: boolean }) {
+export default function Planet({ planet, style, isResource }: { planet: PlanetType; style?: CSSProperties; isResource?: boolean }) {
   // =================
   // Stores
   // =================
@@ -28,23 +28,23 @@ export default function Planet({ planet, style, isRessource }: { planet: PlanetT
   // Methods
   // =================
   const onShowDetail = () => {
-    if (isRessource) navigate('/ressource/planet/' + resources.planets.findIndex((e) => e.name === planet.name))
+    if (isResource) navigate('/resource/planet/' + resources.planets.findIndex((e) => e.name === planet.name))
     else navigate('/planet/' + elements.planets.elements.findIndex((e) => e.name === planet.name))
   }
 
-  const onAddRessource = () => {
+  const onAddResource = () => {
     if (selected) {
       dispatch(
-        removeRessource({
+        removeResource({
           category: 'planets',
-          ressource: planet,
+          resource: planet,
         }),
       )
     } else {
       dispatch(
-        addRessource({
+        addResource({
           category: 'planets',
-          ressource: planet,
+          resource: planet,
         }),
       )
     }
@@ -53,5 +53,5 @@ export default function Planet({ planet, style, isRessource }: { planet: PlanetT
   // =================
   // Render
   // =================
-  return <Element selected={selected} isRessource={isRessource} id={planet.name} onShow={onShowDetail} onAdd={onAddRessource} />
+  return <Element selected={selected} isResource={isResource} id={planet.name} onShow={onShowDetail} onAdd={onAddResource} />
 }

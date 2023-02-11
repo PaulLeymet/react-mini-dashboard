@@ -13,10 +13,10 @@ import { color } from '../../../theme/color'
 import { ILLUSTRATIONS } from '../../../theme/illustrations'
 import CacheManager from '../components/CacheManager'
 import { selectElements } from '../stores/elementSlice'
-import { selectResources, updateRessource } from '../stores/resourceSlice'
+import { selectResources, updateResource } from '../stores/resourceSlice'
 import { VehicleType } from '../stores/types/VehicleType'
 
-export default function VehiclePage({ isRessource }: { isRessource?: boolean }) {
+export default function VehiclePage({ isResource }: { isResource?: boolean }) {
   // =================
   // Stores
   // =================
@@ -32,7 +32,7 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
   // =================
   // States
   // =================
-  const vehicle: VehicleType = index ? (isRessource ? resources.vehicles[parseInt(index)] : elements.vehicles.elements[parseInt(index)]) : null
+  const vehicle: VehicleType = index ? (isResource ? resources.vehicles[parseInt(index)] : elements.vehicles.elements[parseInt(index)]) : null
 
   // =================
   // Hooks
@@ -44,10 +44,10 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
   const onNameUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'vehicles',
           index: parseInt(index),
-          ressource: { ...vehicle, ...{ name: text } },
+          resource: { ...vehicle, ...{ name: text } },
         }),
       )
     }
@@ -56,10 +56,10 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
   const onModelUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'vehicles',
           index: parseInt(index),
-          ressource: { ...vehicle, ...{ model: text } },
+          resource: { ...vehicle, ...{ model: text } },
         }),
       )
     }
@@ -68,10 +68,10 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
   const onVehicleClassUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'vehicles',
           index: parseInt(index),
-          ressource: { ...vehicle, ...{ vehicle_class: text } },
+          resource: { ...vehicle, ...{ vehicle_class: text } },
         }),
       )
     }
@@ -80,10 +80,10 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
   const onManufacturerUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'vehicles',
           index: parseInt(index),
-          ressource: { ...vehicle, ...{ manufacturer: text } },
+          resource: { ...vehicle, ...{ manufacturer: text } },
         }),
       )
     }
@@ -92,10 +92,10 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
   const onMgltUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'vehicles',
           index: parseInt(index),
-          ressource: { ...vehicle, ...{ MGLT: text } },
+          resource: { ...vehicle, ...{ MGLT: text } },
         }),
       )
     }
@@ -104,10 +104,10 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
   const onHyperdriveUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'vehicles',
           index: parseInt(index),
-          ressource: { ...vehicle, ...{ hyperdrive_rating: text } },
+          resource: { ...vehicle, ...{ hyperdrive_rating: text } },
         }),
       )
     }
@@ -116,10 +116,10 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
   const onCrewUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'vehicles',
           index: parseInt(index),
-          ressource: { ...vehicle, ...{ crew: text } },
+          resource: { ...vehicle, ...{ crew: text } },
         }),
       )
     }
@@ -128,10 +128,10 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
   const onPassengersUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'vehicles',
           index: parseInt(index),
-          ressource: { ...vehicle, ...{ passengers: text } },
+          resource: { ...vehicle, ...{ passengers: text } },
         }),
       )
     }
@@ -140,10 +140,10 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
   const onCargoCapacityUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'vehicles',
           index: parseInt(index),
-          ressource: { ...vehicle, ...{ cargo_capacity: text } },
+          resource: { ...vehicle, ...{ cargo_capacity: text } },
         }),
       )
     }
@@ -152,10 +152,10 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
   const onMaxSpeedUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'vehicles',
           index: parseInt(index),
-          ressource: { ...vehicle, ...{ max_atmosphering_speed: text } },
+          resource: { ...vehicle, ...{ max_atmosphering_speed: text } },
         }),
       )
     }
@@ -164,10 +164,10 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
   const onCostUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'vehicles',
           index: parseInt(index),
-          ressource: { ...vehicle, ...{ cost_in_credits: text } },
+          resource: { ...vehicle, ...{ cost_in_credits: text } },
         }),
       )
     }
@@ -176,10 +176,10 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
   const onConsumablesUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'vehicles',
           index: parseInt(index),
-          ressource: { ...vehicle, ...{ consumables: text } },
+          resource: { ...vehicle, ...{ consumables: text } },
         }),
       )
     }
@@ -188,10 +188,10 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
   const onCreatedDateUpdate = (date: Date) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'vehicles',
           index: parseInt(index),
-          ressource: { ...vehicle, ...{ created: date.toISOString() } },
+          resource: { ...vehicle, ...{ created: date.toISOString() } },
         }),
       )
     }
@@ -200,10 +200,10 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
   const onEditedDateUpdate = (date: Date) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'vehicles',
           index: parseInt(index),
-          ressource: { ...vehicle, ...{ edited: date.toISOString() } },
+          resource: { ...vehicle, ...{ edited: date.toISOString() } },
         }),
       )
     }
@@ -223,27 +223,27 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
                   <DesignHeader color={color.primary} variant="h5">
-                    {isRessource ? `Ressource - Vehicle` : `Element - Vehicle`}
+                    {isResource ? `Resource - Vehicle` : `Element - Vehicle`}
                   </DesignHeader>
-                  <DesignEditableText placeholder={'Title'} editable={isRessource} onUpdate={onNameUpdate} variant="h5">
+                  <DesignEditableText placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate} variant="h5">
                     {`${vehicle.name}`}
                   </DesignEditableText>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
                   <DesignText bold>Model</DesignText>
-                  <DesignEditableText placeholder={'Model'} editable={isRessource} onUpdate={onModelUpdate}>
+                  <DesignEditableText placeholder={'Model'} editable={isResource} onUpdate={onModelUpdate}>
                     {`${vehicle.model}`}
                   </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Vehicle class
                   </DesignText>
-                  <DesignEditableText placeholder={'Vehicle class'} editable={isRessource} onUpdate={onVehicleClassUpdate}>
+                  <DesignEditableText placeholder={'Vehicle class'} editable={isResource} onUpdate={onVehicleClassUpdate}>
                     {`${vehicle.vehicle_class}`}
                   </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Manufacturer
                   </DesignText>
-                  <DesignEditableText placeholder={'Manufacturer'} editable={isRessource} onUpdate={onManufacturerUpdate}>
+                  <DesignEditableText placeholder={'Manufacturer'} editable={isResource} onUpdate={onManufacturerUpdate}>
                     {`${vehicle.manufacturer}`}
                   </DesignEditableText>
                 </Grid>
@@ -251,51 +251,51 @@ export default function VehiclePage({ isRessource }: { isRessource?: boolean }) 
                   <DesignText bold>Created in</DesignText>
                   <DesignEditableDate
                     placeholder={'Creation'}
-                    editable={isRessource}
+                    editable={isResource}
                     date={new Date(vehicle.created)}
                     onUpdate={onCreatedDateUpdate}
                   />
                   <DesignText style={{ marginTop: 2 }} bold>
                     Edited in
                   </DesignText>
-                  <DesignEditableDate placeholder={'Edition'} editable={isRessource} date={new Date(vehicle.edited)} onUpdate={onEditedDateUpdate} />
+                  <DesignEditableDate placeholder={'Edition'} editable={isResource} date={new Date(vehicle.edited)} onUpdate={onEditedDateUpdate} />
                 </Grid>
                 <Grid item xs={12} container>
                   <Grid style={styles.grid} item xs={4}>
                     <DesignText bold>Crew</DesignText>
-                    <DesignEditableText placeholder={'Crew'} editable={isRessource} onUpdate={onCrewUpdate}>
+                    <DesignEditableText placeholder={'Crew'} editable={isResource} onUpdate={onCrewUpdate}>
                       {`${vehicle.crew}`}
                     </DesignEditableText>
                     <DesignText style={{ marginTop: 2 }} bold>
                       Passengers
                     </DesignText>
-                    <DesignEditableText placeholder={'Passengers'} editable={isRessource} onUpdate={onPassengersUpdate}>
+                    <DesignEditableText placeholder={'Passengers'} editable={isResource} onUpdate={onPassengersUpdate}>
                       {`${vehicle.passengers}`}
                     </DesignEditableText>
                   </Grid>
 
                   <Grid style={styles.grid} item xs={4}>
                     <DesignText bold>Cargo capacity</DesignText>
-                    <DesignEditableText placeholder={'Cargo capacity'} editable={isRessource} onUpdate={onCargoCapacityUpdate}>
+                    <DesignEditableText placeholder={'Cargo capacity'} editable={isResource} onUpdate={onCargoCapacityUpdate}>
                       {`${vehicle.cargo_capacity}`}
                     </DesignEditableText>
                     <DesignText style={{ marginTop: 2 }} bold>
                       Max speed
                     </DesignText>
-                    <DesignEditableText placeholder={'Speed'} editable={isRessource} onUpdate={onMaxSpeedUpdate}>
+                    <DesignEditableText placeholder={'Speed'} editable={isResource} onUpdate={onMaxSpeedUpdate}>
                       {`${vehicle.max_atmosphering_speed}`}
                     </DesignEditableText>
                   </Grid>
 
                   <Grid style={styles.grid} item xs={4}>
                     <DesignText bold>Cost</DesignText>
-                    <DesignEditableText placeholder={'Cost'} editable={isRessource} onUpdate={onCostUpdate}>
+                    <DesignEditableText placeholder={'Cost'} editable={isResource} onUpdate={onCostUpdate}>
                       {`${vehicle.cost_in_credits}`}
                     </DesignEditableText>
                     <DesignText style={{ marginTop: 2 }} bold>
                       Consumables
                     </DesignText>
-                    <DesignEditableText placeholder={'Consumables'} editable={isRessource} onUpdate={onConsumablesUpdate}>
+                    <DesignEditableText placeholder={'Consumables'} editable={isResource} onUpdate={onConsumablesUpdate}>
                       {`${vehicle.consumables}`}
                     </DesignEditableText>
                   </Grid>

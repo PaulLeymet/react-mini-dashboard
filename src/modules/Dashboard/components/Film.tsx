@@ -2,11 +2,11 @@ import { CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { selectElements } from '../stores/elementSlice'
-import { addRessource, removeRessource, selectResources } from '../stores/resourceSlice'
+import { addResource, removeResource, selectResources } from '../stores/resourceSlice'
 import { FilmType } from '../stores/types/FilmType'
 import Element from './Element'
 
-export default function Film({ film, style, isRessource }: { film: FilmType; style?: CSSProperties; isRessource?: boolean }) {
+export default function Film({ film, style, isResource }: { film: FilmType; style?: CSSProperties; isResource?: boolean }) {
   // =================
   // Stores
   // =================
@@ -28,23 +28,23 @@ export default function Film({ film, style, isRessource }: { film: FilmType; sty
   // Methods
   // =================
   const onShowDetail = () => {
-    if (isRessource) navigate('/ressource/film/' + resources.films.findIndex((e) => e.title === film.title))
+    if (isResource) navigate('/resource/film/' + resources.films.findIndex((e) => e.title === film.title))
     else navigate('/film/' + elements.films.elements.findIndex((e) => e.title === film.title))
   }
 
-  const onAddRessource = () => {
+  const onAddResource = () => {
     if (selected) {
       dispatch(
-        removeRessource({
+        removeResource({
           category: 'films',
-          ressource: film,
+          resource: film,
         }),
       )
     } else {
       dispatch(
-        addRessource({
+        addResource({
           category: 'films',
-          ressource: film,
+          resource: film,
         }),
       )
     }
@@ -53,5 +53,5 @@ export default function Film({ film, style, isRessource }: { film: FilmType; sty
   // =================
   // Render
   // =================
-  return <Element selected={selected} isRessource={isRessource} id={film.title} onShow={onShowDetail} onAdd={onAddRessource} />
+  return <Element selected={selected} isResource={isResource} id={film.title} onShow={onShowDetail} onAdd={onAddResource} />
 }

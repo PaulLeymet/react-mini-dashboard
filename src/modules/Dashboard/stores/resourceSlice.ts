@@ -35,75 +35,75 @@ const initialState: AuthType = {
 // =================
 // Slice
 // =================
-export const ressourceSlice = createSlice({
+export const resourceSlice = createSlice({
   reducers: {
-    addRessource: (state, action: PayloadAction<{ category: ElementsCategory; ressource: any }>) => {
+    addResource: (state, action: PayloadAction<{ category: ElementsCategory; resource: any }>) => {
       const payload = action.payload
       switch (payload.category) {
         case 'films':
-          if (!state.films.some((e) => e.title === payload.ressource.title)) state.films.push(payload.ressource)
+          if (!state.films.some((e) => e.title === payload.resource.title)) state.films.push(payload.resource)
           break
         case 'people':
-          if (!state.people.some((e) => e.name === payload.ressource.name)) state.people.push(payload.ressource)
+          if (!state.people.some((e) => e.name === payload.resource.name)) state.people.push(payload.resource)
           break
         case 'planets':
-          if (!state.planets.some((e) => e.name === payload.ressource.name)) state.planets.push(payload.ressource)
+          if (!state.planets.some((e) => e.name === payload.resource.name)) state.planets.push(payload.resource)
           break
         case 'species':
-          if (!state.species.some((e) => e.name === payload.ressource.name)) state.species.push(payload.ressource)
+          if (!state.species.some((e) => e.name === payload.resource.name)) state.species.push(payload.resource)
           break
         case 'starships':
-          if (!state.starships.some((e) => e.name === payload.ressource.name)) state.starships.push(payload.ressource)
+          if (!state.starships.some((e) => e.name === payload.resource.name)) state.starships.push(payload.resource)
           break
         case 'vehicles':
-          if (!state.vehicles.some((e) => e.name === payload.ressource.name)) state.vehicles.push(payload.ressource)
+          if (!state.vehicles.some((e) => e.name === payload.resource.name)) state.vehicles.push(payload.resource)
           break
         default:
           break
       }
     },
-    removeRessource: (state, action: PayloadAction<{ category: ElementsCategory; ressource: any }>) => {
+    removeResource: (state, action: PayloadAction<{ category: ElementsCategory; resource: any }>) => {
       const payload = action.payload
       switch (payload.category) {
         case 'films':
-          state.films = state.films.filter((e) => e.title !== payload.ressource.title)
+          state.films = state.films.filter((e) => e.title !== payload.resource.title)
           break
         case 'people':
-          state.people = state.people.filter((e) => e.name !== payload.ressource.name)
+          state.people = state.people.filter((e) => e.name !== payload.resource.name)
           break
         case 'planets':
-          state.planets = state.planets.filter((e) => e.name !== payload.ressource.name)
+          state.planets = state.planets.filter((e) => e.name !== payload.resource.name)
           break
         case 'species':
-          state.species = state.species.filter((e) => e.name !== payload.ressource.name)
+          state.species = state.species.filter((e) => e.name !== payload.resource.name)
           break
         case 'starships':
-          state.starships = state.starships.filter((e) => e.name !== payload.ressource.name)
+          state.starships = state.starships.filter((e) => e.name !== payload.resource.name)
           break
         case 'vehicles':
-          state.vehicles = state.vehicles.filter((e) => e.name !== payload.ressource.name)
+          state.vehicles = state.vehicles.filter((e) => e.name !== payload.resource.name)
           break
         default:
           break
       }
     },
-    updateRessource: (state, action: PayloadAction<{ category: ElementsCategory; index: number; ressource: any }>) => {
+    updateResource: (state, action: PayloadAction<{ category: ElementsCategory; index: number; resource: any }>) => {
       const payload = action.payload
-      state[`${payload.category}`][payload.index] = payload.ressource
+      state[`${payload.category}`][payload.index] = payload.resource
     },
   },
-  name: 'ressourceSlice',
+  name: 'resourceSlice',
   initialState: initialState,
 })
 
 // =================
 // Actions
 // =================
-export const { addRessource, removeRessource, updateRessource } = ressourceSlice.actions
+export const { addResource, removeResource, updateResource } = resourceSlice.actions
 
 // =================
 // Selectors
 // =================
 export const selectResources = (state: RootState) => state.resources
 
-export default ressourceSlice.reducer
+export default resourceSlice.reducer

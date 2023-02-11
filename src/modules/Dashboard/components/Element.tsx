@@ -10,14 +10,14 @@ export default function Element({
   id,
   style,
   selected,
-  isRessource,
+  isResource,
   onShow,
   onAdd,
 }: {
   id: string
   style?: CSSProperties
   selected: boolean
-  isRessource?: boolean
+  isResource?: boolean
   onShow?: () => void
   onAdd?: () => void
 }) {
@@ -66,7 +66,7 @@ export default function Element({
         {id}
       </DesignText>
       {hovered ? (
-        isRessource ? (
+        isResource ? (
           <div style={styles.deleteIconContainer}>
             <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} onClick={handleAdd}>
               <DeleteForeverIcon style={styles.deleteIcon} />

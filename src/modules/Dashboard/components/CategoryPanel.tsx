@@ -41,13 +41,13 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
         </DesignHeader>
         <ElementsList style={styles.cardContainer} category={category} />
       </div>
-      <div style={styles.ressourceSection}>
+      <div style={styles.resourceSection}>
         {resources[`${category}`].length ? (
           <>
             <DesignHeader style={styles.header} color={color.white}>
               {'My resources'}
             </DesignHeader>
-            <ElementsList style={styles.cardContainer} category={category} isRessourceList />
+            <ElementsList style={styles.cardContainer} category={category} isResourceList />
           </>
         ) : null}
       </div>
@@ -71,7 +71,7 @@ const styles: {
     flexDirection: 'column',
     margin: 10,
   },
-  ressourceSection: {
+  resourceSection: {
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'column',

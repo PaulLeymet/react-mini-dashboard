@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { selectElements } from '../stores/elementSlice'
-import { addRessource, removeRessource, selectResources } from '../stores/resourceSlice'
+import { addResource, removeResource, selectResources } from '../stores/resourceSlice'
 import { PeopleType } from '../stores/types/PeopleType'
 import Element from './Element'
 
-export default function People({ people, isRessource }: { people: PeopleType; isRessource?: boolean }) {
+export default function People({ people, isResource }: { people: PeopleType; isResource?: boolean }) {
   // =================
   // Stores
   // =================
@@ -27,23 +27,23 @@ export default function People({ people, isRessource }: { people: PeopleType; is
   // Methods
   // =================
   const onShowDetail = () => {
-    if (isRessource) navigate('/ressource/people/' + resources.people.findIndex((e) => e.name === people.name))
+    if (isResource) navigate('/resource/people/' + resources.people.findIndex((e) => e.name === people.name))
     else navigate('/people/' + elements.people.elements.findIndex((e) => e.name === people.name))
   }
 
-  const onAddRessource = () => {
+  const onAddResource = () => {
     if (selected) {
       dispatch(
-        removeRessource({
+        removeResource({
           category: 'people',
-          ressource: people,
+          resource: people,
         }),
       )
     } else {
       dispatch(
-        addRessource({
+        addResource({
           category: 'people',
-          ressource: people,
+          resource: people,
         }),
       )
     }
@@ -52,5 +52,5 @@ export default function People({ people, isRessource }: { people: PeopleType; is
   // =================
   // Render
   // =================
-  return <Element selected={selected} isRessource={isRessource} id={people.name} onShow={onShowDetail} onAdd={onAddRessource} />
+  return <Element selected={selected} isResource={isResource} id={people.name} onShow={onShowDetail} onAdd={onAddResource} />
 }

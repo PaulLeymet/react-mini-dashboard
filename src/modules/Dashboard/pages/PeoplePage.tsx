@@ -13,10 +13,10 @@ import { color } from '../../../theme/color'
 import { ILLUSTRATIONS } from '../../../theme/illustrations'
 import CacheManager from '../components/CacheManager'
 import { selectElements } from '../stores/elementSlice'
-import { selectResources, updateRessource } from '../stores/resourceSlice'
+import { selectResources, updateResource } from '../stores/resourceSlice'
 import { PeopleType } from '../stores/types/PeopleType'
 
-export default function PeoplePage({ isRessource }: { isRessource?: boolean }) {
+export default function PeoplePage({ isResource }: { isResource?: boolean }) {
   // =================
   // Stores
   // =================
@@ -32,7 +32,7 @@ export default function PeoplePage({ isRessource }: { isRessource?: boolean }) {
   // =================
   // States
   // =================
-  const people: PeopleType = index ? (isRessource ? resources.people[parseInt(index)] : elements.people.elements[parseInt(index)]) : null
+  const people: PeopleType = index ? (isResource ? resources.people[parseInt(index)] : elements.people.elements[parseInt(index)]) : null
 
   // =================
   // Hooks
@@ -44,10 +44,10 @@ export default function PeoplePage({ isRessource }: { isRessource?: boolean }) {
   const onNameUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'people',
           index: parseInt(index),
-          ressource: { ...people, ...{ name: text } },
+          resource: { ...people, ...{ name: text } },
         }),
       )
     }
@@ -56,10 +56,10 @@ export default function PeoplePage({ isRessource }: { isRessource?: boolean }) {
   const onBirthYearUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'people',
           index: parseInt(index),
-          ressource: { ...people, ...{ birth_year: text } },
+          resource: { ...people, ...{ birth_year: text } },
         }),
       )
     }
@@ -68,10 +68,10 @@ export default function PeoplePage({ isRessource }: { isRessource?: boolean }) {
   const onGenderUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'people',
           index: parseInt(index),
-          ressource: { ...people, ...{ gender: text } },
+          resource: { ...people, ...{ gender: text } },
         }),
       )
     }
@@ -80,10 +80,10 @@ export default function PeoplePage({ isRessource }: { isRessource?: boolean }) {
   const onEyeColorUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'people',
           index: parseInt(index),
-          ressource: { ...people, ...{ eye_color: text } },
+          resource: { ...people, ...{ eye_color: text } },
         }),
       )
     }
@@ -92,10 +92,10 @@ export default function PeoplePage({ isRessource }: { isRessource?: boolean }) {
   const onHairColorUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'people',
           index: parseInt(index),
-          ressource: { ...people, ...{ hair_color: text } },
+          resource: { ...people, ...{ hair_color: text } },
         }),
       )
     }
@@ -104,10 +104,10 @@ export default function PeoplePage({ isRessource }: { isRessource?: boolean }) {
   const onHeightUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'people',
           index: parseInt(index),
-          ressource: { ...people, ...{ height: text } },
+          resource: { ...people, ...{ height: text } },
         }),
       )
     }
@@ -116,10 +116,10 @@ export default function PeoplePage({ isRessource }: { isRessource?: boolean }) {
   const onMassUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'people',
           index: parseInt(index),
-          ressource: { ...people, ...{ mass: text } },
+          resource: { ...people, ...{ mass: text } },
         }),
       )
     }
@@ -128,10 +128,10 @@ export default function PeoplePage({ isRessource }: { isRessource?: boolean }) {
   const onCreatedDateUpdate = (date: Date) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'people',
           index: parseInt(index),
-          ressource: { ...people, ...{ created: date.toISOString() } },
+          resource: { ...people, ...{ created: date.toISOString() } },
         }),
       )
     }
@@ -140,10 +140,10 @@ export default function PeoplePage({ isRessource }: { isRessource?: boolean }) {
   const onEditedDateUpdate = (date: Date) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'people',
           index: parseInt(index),
-          ressource: { ...people, ...{ edited: date.toISOString() } },
+          resource: { ...people, ...{ edited: date.toISOString() } },
         }),
       )
     }
@@ -163,59 +163,54 @@ export default function PeoplePage({ isRessource }: { isRessource?: boolean }) {
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
                   <DesignHeader color={color.primary} variant="h5">
-                    {isRessource ? `Ressource - People` : `Element - People`}
+                    {isResource ? `Resource - People` : `Element - People`}
                   </DesignHeader>
-                  <DesignEditableText placeholder={'Title'} editable={isRessource} onUpdate={onNameUpdate} variant="h5">
+                  <DesignEditableText placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate} variant="h5">
                     {`${people.name}`}
                   </DesignEditableText>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
                   <DesignText bold>Gender</DesignText>
-                  <DesignEditableText placeholder={'Gender'} editable={isRessource} onUpdate={onGenderUpdate}>
+                  <DesignEditableText placeholder={'Gender'} editable={isResource} onUpdate={onGenderUpdate}>
                     {`${people.gender}`}
                   </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Height
                   </DesignText>
-                  <DesignEditableText placeholder={'Height'} editable={isRessource} onUpdate={onHeightUpdate}>
+                  <DesignEditableText placeholder={'Height'} editable={isResource} onUpdate={onHeightUpdate}>
                     {`${people.height}`}
                   </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Mass
                   </DesignText>
-                  <DesignEditableText placeholder={'Mass'} editable={isRessource} onUpdate={onMassUpdate}>
+                  <DesignEditableText placeholder={'Mass'} editable={isResource} onUpdate={onMassUpdate}>
                     {`${people.mass}`}
                   </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Eye color
                   </DesignText>
-                  <DesignEditableText placeholder={'Eye color'} editable={isRessource} onUpdate={onEyeColorUpdate}>
+                  <DesignEditableText placeholder={'Eye color'} editable={isResource} onUpdate={onEyeColorUpdate}>
                     {`${people.eye_color}`}
                   </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Hair color
                   </DesignText>
-                  <DesignEditableText placeholder={'Hair color'} editable={isRessource} onUpdate={onHairColorUpdate}>
+                  <DesignEditableText placeholder={'Hair color'} editable={isResource} onUpdate={onHairColorUpdate}>
                     {`${people.hair_color}`}
                   </DesignEditableText>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
                   <DesignText bold>Created in</DesignText>
-                  <DesignEditableDate
-                    placeholder={'Creation'}
-                    editable={isRessource}
-                    date={new Date(people.created)}
-                    onUpdate={onCreatedDateUpdate}
-                  />
+                  <DesignEditableDate placeholder={'Creation'} editable={isResource} date={new Date(people.created)} onUpdate={onCreatedDateUpdate} />
                   <DesignText style={{ marginTop: 2 }} bold>
                     Edited in
                   </DesignText>
-                  <DesignEditableDate placeholder={'Edition'} editable={isRessource} date={new Date(people.edited)} onUpdate={onEditedDateUpdate} />
+                  <DesignEditableDate placeholder={'Edition'} editable={isResource} date={new Date(people.edited)} onUpdate={onEditedDateUpdate} />
 
                   <DesignText style={{ marginTop: 2 }} bold>
                     Birth year
                   </DesignText>
-                  <DesignEditableText placeholder={'Birth'} editable={isRessource} onUpdate={onBirthYearUpdate}>
+                  <DesignEditableText placeholder={'Birth'} editable={isResource} onUpdate={onBirthYearUpdate}>
                     {`${people.birth_year}`}
                   </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>

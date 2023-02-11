@@ -5,7 +5,7 @@ import thunk from 'redux-thunk'
 import appSlice from '../modules/App/stores/appSlice'
 import elementSlice from '../modules/Dashboard/stores/elementSlice'
 import modalSlice from '../modules/Dashboard/stores/modalSlice'
-import ressourceSlice from '../modules/Dashboard/stores/resourceSlice'
+import resourceSlice from '../modules/Dashboard/stores/resourceSlice'
 import authSlice from '../modules/Login/stores/authSlice'
 
 // =================
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   app: appSlice,
   auth: authSlice,
   elements: elementSlice,
-  resources: ressourceSlice,
+  resources: resourceSlice,
   modal: modalSlice,
 })
 

@@ -2,11 +2,11 @@ import { CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { selectElements } from '../stores/elementSlice'
-import { addRessource, removeRessource, selectResources } from '../stores/resourceSlice'
+import { addResource, removeResource, selectResources } from '../stores/resourceSlice'
 import { SpecieType } from '../stores/types/SpecieType'
 import Element from './Element'
 
-export default function Specie({ specie, style, isRessource }: { specie: SpecieType; style?: CSSProperties; isRessource?: boolean }) {
+export default function Specie({ specie, style, isResource }: { specie: SpecieType; style?: CSSProperties; isResource?: boolean }) {
   // =================
   // Stores
   // =================
@@ -28,23 +28,23 @@ export default function Specie({ specie, style, isRessource }: { specie: SpecieT
   // Methods
   // =================
   const onShowDetail = () => {
-    if (isRessource) navigate('/ressource/specie/' + resources.species.findIndex((e) => e.name === specie.name))
+    if (isResource) navigate('/resource/specie/' + resources.species.findIndex((e) => e.name === specie.name))
     else navigate('/specie/' + elements.species.elements.findIndex((e) => e.name === specie.name))
   }
 
-  const onAddRessource = () => {
+  const onAddResource = () => {
     if (selected) {
       dispatch(
-        removeRessource({
+        removeResource({
           category: 'species',
-          ressource: specie,
+          resource: specie,
         }),
       )
     } else {
       dispatch(
-        addRessource({
+        addResource({
           category: 'species',
-          ressource: specie,
+          resource: specie,
         }),
       )
     }
@@ -53,5 +53,5 @@ export default function Specie({ specie, style, isRessource }: { specie: SpecieT
   // =================
   // Render
   // =================
-  return <Element selected={selected} isRessource={isRessource} id={specie.name} onShow={onShowDetail} onAdd={onAddRessource} />
+  return <Element selected={selected} isResource={isResource} id={specie.name} onShow={onShowDetail} onAdd={onAddResource} />
 }

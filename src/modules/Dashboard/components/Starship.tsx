@@ -2,11 +2,11 @@ import { CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { selectElements } from '../stores/elementSlice'
-import { addRessource, removeRessource, selectResources } from '../stores/resourceSlice'
+import { addResource, removeResource, selectResources } from '../stores/resourceSlice'
 import { StarshipType } from '../stores/types/StarshipType'
 import Element from './Element'
 
-export default function Starship({ starship, style, isRessource }: { starship: StarshipType; style?: CSSProperties; isRessource?: boolean }) {
+export default function Starship({ starship, style, isResource }: { starship: StarshipType; style?: CSSProperties; isResource?: boolean }) {
   // =================
   // Stores
   // =================
@@ -28,23 +28,23 @@ export default function Starship({ starship, style, isRessource }: { starship: S
   // Methods
   // =================
   const onShowDetail = () => {
-    if (isRessource) navigate('/ressource/starship/' + resources.starships.findIndex((e) => e.name === starship.name))
+    if (isResource) navigate('/resource/starship/' + resources.starships.findIndex((e) => e.name === starship.name))
     else navigate('/starship/' + elements.starships.elements.findIndex((e) => e.name === starship.name))
   }
 
-  const onAddRessource = () => {
+  const onAddResource = () => {
     if (selected) {
       dispatch(
-        removeRessource({
+        removeResource({
           category: 'starships',
-          ressource: starship,
+          resource: starship,
         }),
       )
     } else {
       dispatch(
-        addRessource({
+        addResource({
           category: 'starships',
-          ressource: starship,
+          resource: starship,
         }),
       )
     }
@@ -53,5 +53,5 @@ export default function Starship({ starship, style, isRessource }: { starship: S
   // =================
   // Render
   // =================
-  return <Element selected={selected} isRessource={isRessource} id={starship.name} onShow={onShowDetail} onAdd={onAddRessource} />
+  return <Element selected={selected} isResource={isResource} id={starship.name} onShow={onShowDetail} onAdd={onAddResource} />
 }

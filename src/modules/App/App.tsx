@@ -55,28 +55,28 @@ const router = createBrowserRouter([
     element: <VehiclePage />,
   },
   {
-    path: 'ressource/film/:index',
-    element: <FilmPage isRessource />,
+    path: 'resource/film/:index',
+    element: <FilmPage isResource />,
   },
   {
-    path: 'ressource/people/:index',
-    element: <PeoplePage isRessource />,
+    path: 'resource/people/:index',
+    element: <PeoplePage isResource />,
   },
   {
-    path: 'ressource/planet/:index',
-    element: <PlanetPage isRessource />,
+    path: 'resource/planet/:index',
+    element: <PlanetPage isResource />,
   },
   {
-    path: 'ressource/specie/:index',
-    element: <SpeciePage isRessource />,
+    path: 'resource/specie/:index',
+    element: <SpeciePage isResource />,
   },
   {
-    path: 'ressource/starship/:index',
-    element: <StarshipPage isRessource />,
+    path: 'resource/starship/:index',
+    element: <StarshipPage isResource />,
   },
   {
-    path: 'ressource/vehicle/:index',
-    element: <VehiclePage isRessource />,
+    path: 'resource/vehicle/:index',
+    element: <VehiclePage isResource />,
   },
   {
     path: '*',

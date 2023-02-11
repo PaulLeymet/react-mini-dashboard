@@ -13,10 +13,10 @@ import { color } from '../../../theme/color'
 import { ILLUSTRATIONS } from '../../../theme/illustrations'
 import CacheManager from '../components/CacheManager'
 import { selectElements } from '../stores/elementSlice'
-import { selectResources, updateRessource } from '../stores/resourceSlice'
+import { selectResources, updateResource } from '../stores/resourceSlice'
 import { PlanetType } from '../stores/types/PlanetType'
 
-export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
+export default function PlanetPage({ isResource }: { isResource?: boolean }) {
   // =================
   // Stores
   // =================
@@ -32,7 +32,7 @@ export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
   // =================
   // States
   // =================
-  const planet: PlanetType = index ? (isRessource ? resources.planets[parseInt(index)] : elements.planets.elements[parseInt(index)]) : null
+  const planet: PlanetType = index ? (isResource ? resources.planets[parseInt(index)] : elements.planets.elements[parseInt(index)]) : null
 
   // =================
   // Hooks
@@ -44,10 +44,10 @@ export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
   const onNameUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'planets',
           index: parseInt(index),
-          ressource: { ...planet, ...{ name: text } },
+          resource: { ...planet, ...{ name: text } },
         }),
       )
     }
@@ -56,10 +56,10 @@ export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
   const onDirectorUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'planets',
           index: parseInt(index),
-          ressource: { ...planet, ...{ director: text } },
+          resource: { ...planet, ...{ director: text } },
         }),
       )
     }
@@ -68,10 +68,10 @@ export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
   const onDiameterUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'planets',
           index: parseInt(index),
-          ressource: { ...planet, ...{ diameter: text } },
+          resource: { ...planet, ...{ diameter: text } },
         }),
       )
     }
@@ -80,10 +80,10 @@ export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
   const onGravityUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'planets',
           index: parseInt(index),
-          ressource: { ...planet, ...{ gravity: text } },
+          resource: { ...planet, ...{ gravity: text } },
         }),
       )
     }
@@ -92,10 +92,10 @@ export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
   const onTerrainUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'planets',
           index: parseInt(index),
-          ressource: { ...planet, ...{ terrain: text } },
+          resource: { ...planet, ...{ terrain: text } },
         }),
       )
     }
@@ -104,10 +104,10 @@ export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
   const onSurfaceWaterUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'planets',
           index: parseInt(index),
-          ressource: { ...planet, ...{ surface_water: text } },
+          resource: { ...planet, ...{ surface_water: text } },
         }),
       )
     }
@@ -116,10 +116,10 @@ export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
   const onOrbitalUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'planets',
           index: parseInt(index),
-          ressource: { ...planet, ...{ orbital_period: text } },
+          resource: { ...planet, ...{ orbital_period: text } },
         }),
       )
     }
@@ -128,10 +128,10 @@ export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
   const onRotationUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'planets',
           index: parseInt(index),
-          ressource: { ...planet, ...{ rotation_period: text } },
+          resource: { ...planet, ...{ rotation_period: text } },
         }),
       )
     }
@@ -140,10 +140,10 @@ export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
   const onClimateUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'planets',
           index: parseInt(index),
-          ressource: { ...planet, ...{ climate: text } },
+          resource: { ...planet, ...{ climate: text } },
         }),
       )
     }
@@ -152,10 +152,10 @@ export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
   const onPopulationUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'planets',
           index: parseInt(index),
-          ressource: { ...planet, ...{ population: text } },
+          resource: { ...planet, ...{ population: text } },
         }),
       )
     }
@@ -164,10 +164,10 @@ export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
   const onCreatedDateUpdate = (date: Date) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'planets',
           index: parseInt(index),
-          ressource: { ...planet, ...{ created: date.toISOString() } },
+          resource: { ...planet, ...{ created: date.toISOString() } },
         }),
       )
     }
@@ -176,10 +176,10 @@ export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
   const onEditedDateUpdate = (date: Date) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'planets',
           index: parseInt(index),
-          ressource: { ...planet, ...{ edited: date.toISOString() } },
+          resource: { ...planet, ...{ edited: date.toISOString() } },
         }),
       )
     }
@@ -199,72 +199,67 @@ export default function PlanetPage({ isRessource }: { isRessource?: boolean }) {
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
                   <DesignHeader color={color.primary} variant="h5">
-                    {isRessource ? `Ressource - Planet` : `Element - Planet`}
+                    {isResource ? `Resource - Planet` : `Element - Planet`}
                   </DesignHeader>
-                  <DesignEditableText placeholder={'Title'} editable={isRessource} onUpdate={onNameUpdate} variant="h5">
+                  <DesignEditableText placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate} variant="h5">
                     {`${planet.name}`}
                   </DesignEditableText>
                 </Grid>
                 <Grid style={styles.grid} item xs={6}>
                   <DesignText bold>Climate</DesignText>
-                  <DesignEditableText placeholder={'Climate'} editable={isRessource} onUpdate={onClimateUpdate}>
+                  <DesignEditableText placeholder={'Climate'} editable={isResource} onUpdate={onClimateUpdate}>
                     {`${planet.climate}`}
                   </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Population
                   </DesignText>
-                  <DesignEditableText placeholder={'Population'} editable={isRessource} onUpdate={onPopulationUpdate}>
+                  <DesignEditableText placeholder={'Population'} editable={isResource} onUpdate={onPopulationUpdate}>
                     {`${planet.population}`}
                   </DesignEditableText>
                 </Grid>
                 <Grid style={styles.grid} item xs={6}>
                   <DesignText bold>Created in</DesignText>
-                  <DesignEditableDate
-                    placeholder={'Creation'}
-                    editable={isRessource}
-                    date={new Date(planet.created)}
-                    onUpdate={onCreatedDateUpdate}
-                  />
+                  <DesignEditableDate placeholder={'Creation'} editable={isResource} date={new Date(planet.created)} onUpdate={onCreatedDateUpdate} />
                   <DesignText style={{ marginTop: 2 }} bold>
                     Edited in
                   </DesignText>
-                  <DesignEditableDate placeholder={'Edition'} editable={isRessource} date={new Date(planet.edited)} onUpdate={onEditedDateUpdate} />
+                  <DesignEditableDate placeholder={'Edition'} editable={isResource} date={new Date(planet.edited)} onUpdate={onEditedDateUpdate} />
                 </Grid>
                 <Grid item xs={12} container>
                   <Grid style={styles.grid} item xs={4}>
                     <DesignText bold>Orbital period</DesignText>
-                    <DesignEditableText placeholder={'Orbital period'} editable={isRessource} onUpdate={onOrbitalUpdate}>
+                    <DesignEditableText placeholder={'Orbital period'} editable={isResource} onUpdate={onOrbitalUpdate}>
                       {`${planet.orbital_period}`}
                     </DesignEditableText>
                     <DesignText style={{ marginTop: 2 }} bold>
                       Rotation period
                     </DesignText>
-                    <DesignEditableText placeholder={'Rotation period'} editable={isRessource} onUpdate={onRotationUpdate}>
+                    <DesignEditableText placeholder={'Rotation period'} editable={isResource} onUpdate={onRotationUpdate}>
                       {`${planet.rotation_period}`}
                     </DesignEditableText>
                   </Grid>
 
                   <Grid style={styles.grid} item xs={4}>
                     <DesignText bold>Diameter</DesignText>
-                    <DesignEditableText placeholder={'Diameter'} editable={isRessource} onUpdate={onDiameterUpdate}>
+                    <DesignEditableText placeholder={'Diameter'} editable={isResource} onUpdate={onDiameterUpdate}>
                       {`${planet.diameter}`}
                     </DesignEditableText>
                     <DesignText style={{ marginTop: 2 }} bold>
                       Gravity
                     </DesignText>
-                    <DesignEditableText placeholder={'Gravity'} editable={isRessource} onUpdate={onGravityUpdate}>
+                    <DesignEditableText placeholder={'Gravity'} editable={isResource} onUpdate={onGravityUpdate}>
                       {`${planet.gravity}`}
                     </DesignEditableText>
                   </Grid>
                   <Grid style={styles.grid} item xs={4}>
                     <DesignText bold>Terrain</DesignText>
-                    <DesignEditableText placeholder={'Terrain'} editable={isRessource} onUpdate={onTerrainUpdate}>
+                    <DesignEditableText placeholder={'Terrain'} editable={isResource} onUpdate={onTerrainUpdate}>
                       {`${planet.terrain}`}
                     </DesignEditableText>
                     <DesignText style={{ marginTop: 2 }} bold>
                       Surface water
                     </DesignText>
-                    <DesignEditableText placeholder={'Surface water'} editable={isRessource} onUpdate={onSurfaceWaterUpdate}>
+                    <DesignEditableText placeholder={'Surface water'} editable={isResource} onUpdate={onSurfaceWaterUpdate}>
                       {`${planet.surface_water}`}
                     </DesignEditableText>
                   </Grid>

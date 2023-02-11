@@ -22,11 +22,11 @@ import Vehicle from './Vehicle'
 export default function ElementsList({
   category,
   style,
-  isRessourceList,
+  isResourceList,
 }: {
   category: ElementsCategory
   style?: CSSProperties
-  isRessourceList?: boolean
+  isResourceList?: boolean
 }) {
   // =================
   // Stores
@@ -38,7 +38,7 @@ export default function ElementsList({
   // =================
   // States
   // =================
-  const elements = isRessourceList ? resources[`${category}`] : dashboard[`${category}`].elements
+  const elements = isResourceList ? resources[`${category}`] : dashboard[`${category}`].elements
 
   // =================
   // Hooks
@@ -54,17 +54,17 @@ export default function ElementsList({
   const renderElement = (data: any, index: number) => {
     switch (category) {
       case 'films':
-        return <Film key={data.title} film={data as FilmType} isRessource={isRessourceList} />
+        return <Film key={data.title} film={data as FilmType} isResource={isResourceList} />
       case 'people':
-        return <People key={data.name} people={data as PeopleType} isRessource={isRessourceList} />
+        return <People key={data.name} people={data as PeopleType} isResource={isResourceList} />
       case 'planets':
-        return <Planet key={data.name} planet={data as PlanetType} isRessource={isRessourceList} />
+        return <Planet key={data.name} planet={data as PlanetType} isResource={isResourceList} />
       case 'species':
-        return <Specie key={data.name} specie={data as SpecieType} isRessource={isRessourceList} />
+        return <Specie key={data.name} specie={data as SpecieType} isResource={isResourceList} />
       case 'starships':
-        return <Starship key={data.name} starship={data as StarshipType} isRessource={isRessourceList} />
+        return <Starship key={data.name} starship={data as StarshipType} isResource={isResourceList} />
       case 'vehicles':
-        return <Vehicle key={data.name} vehicle={data as VehicleType} isRessource={isRessourceList} />
+        return <Vehicle key={data.name} vehicle={data as VehicleType} isResource={isResourceList} />
       default:
         return <></>
     }

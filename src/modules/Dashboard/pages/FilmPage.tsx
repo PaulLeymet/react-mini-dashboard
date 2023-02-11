@@ -13,10 +13,10 @@ import { color } from '../../../theme/color'
 import { ILLUSTRATIONS } from '../../../theme/illustrations'
 import CacheManager from '../components/CacheManager'
 import { selectElements } from '../stores/elementSlice'
-import { selectResources, updateRessource } from '../stores/resourceSlice'
+import { selectResources, updateResource } from '../stores/resourceSlice'
 import { FilmType } from '../stores/types/FilmType'
 
-export default function FilmPage({ isRessource }: { isRessource?: boolean }) {
+export default function FilmPage({ isResource }: { isResource?: boolean }) {
   // =================
   // Stores
   // =================
@@ -32,7 +32,7 @@ export default function FilmPage({ isRessource }: { isRessource?: boolean }) {
   // =================
   // States
   // =================
-  const film: FilmType = index ? (isRessource ? resources.films[parseInt(index)] : elements.films.elements[parseInt(index)]) : null
+  const film: FilmType = index ? (isResource ? resources.films[parseInt(index)] : elements.films.elements[parseInt(index)]) : null
 
   // =================
   // Hooks
@@ -44,10 +44,10 @@ export default function FilmPage({ isRessource }: { isRessource?: boolean }) {
   const onTitleUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'films',
           index: parseInt(index),
-          ressource: { ...film, ...{ title: text } },
+          resource: { ...film, ...{ title: text } },
         }),
       )
     }
@@ -56,10 +56,10 @@ export default function FilmPage({ isRessource }: { isRessource?: boolean }) {
   const onDirectorUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'films',
           index: parseInt(index),
-          ressource: { ...film, ...{ director: text } },
+          resource: { ...film, ...{ director: text } },
         }),
       )
     }
@@ -68,10 +68,10 @@ export default function FilmPage({ isRessource }: { isRessource?: boolean }) {
   const onProducerUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'films',
           index: parseInt(index),
-          ressource: { ...film, ...{ producer: text } },
+          resource: { ...film, ...{ producer: text } },
         }),
       )
     }
@@ -80,10 +80,10 @@ export default function FilmPage({ isRessource }: { isRessource?: boolean }) {
   const onCrawlUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'films',
           index: parseInt(index),
-          ressource: { ...film, ...{ opening_crawl: text } },
+          resource: { ...film, ...{ opening_crawl: text } },
         }),
       )
     }
@@ -92,10 +92,10 @@ export default function FilmPage({ isRessource }: { isRessource?: boolean }) {
   const onCreatedDateUpdate = (date: Date) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'films',
           index: parseInt(index),
-          ressource: { ...film, ...{ created: date.toISOString() } },
+          resource: { ...film, ...{ created: date.toISOString() } },
         }),
       )
     }
@@ -104,10 +104,10 @@ export default function FilmPage({ isRessource }: { isRessource?: boolean }) {
   const onReleasedDateUpdate = (date: Date) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'films',
           index: parseInt(index),
-          ressource: { ...film, ...{ release_date: date.toISOString() } },
+          resource: { ...film, ...{ release_date: date.toISOString() } },
         }),
       )
     }
@@ -127,17 +127,17 @@ export default function FilmPage({ isRessource }: { isRessource?: boolean }) {
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
                   <DesignHeader color={color.primary} variant="h5">
-                    {isRessource ? `Ressource - Film` : `Element - Film`}
+                    {isResource ? `Resource - Film` : `Element - Film`}
                   </DesignHeader>
-                  <DesignEditableText placeholder={'Title'} editable={isRessource} onUpdate={onTitleUpdate} variant="h5">
-                    {isRessource ? `${film.title}` : `Episode ${film.episode_id} - ${film.title}`}
+                  <DesignEditableText placeholder={'Title'} editable={isResource} onUpdate={onTitleUpdate} variant="h5">
+                    {isResource ? `${film.title}` : `Episode ${film.episode_id} - ${film.title}`}
                   </DesignEditableText>
                 </Grid>
                 <Grid style={styles.grid} item xs={6}>
                   <DesignText bold>Directed by</DesignText>
                   <DesignEditableText
                     placeholder={'Director'}
-                    editable={isRessource}
+                    editable={isResource}
                     onUpdate={onDirectorUpdate}
                   >{`${film.director}`}</DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
@@ -145,19 +145,19 @@ export default function FilmPage({ isRessource }: { isRessource?: boolean }) {
                   </DesignText>
                   <DesignEditableText
                     placeholder={'Producer'}
-                    editable={isRessource}
+                    editable={isResource}
                     onUpdate={onProducerUpdate}
                   >{`${film.producer}`}</DesignEditableText>
                 </Grid>
                 <Grid style={styles.grid} item xs={6}>
                   <DesignText bold>Created in</DesignText>
-                  <DesignEditableDate placeholder={'Creation'} editable={isRessource} date={new Date(film.created)} onUpdate={onCreatedDateUpdate} />
+                  <DesignEditableDate placeholder={'Creation'} editable={isResource} date={new Date(film.created)} onUpdate={onCreatedDateUpdate} />
                   <DesignText style={{ marginTop: 2 }} bold>
                     Released in
                   </DesignText>
                   <DesignEditableDate
                     placeholder={'Release'}
-                    editable={isRessource}
+                    editable={isResource}
                     date={new Date(film.release_date)}
                     onUpdate={onReleasedDateUpdate}
                   />
@@ -166,7 +166,7 @@ export default function FilmPage({ isRessource }: { isRessource?: boolean }) {
                   <DesignEditableText
                     style={{ display: 'flex', flexGrow: 1 }}
                     placeholder={'Opening crawl'}
-                    editable={isRessource}
+                    editable={isResource}
                     onUpdate={onCrawlUpdate}
                   >{`${film.opening_crawl}`}</DesignEditableText>
                 </Grid>

@@ -13,10 +13,10 @@ import { color } from '../../../theme/color'
 import { ILLUSTRATIONS } from '../../../theme/illustrations'
 import CacheManager from '../components/CacheManager'
 import { selectElements } from '../stores/elementSlice'
-import { selectResources, updateRessource } from '../stores/resourceSlice'
+import { selectResources, updateResource } from '../stores/resourceSlice'
 import { StarshipType } from '../stores/types/StarshipType'
 
-export default function StarshipPage({ isRessource }: { isRessource?: boolean }) {
+export default function StarshipPage({ isResource }: { isResource?: boolean }) {
   // =================
   // Stores
   // =================
@@ -32,7 +32,7 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
   // =================
   // States
   // =================
-  const starship: StarshipType = index ? (isRessource ? resources.starships[parseInt(index)] : elements.starships.elements[parseInt(index)]) : null
+  const starship: StarshipType = index ? (isResource ? resources.starships[parseInt(index)] : elements.starships.elements[parseInt(index)]) : null
 
   // =================
   // Hooks
@@ -44,10 +44,10 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
   const onNameUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'starships',
           index: parseInt(index),
-          ressource: { ...starship, ...{ name: text } },
+          resource: { ...starship, ...{ name: text } },
         }),
       )
     }
@@ -56,10 +56,10 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
   const onModelUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'starships',
           index: parseInt(index),
-          ressource: { ...starship, ...{ model: text } },
+          resource: { ...starship, ...{ model: text } },
         }),
       )
     }
@@ -68,10 +68,10 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
   const onStarshipClassUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'starships',
           index: parseInt(index),
-          ressource: { ...starship, ...{ starship_class: text } },
+          resource: { ...starship, ...{ starship_class: text } },
         }),
       )
     }
@@ -80,10 +80,10 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
   const onManufacturerUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'starships',
           index: parseInt(index),
-          ressource: { ...starship, ...{ manufacturer: text } },
+          resource: { ...starship, ...{ manufacturer: text } },
         }),
       )
     }
@@ -92,10 +92,10 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
   const onMgltUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'starships',
           index: parseInt(index),
-          ressource: { ...starship, ...{ MGLT: text } },
+          resource: { ...starship, ...{ MGLT: text } },
         }),
       )
     }
@@ -104,10 +104,10 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
   const onHyperdriveUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'starships',
           index: parseInt(index),
-          ressource: { ...starship, ...{ hyperdrive_rating: text } },
+          resource: { ...starship, ...{ hyperdrive_rating: text } },
         }),
       )
     }
@@ -116,10 +116,10 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
   const onCrewUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'starships',
           index: parseInt(index),
-          ressource: { ...starship, ...{ crew: text } },
+          resource: { ...starship, ...{ crew: text } },
         }),
       )
     }
@@ -128,10 +128,10 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
   const onPassengersUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'starships',
           index: parseInt(index),
-          ressource: { ...starship, ...{ passengers: text } },
+          resource: { ...starship, ...{ passengers: text } },
         }),
       )
     }
@@ -140,10 +140,10 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
   const onCargoCapacityUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'starships',
           index: parseInt(index),
-          ressource: { ...starship, ...{ cargo_capacity: text } },
+          resource: { ...starship, ...{ cargo_capacity: text } },
         }),
       )
     }
@@ -152,10 +152,10 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
   const onMaxSpeedUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'starships',
           index: parseInt(index),
-          ressource: { ...starship, ...{ max_atmosphering_speed: text } },
+          resource: { ...starship, ...{ max_atmosphering_speed: text } },
         }),
       )
     }
@@ -164,10 +164,10 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
   const onCostUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'starships',
           index: parseInt(index),
-          ressource: { ...starship, ...{ cost_in_credits: text } },
+          resource: { ...starship, ...{ cost_in_credits: text } },
         }),
       )
     }
@@ -176,10 +176,10 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
   const onConsumablesUpdate = (text: string) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'starships',
           index: parseInt(index),
-          ressource: { ...starship, ...{ consumables: text } },
+          resource: { ...starship, ...{ consumables: text } },
         }),
       )
     }
@@ -188,10 +188,10 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
   const onCreatedDateUpdate = (date: Date) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'starships',
           index: parseInt(index),
-          ressource: { ...starship, ...{ created: date.toISOString() } },
+          resource: { ...starship, ...{ created: date.toISOString() } },
         }),
       )
     }
@@ -200,10 +200,10 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
   const onEditedDateUpdate = (date: Date) => {
     if (index) {
       dispatch(
-        updateRessource({
+        updateResource({
           category: 'starships',
           index: parseInt(index),
-          ressource: { ...starship, ...{ edited: date.toISOString() } },
+          resource: { ...starship, ...{ edited: date.toISOString() } },
         }),
       )
     }
@@ -223,27 +223,27 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
                   <DesignHeader color={color.primary} variant="h5">
-                    {isRessource ? `Ressource - Starship` : `Element - Starship`}
+                    {isResource ? `Resource - Starship` : `Element - Starship`}
                   </DesignHeader>
-                  <DesignEditableText placeholder={'Title'} editable={isRessource} onUpdate={onNameUpdate} variant="h5">
+                  <DesignEditableText placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate} variant="h5">
                     {`${starship.name}`}
                   </DesignEditableText>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
                   <DesignText bold>Model</DesignText>
-                  <DesignEditableText placeholder={'Model'} editable={isRessource} onUpdate={onModelUpdate}>
+                  <DesignEditableText placeholder={'Model'} editable={isResource} onUpdate={onModelUpdate}>
                     {`${starship.model}`}
                   </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Starship class
                   </DesignText>
-                  <DesignEditableText placeholder={'Starship class'} editable={isRessource} onUpdate={onStarshipClassUpdate}>
+                  <DesignEditableText placeholder={'Starship class'} editable={isResource} onUpdate={onStarshipClassUpdate}>
                     {`${starship.starship_class}`}
                   </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
                     Manufacturer
                   </DesignText>
-                  <DesignEditableText placeholder={'Manufacturer'} editable={isRessource} onUpdate={onManufacturerUpdate}>
+                  <DesignEditableText placeholder={'Manufacturer'} editable={isResource} onUpdate={onManufacturerUpdate}>
                     {`${starship.manufacturer}`}
                   </DesignEditableText>
                 </Grid>
@@ -251,64 +251,64 @@ export default function StarshipPage({ isRessource }: { isRessource?: boolean })
                   <DesignText bold>Created in</DesignText>
                   <DesignEditableDate
                     placeholder={'Creation'}
-                    editable={isRessource}
+                    editable={isResource}
                     date={new Date(starship.created)}
                     onUpdate={onCreatedDateUpdate}
                   />
                   <DesignText style={{ marginTop: 2 }} bold>
                     Edited in
                   </DesignText>
-                  <DesignEditableDate placeholder={'Edition'} editable={isRessource} date={new Date(starship.edited)} onUpdate={onEditedDateUpdate} />
+                  <DesignEditableDate placeholder={'Edition'} editable={isResource} date={new Date(starship.edited)} onUpdate={onEditedDateUpdate} />
                 </Grid>
                 <Grid item xs={12} container>
                   <Grid style={styles.grid} item xs={3}>
                     <DesignText bold>Megalight per hour</DesignText>
-                    <DesignEditableText placeholder={'MGLT'} editable={isRessource} onUpdate={onMgltUpdate}>
+                    <DesignEditableText placeholder={'MGLT'} editable={isResource} onUpdate={onMgltUpdate}>
                       {`${starship.MGLT}`}
                     </DesignEditableText>
                     <DesignText style={{ marginTop: 2 }} bold>
                       Hyperdrive rating
                     </DesignText>
-                    <DesignEditableText placeholder={'Hyperdrive rating'} editable={isRessource} onUpdate={onHyperdriveUpdate}>
+                    <DesignEditableText placeholder={'Hyperdrive rating'} editable={isResource} onUpdate={onHyperdriveUpdate}>
                       {`${starship.hyperdrive_rating}`}
                     </DesignEditableText>
                   </Grid>
 
                   <Grid style={styles.grid} item xs={3}>
                     <DesignText bold>Crew</DesignText>
-                    <DesignEditableText placeholder={'Crew'} editable={isRessource} onUpdate={onCrewUpdate}>
+                    <DesignEditableText placeholder={'Crew'} editable={isResource} onUpdate={onCrewUpdate}>
                       {`${starship.crew}`}
                     </DesignEditableText>
                     <DesignText style={{ marginTop: 2 }} bold>
                       Passengers
                     </DesignText>
-                    <DesignEditableText placeholder={'Passengers'} editable={isRessource} onUpdate={onPassengersUpdate}>
+                    <DesignEditableText placeholder={'Passengers'} editable={isResource} onUpdate={onPassengersUpdate}>
                       {`${starship.passengers}`}
                     </DesignEditableText>
                   </Grid>
 
                   <Grid style={styles.grid} item xs={3}>
                     <DesignText bold>Cargo capacity</DesignText>
-                    <DesignEditableText placeholder={'Cargo capacity'} editable={isRessource} onUpdate={onCargoCapacityUpdate}>
+                    <DesignEditableText placeholder={'Cargo capacity'} editable={isResource} onUpdate={onCargoCapacityUpdate}>
                       {`${starship.cargo_capacity}`}
                     </DesignEditableText>
                     <DesignText style={{ marginTop: 2 }} bold>
                       Max speed
                     </DesignText>
-                    <DesignEditableText placeholder={'Speed'} editable={isRessource} onUpdate={onMaxSpeedUpdate}>
+                    <DesignEditableText placeholder={'Speed'} editable={isResource} onUpdate={onMaxSpeedUpdate}>
                       {`${starship.max_atmosphering_speed}`}
                     </DesignEditableText>
                   </Grid>
 
                   <Grid style={styles.grid} item xs={3}>
                     <DesignText bold>Cost</DesignText>
-                    <DesignEditableText placeholder={'Cost'} editable={isRessource} onUpdate={onCostUpdate}>
+                    <DesignEditableText placeholder={'Cost'} editable={isResource} onUpdate={onCostUpdate}>
                       {`${starship.cost_in_credits}`}
                     </DesignEditableText>
                     <DesignText style={{ marginTop: 2 }} bold>
                       Consumables
                     </DesignText>
-                    <DesignEditableText placeholder={'Consumables'} editable={isRessource} onUpdate={onConsumablesUpdate}>
+                    <DesignEditableText placeholder={'Consumables'} editable={isResource} onUpdate={onConsumablesUpdate}>
                       {`${starship.consumables}`}
                     </DesignEditableText>
                   </Grid>
