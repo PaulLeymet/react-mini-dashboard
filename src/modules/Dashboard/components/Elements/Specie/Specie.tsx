@@ -1,6 +1,7 @@
 import { CSSProperties } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
-import { displayInModal } from '../../../stores/modalSlice'
+import { selectElements } from '../../../stores/elementSlice'
 import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
 import { SpecieType } from '../../../stores/types/SpecieType'
 import Element from '../Element'
@@ -11,6 +12,7 @@ export default function Specie({ specie, style, isRessource }: { specie: SpecieT
   // =================
   const dispatch = useAppDispatch()
   const ressources = useAppSelector(selectRessources)
+  const elements = useAppSelector(selectElements)
 
   // =================
   // States
@@ -20,18 +22,14 @@ export default function Specie({ specie, style, isRessource }: { specie: SpecieT
   // =================
   // Hooks
   // =================
+  const navigate = useNavigate()
 
   // =================
   // Methods
   // =================
   const onShowDetail = () => {
-    dispatch(
-      displayInModal({
-        id: specie.name,
-        category: 'species',
-        url: specie.url,
-      }),
-    )
+    if (isRessource) navigate('/ressource/specie/' + ressources.species.findIndex((e) => e.name === specie.name))
+    else navigate('/specie/' + elements.species.elements.findIndex((e) => e.name === specie.name))
   }
 
   const onAddRessource = () => {
