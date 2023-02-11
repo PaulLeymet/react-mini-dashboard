@@ -1,6 +1,7 @@
 import { CSSProperties } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
-import { displayInModal } from '../../../stores/modalSlice'
+import { selectElements } from '../../../stores/elementSlice'
 import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
 import { StarshipType } from '../../../stores/types/StarshipType'
 import Element from '../Element'
@@ -11,27 +12,24 @@ export default function Starship({ starship, style, isRessource }: { starship: S
   // =================
   const dispatch = useAppDispatch()
   const ressources = useAppSelector(selectRessources)
+  const elements = useAppSelector(selectElements)
 
   // =================
   // States
   // =================
-  const selected = ressources.starships.some((e) => e.name === starship.name)
+  const selected = ressources.species.some((e) => e.name === starship.name)
 
   // =================
   // Hooks
   // =================
+  const navigate = useNavigate()
 
   // =================
   // Methods
   // =================
   const onShowDetail = () => {
-    dispatch(
-      displayInModal({
-        id: starship.name,
-        category: 'starships',
-        url: starship.url,
-      }),
-    )
+    if (isRessource) navigate('/ressource/starship/' + ressources.starships.findIndex((e) => e.name === starship.name))
+    else navigate('/starship/' + elements.starships.elements.findIndex((e) => e.name === starship.name))
   }
 
   const onAddRessource = () => {

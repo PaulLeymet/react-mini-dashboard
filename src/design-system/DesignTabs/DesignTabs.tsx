@@ -5,14 +5,18 @@ import { color } from '../../theme/color'
 
 export default function DesignTabs({
   tabs,
+  initialIndex,
   style,
   onTabChange,
 }: {
   tabs: { label: string; content: JSX.Element }[]
+  initialIndex?: number
   style?: CSSProperties
   onTabChange?: (value: number) => void
 }) {
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState(initialIndex || 0)
+
+  console.log('initialIndex', initialIndex)
 
   const handleChange = (event: React.SyntheticEvent<Element, Event>, value: any) => {
     setValue(value)

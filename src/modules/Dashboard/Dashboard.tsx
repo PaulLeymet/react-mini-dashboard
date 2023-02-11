@@ -1,23 +1,26 @@
-import { CSSProperties, useState } from 'react'
+import { CSSProperties } from 'react'
 import DesignTabs from '../../design-system/DesignTabs/DesignTabs'
 import { useMount } from '../../hooks/useMount'
-import { useAppDispatch } from '../../store/hooks'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { color } from '../../theme/color'
 import { ILLUSTRATIONS } from '../../theme/illustrations'
 import axiosGet, { isError } from '../../utils/api'
 import CategoryPanel from './components/elements/CategoryPanel'
-import { storeCategoriesUrl } from './stores/elementSlice'
+import { selectCategory, selectElements, storeCategoriesUrl } from './stores/elementSlice'
+import { ElementsCategory } from './stores/types/CategoryType'
+
+const CATEGORIES_ORDER: ElementsCategory[] = ['films', 'people', 'planets', 'species', 'starships', 'vehicles']
 
 export default function Dashboard() {
   // =================
   // Stores
   // =================
   const dispatch = useAppDispatch()
+  const elements = useAppSelector(selectElements)
 
   // =================
   // States
   // =================
-  const [tabIndex, setTabIndex] = useState(0)
 
   // =================
   // Hooks
@@ -41,38 +44,38 @@ export default function Dashboard() {
   }
 
   const renderBackgroundStyle = (): CSSProperties | null => {
-    switch (tabIndex) {
-      case 0:
+    switch (elements.selectedCategory) {
+      case 'films':
         return {
           backgroundColor: color.black,
           backgroundImage: `url(${ILLUSTRATIONS.films})`,
           backgroundSize: 'cover',
         }
-      case 1:
+      case 'people':
         return {
           backgroundColor: color.black,
           backgroundImage: `url(${ILLUSTRATIONS.people})`,
           backgroundSize: 'cover',
         }
-      case 2:
+      case 'planets':
         return {
           backgroundColor: color.black,
           backgroundImage: `url(${ILLUSTRATIONS.planets})`,
           backgroundSize: 'cover',
         }
-      case 3:
+      case 'species':
         return {
           backgroundColor: color.black,
           backgroundImage: `url(${ILLUSTRATIONS.species})`,
           backgroundSize: 'cover',
         }
-      case 4:
+      case 'starships':
         return {
           backgroundColor: color.black,
           backgroundImage: `url(${ILLUSTRATIONS.starships})`,
           backgroundSize: 'cover',
         }
-      case 5:
+      case 'vehicles':
         return {
           backgroundColor: color.black,
           backgroundImage: `url(${ILLUSTRATIONS.vehicles})`,
@@ -83,6 +86,9 @@ export default function Dashboard() {
     }
   }
 
+  const onTabChange = (index: number) => {
+    dispatch(selectCategory(CATEGORIES_ORDER[index]))
+  }
   // =================
   // Render
   // =================
@@ -90,7 +96,8 @@ export default function Dashboard() {
     <div style={{ ...styles.page, ...renderBackgroundStyle() }}>
       <DesignTabs
         style={styles.tabs}
-        onTabChange={setTabIndex}
+        initialIndex={CATEGORIES_ORDER.findIndex((e) => e === elements.selectedCategory)}
+        onTabChange={onTabChange}
         tabs={[
           {
             label: 'Films',

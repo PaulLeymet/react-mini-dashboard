@@ -12,6 +12,7 @@ import SpecieDetailled from '../Dashboard/components/elements/Specie/SpecieDetai
 import StarshipDetailled from '../Dashboard/components/elements/Starship/StarshipDetailled'
 import VehicleDetailled from '../Dashboard/components/elements/Vehicle/VehicleDetailled'
 import Dashboard from '../Dashboard/Dashboard'
+import { selectCategory } from '../Dashboard/stores/elementSlice'
 import { closeModal } from '../Dashboard/stores/modalSlice'
 import Login from '../Login/Login'
 import { resetAuth, selectAuth } from '../Login/stores/authSlice'
@@ -96,6 +97,7 @@ export default function App() {
   useEffect(() => {
     authenticate()
     resetStores()
+    dispatch(selectCategory('films'))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.token])
 

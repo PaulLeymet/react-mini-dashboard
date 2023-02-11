@@ -21,6 +21,7 @@ export interface AuthGenericType {
 }
 
 export interface AuthType {
+  selectedCategory: ElementsCategory
   films: AuthGenericType & { elements: Array<FilmType> }
   people: AuthGenericType & { elements: Array<PeopleType> }
   planets: AuthGenericType & { elements: Array<PlanetType> }
@@ -32,6 +33,7 @@ export interface AuthType {
 // Initial state
 // =================
 const initialState: AuthType = {
+  selectedCategory: 'films',
   films: {
     count: 0,
     elements: [],
@@ -75,6 +77,10 @@ const initialState: AuthType = {
 // =================
 export const elementSlice = createSlice({
   reducers: {
+    selectCategory: (state, action: PayloadAction<ElementsCategory>) => {
+      const payload = action.payload
+      state.selectedCategory = payload
+    },
     storeCategoriesUrl: (
       state,
       action: PayloadAction<{ films: string; people: string; planets: string; species: string; starships: string; vehicles: string }>,
@@ -104,7 +110,7 @@ export const elementSlice = createSlice({
 // =================
 // Actions
 // =================
-export const { storeCategoriesUrl, storeCategoryInfos, storeCategoryElements } = elementSlice.actions
+export const { storeCategoriesUrl, storeCategoryInfos, storeCategoryElements, selectCategory } = elementSlice.actions
 
 // =================
 // Selectors
