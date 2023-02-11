@@ -50,6 +50,7 @@ export default function DashboardPage() {
           backgroundColor: color.black,
           backgroundImage: `url(${ILLUSTRATIONS.films})`,
           backgroundSize: 'cover',
+          backgroundPositionY: -250,
         }
       case 'people':
         return {
@@ -93,8 +94,10 @@ export default function DashboardPage() {
   // Render
   // =================
   return (
-    <div style={{ ...styles.page, ...renderBackgroundStyle() }}>
+    <div style={styles.page}>
+      <div style={{ ...styles.background, ...renderBackgroundStyle() }} />
       <DesignTabs
+        style={styles.tabsContainer}
         selectorStyle={styles.selector}
         initialIndex={CATEGORIES_ORDER.findIndex((e) => e === elements.selectedCategory)}
         color={color.white}
@@ -137,8 +140,18 @@ const styles: {
   page: {
     display: 'flex',
     flexGrow: 1,
-    backgroundColor: color.black,
-    backgroundImage: `url(${ILLUSTRATIONS.people})`,
-    backgroundSize: 'cover',
+  },
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    top: 0,
+    zIndex: 0,
+    opacity: 0.8,
+  },
+  selector: {},
+  tabsContainer: {
+    zIndex: 1,
   },
 }
