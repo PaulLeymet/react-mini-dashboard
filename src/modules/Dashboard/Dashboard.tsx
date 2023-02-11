@@ -1,20 +1,18 @@
 import { CSSProperties, useState } from 'react'
 import DesignTabs from '../../design-system/DesignTabs/DesignTabs'
 import { useMount } from '../../hooks/useMount'
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { useAppDispatch } from '../../store/hooks'
 import { color } from '../../theme/color'
 import { ILLUSTRATIONS } from '../../theme/illustrations'
 import axiosGet, { isError } from '../../utils/api'
 import CategoryPanel from './components/elements/CategoryPanel'
 import { storeCategoriesUrl } from './stores/elementSlice'
-import { selectModal } from './stores/modalSlice'
 
 export default function Dashboard() {
   // =================
   // Stores
   // =================
   const dispatch = useAppDispatch()
-  const modal = useAppSelector(selectModal)
 
   // =================
   // States

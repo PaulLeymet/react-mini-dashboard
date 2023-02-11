@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react'
 import DesignSlick from '../../../../design-system/DesignSlick/DesignSlick'
-import DesignHeader from '../../../../design-system/DesignText/DesignHeader'
+import DesignSpinner from '../../../../design-system/DesignSpinner/DesignSpinner'
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
 import { color } from '../../../../theme/color'
 import { selectElements } from '../../stores/elementSlice'
@@ -70,12 +70,17 @@ export default function ElementsList({
     }
   }
 
-  return elements?.length ? (
+  return (
     <div style={styles.main}>
-      <DesignHeader color={color.white}>{isRessourceList ? 'Ressources' : 'Elements'}</DesignHeader>
-      <DesignSlick data={elements} renderElement={renderElement} />
+      {elements?.length ? (
+        <DesignSlick data={elements} renderElement={renderElement} />
+      ) : (
+        <div style={styles.spinnerContainer}>
+          <DesignSpinner size={60} color={color.white} />
+        </div>
+      )}
     </div>
-  ) : null
+  )
 }
 
 const styles: {
@@ -87,5 +92,11 @@ const styles: {
     margin: 10,
     padding: 10,
     flexDirection: 'column',
+  },
+  spinnerContainer: {
+    display: 'flex',
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 }

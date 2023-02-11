@@ -14,6 +14,7 @@ import { FilmType } from '../../../stores/types/FilmType'
 import EditableDate from '../../dashboard-system/EditableDate'
 import EditableText from '../../dashboard-system/EditableText'
 import PageLink from '../../dashboard-system/PageLink'
+import CacheManager from '../CacheManager'
 
 export default function FilmDetailled({ isRessource }: { isRessource?: boolean }) {
   // =================
@@ -218,6 +219,7 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
               </Grid>
             </Grid>
           </Grid>
+          <CacheManager categories={['people', 'planets', 'species', 'starships', 'vehicles']} />
         </div>
       ) : (
         <div style={styles.spinnerContent}>

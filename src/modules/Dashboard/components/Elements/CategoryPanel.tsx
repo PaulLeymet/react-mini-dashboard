@@ -1,17 +1,17 @@
-import { CSSProperties, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
-import axiosGet, { isError } from '../../../../utils/api'
-import { CHUNK_SIZE, selectElements, storeCategoryElements, storeCategoryInfos } from '../../stores/elementSlice'
+import { CSSProperties } from 'react'
+import DesignHeader from '../../../../design-system/DesignText/DesignHeader'
+import { useAppSelector } from '../../../../store/hooks'
+import { color } from '../../../../theme/color'
+import { selectRessources } from '../../stores/ressourceSlice'
 import { ElementsCategory } from '../../stores/types/CategoryType'
+import CacheManager from './CacheManager'
 import ElementsList from './ElementsList'
 
 export default function CategoryPanel({ category, style }: { category: ElementsCategory; style?: CSSProperties }) {
   // =================
   // Stores
   // =================
-  const dispatch = useAppDispatch()
-  const elements = useAppSelector(selectElements)
-  const categoryElements = elements[`${category}`]
+  const ressources = useAppSelector(selectRessources)
 
   // =================
   // States
@@ -20,64 +20,10 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
   // =================
   // Hooks
   // =================
-  useEffect(() => {
-    // Fetch main category data
-    if (categoryElements.url) {
-      fetchData(categoryElements.url)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryElements.url])
-
-  useEffect(() => {
-    // Fetch next chunk of elements
-    if (categoryElements.elementRootUrl && categoryElements.elements.length < categoryElements.count) {
-      const nextChunkIndex = Math.floor(categoryElements.elements.length / CHUNK_SIZE) + 1
-      fetchChunk(`${categoryElements.elementRootUrl}?page=${nextChunkIndex}`)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryElements.elementRootUrl, categoryElements.elements.length])
 
   // =================
   // Methods
   // =================
-  const fetchData = async (endpoint: string) => {
-    const { data, status } = await axiosGet(endpoint)
-    if (isError(endpoint, status)) {
-      return
-    }
-
-    dispatch(
-      storeCategoryInfos({
-        category: category,
-        count: data.count,
-        elementRootUrl: data.next?.split('?')[0],
-      }),
-    )
-
-    // If all results are already there, no need to fetch more
-    if (categoryElements.elements.length < data.count && data.count <= CHUNK_SIZE) {
-      dispatch(
-        storeCategoryElements({
-          category: category,
-          elements: data.results,
-        }),
-      )
-    }
-  }
-
-  const fetchChunk = async (endpoint: string) => {
-    const { data, status } = await axiosGet(endpoint)
-    if (isError(endpoint, status)) {
-      return
-    }
-
-    dispatch(
-      storeCategoryElements({
-        category: category,
-        elements: data.results,
-      }),
-    )
-  }
 
   // =================
   // Render
@@ -90,11 +36,18 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
       }}
     >
       <div style={styles.elementSection}>
+        <DesignHeader color={color.white}>{'Elements'}</DesignHeader>
         <ElementsList style={styles.cardContainer} category={category} />
       </div>
       <div style={styles.ressourceSection}>
-        <ElementsList style={styles.cardContainer} category={category} isRessourceList />
+        {ressources[`${category}`].length ? (
+          <>
+            <DesignHeader color={color.white}>{'Ressources'}</DesignHeader>
+            <ElementsList style={styles.cardContainer} category={category} isRessourceList />
+          </>
+        ) : null}
       </div>
+      <CacheManager categories={[`${category}`]} />
     </div>
   )
 }
@@ -111,10 +64,12 @@ const styles: {
   elementSection: {
     display: 'flex',
     flexGrow: 1,
+    flexDirection: 'column',
+    margin: 10,
   },
   ressourceSection: {
     display: 'flex',
     flexGrow: 1,
+    flexDirection: 'column',
   },
-  header: {},
 }

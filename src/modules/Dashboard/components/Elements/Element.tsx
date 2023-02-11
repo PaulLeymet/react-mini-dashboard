@@ -97,8 +97,8 @@ const styles: {
     flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    WebkitBoxShadow: '0px 0px  20px 3px rgba(0,0,0,0.4)',
-    boxShadow: ' 0px 0px  20px 3px rgba(0,0,0,0.4)',
+    WebkitBoxShadow: '0px 0px  10px 3px rgba(255,255,255255.4)',
+    boxShadow: ' 0px 0px  10px 3px rgba(255,255,255,0.4)',
     cursor: 'pointer',
   },
   text: {
