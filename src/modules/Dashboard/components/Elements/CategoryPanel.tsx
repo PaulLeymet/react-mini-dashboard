@@ -36,13 +36,17 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
       }}
     >
       <div style={styles.elementSection}>
-        <DesignHeader color={color.white}>{'Elements'}</DesignHeader>
+        <DesignHeader style={styles.header} color={color.white}>
+          {'Category elements'}
+        </DesignHeader>
         <ElementsList style={styles.cardContainer} category={category} />
       </div>
       <div style={styles.ressourceSection}>
         {ressources[`${category}`].length ? (
           <>
-            <DesignHeader color={color.white}>{'Ressources'}</DesignHeader>
+            <DesignHeader style={styles.header} color={color.white}>
+              {'My ressources'}
+            </DesignHeader>
             <ElementsList style={styles.cardContainer} category={category} isRessourceList />
           </>
         ) : null}
@@ -71,5 +75,9 @@ const styles: {
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'column',
+    margin: 10,
+  },
+  header: {
+    marginTop: 2,
   },
 }
