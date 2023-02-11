@@ -149,18 +149,6 @@ export default function SpecieDetailled({ isRessource }: { isRessource?: boolean
     }
   }
 
-  const onPopulationUpdate = (text: string) => {
-    if (index) {
-      dispatch(
-        updateRessource({
-          category: 'species',
-          index: parseInt(index),
-          ressource: { ...specie, ...{ population: text } },
-        }),
-      )
-    }
-  }
-
   const onCreatedDateUpdate = (date: Date) => {
     if (index) {
       dispatch(
@@ -184,8 +172,6 @@ export default function SpecieDetailled({ isRessource }: { isRessource?: boolean
       )
     }
   }
-
-  console.log(specie)
 
   // =================
   // Render
@@ -303,7 +289,7 @@ export default function SpecieDetailled({ isRessource }: { isRessource?: boolean
               </Grid>
             </Grid>
           </Grid>
-          <CacheManager categories={['films']} />
+          <CacheManager categories={['films', 'people']} />
         </div>
       ) : (
         <div style={styles.spinnerContent}>

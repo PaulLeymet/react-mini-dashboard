@@ -298,7 +298,7 @@ export default function PlanetDetailled({ isRessource }: { isRessource?: boolean
               </Grid>
             </Grid>
           </Grid>
-          <CacheManager categories={['films']} />
+          <CacheManager categories={['films', 'people']} />
         </div>
       ) : (
         <div style={styles.spinnerContent}>
