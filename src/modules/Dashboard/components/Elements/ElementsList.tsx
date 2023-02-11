@@ -4,7 +4,7 @@ import DesignSpinner from '../../../../design-system/DesignSpinner/DesignSpinner
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
 import { color } from '../../../../theme/color'
 import { selectElements } from '../../stores/elementSlice'
-import { selectRessources } from '../../stores/ressourceSlice'
+import { selectResources } from '../../stores/resourceSlice'
 import { ElementsCategory } from '../../stores/types/CategoryType'
 import { FilmType } from '../../stores/types/FilmType'
 import { PeopleType } from '../../stores/types/PeopleType'
@@ -32,13 +32,13 @@ export default function ElementsList({
   // Stores
   // =================
   const dashboard = useAppSelector(selectElements)
-  const ressources = useAppSelector(selectRessources)
+  const resources = useAppSelector(selectResources)
   const dispatch = useAppDispatch()
 
   // =================
   // States
   // =================
-  const elements = isRessourceList ? ressources[`${category}`] : dashboard[`${category}`].elements
+  const elements = isRessourceList ? resources[`${category}`] : dashboard[`${category}`].elements
 
   // =================
   // Hooks

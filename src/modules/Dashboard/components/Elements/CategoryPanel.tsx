@@ -2,7 +2,7 @@ import { CSSProperties } from 'react'
 import DesignHeader from '../../../../design-system/DesignText/DesignHeader'
 import { useAppSelector } from '../../../../store/hooks'
 import { color } from '../../../../theme/color'
-import { selectRessources } from '../../stores/ressourceSlice'
+import { selectResources } from '../../stores/resourceSlice'
 import { ElementsCategory } from '../../stores/types/CategoryType'
 import CacheManager from './CacheManager'
 import ElementsList from './ElementsList'
@@ -11,7 +11,7 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
   // =================
   // Stores
   // =================
-  const ressources = useAppSelector(selectRessources)
+  const resources = useAppSelector(selectResources)
 
   // =================
   // States
@@ -42,10 +42,10 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
         <ElementsList style={styles.cardContainer} category={category} />
       </div>
       <div style={styles.ressourceSection}>
-        {ressources[`${category}`].length ? (
+        {resources[`${category}`].length ? (
           <>
             <DesignHeader style={styles.header} color={color.white}>
-              {'My ressources'}
+              {'My resources'}
             </DesignHeader>
             <ElementsList style={styles.cardContainer} category={category} isRessourceList />
           </>

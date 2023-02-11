@@ -2,7 +2,7 @@ import { CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
 import { selectElements } from '../../../stores/elementSlice'
-import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
+import { addRessource, removeRessource, selectResources } from '../../../stores/resourceSlice'
 import { PlanetType } from '../../../stores/types/PlanetType'
 import Element from '../Element'
 
@@ -11,13 +11,13 @@ export default function Planet({ planet, style, isRessource }: { planet: PlanetT
   // Stores
   // =================
   const dispatch = useAppDispatch()
-  const ressources = useAppSelector(selectRessources)
+  const resources = useAppSelector(selectResources)
   const elements = useAppSelector(selectElements)
 
   // =================
   // States
   // =================
-  const selected = ressources.planets.some((e) => e.name === planet.name)
+  const selected = resources.planets.some((e) => e.name === planet.name)
 
   // =================
   // Hooks
@@ -28,7 +28,7 @@ export default function Planet({ planet, style, isRessource }: { planet: PlanetT
   // Methods
   // =================
   const onShowDetail = () => {
-    if (isRessource) navigate('/ressource/planet/' + ressources.planets.findIndex((e) => e.name === planet.name))
+    if (isRessource) navigate('/ressource/planet/' + resources.planets.findIndex((e) => e.name === planet.name))
     else navigate('/planet/' + elements.planets.elements.findIndex((e) => e.name === planet.name))
   }
 

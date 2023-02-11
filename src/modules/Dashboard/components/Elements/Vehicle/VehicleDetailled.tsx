@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
 import { color } from '../../../../../theme/color'
 import { ILLUSTRATIONS } from '../../../../../theme/illustrations'
 import { selectElements } from '../../../stores/elementSlice'
-import { selectRessources, updateRessource } from '../../../stores/ressourceSlice'
+import { selectResources, updateRessource } from '../../../stores/resourceSlice'
 import { VehicleType } from '../../../stores/types/VehicleType'
 import EditableDate from '../../dashboard-system/EditableDate'
 import EditableText from '../../dashboard-system/EditableText'
@@ -22,7 +22,7 @@ export default function VehicleDetailled({ isRessource }: { isRessource?: boolea
   // =================
   const dispatch = useAppDispatch()
   const elements = useAppSelector(selectElements)
-  const ressources = useAppSelector(selectRessources)
+  const resources = useAppSelector(selectResources)
 
   // =================
   // Navigation
@@ -32,7 +32,7 @@ export default function VehicleDetailled({ isRessource }: { isRessource?: boolea
   // =================
   // States
   // =================
-  const vehicle: VehicleType = index ? (isRessource ? ressources.vehicles[parseInt(index)] : elements.vehicles.elements[parseInt(index)]) : null
+  const vehicle: VehicleType = index ? (isRessource ? resources.vehicles[parseInt(index)] : elements.vehicles.elements[parseInt(index)]) : null
 
   // =================
   // Hooks

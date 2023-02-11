@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
 import { color } from '../../../../../theme/color'
 import { ILLUSTRATIONS } from '../../../../../theme/illustrations'
 import { selectElements } from '../../../stores/elementSlice'
-import { selectRessources, updateRessource } from '../../../stores/ressourceSlice'
+import { selectResources, updateRessource } from '../../../stores/resourceSlice'
 import { StarshipType } from '../../../stores/types/StarshipType'
 import EditableDate from '../../dashboard-system/EditableDate'
 import EditableText from '../../dashboard-system/EditableText'
@@ -22,7 +22,7 @@ export default function StarshipDetailled({ isRessource }: { isRessource?: boole
   // =================
   const dispatch = useAppDispatch()
   const elements = useAppSelector(selectElements)
-  const ressources = useAppSelector(selectRessources)
+  const resources = useAppSelector(selectResources)
 
   // =================
   // Navigation
@@ -32,7 +32,7 @@ export default function StarshipDetailled({ isRessource }: { isRessource?: boole
   // =================
   // States
   // =================
-  const starship: StarshipType = index ? (isRessource ? ressources.starships[parseInt(index)] : elements.starships.elements[parseInt(index)]) : null
+  const starship: StarshipType = index ? (isRessource ? resources.starships[parseInt(index)] : elements.starships.elements[parseInt(index)]) : null
 
   // =================
   // Hooks

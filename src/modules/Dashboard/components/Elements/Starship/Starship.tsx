@@ -2,7 +2,7 @@ import { CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
 import { selectElements } from '../../../stores/elementSlice'
-import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
+import { addRessource, removeRessource, selectResources } from '../../../stores/resourceSlice'
 import { StarshipType } from '../../../stores/types/StarshipType'
 import Element from '../Element'
 
@@ -11,13 +11,13 @@ export default function Starship({ starship, style, isRessource }: { starship: S
   // Stores
   // =================
   const dispatch = useAppDispatch()
-  const ressources = useAppSelector(selectRessources)
+  const resources = useAppSelector(selectResources)
   const elements = useAppSelector(selectElements)
 
   // =================
   // States
   // =================
-  const selected = ressources.species.some((e) => e.name === starship.name)
+  const selected = resources.species.some((e) => e.name === starship.name)
 
   // =================
   // Hooks
@@ -28,7 +28,7 @@ export default function Starship({ starship, style, isRessource }: { starship: S
   // Methods
   // =================
   const onShowDetail = () => {
-    if (isRessource) navigate('/ressource/starship/' + ressources.starships.findIndex((e) => e.name === starship.name))
+    if (isRessource) navigate('/ressource/starship/' + resources.starships.findIndex((e) => e.name === starship.name))
     else navigate('/starship/' + elements.starships.elements.findIndex((e) => e.name === starship.name))
   }
 

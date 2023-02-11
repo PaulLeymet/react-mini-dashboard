@@ -2,7 +2,7 @@ import { CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
 import { selectElements } from '../../../stores/elementSlice'
-import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
+import { addRessource, removeRessource, selectResources } from '../../../stores/resourceSlice'
 import { FilmType } from '../../../stores/types/FilmType'
 import Element from '../Element'
 
@@ -11,13 +11,13 @@ export default function Film({ film, style, isRessource }: { film: FilmType; sty
   // Stores
   // =================
   const dispatch = useAppDispatch()
-  const ressources = useAppSelector(selectRessources)
+  const resources = useAppSelector(selectResources)
   const elements = useAppSelector(selectElements)
 
   // =================
   // States
   // =================
-  const selected = ressources.films.some((e) => e.title === film.title)
+  const selected = resources.films.some((e) => e.title === film.title)
 
   // =================
   // Hooks
@@ -28,7 +28,7 @@ export default function Film({ film, style, isRessource }: { film: FilmType; sty
   // Methods
   // =================
   const onShowDetail = () => {
-    if (isRessource) navigate('/ressource/film/' + ressources.films.findIndex((e) => e.title === film.title))
+    if (isRessource) navigate('/ressource/film/' + resources.films.findIndex((e) => e.title === film.title))
     else navigate('/film/' + elements.films.elements.findIndex((e) => e.title === film.title))
   }
 

@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
 import { color } from '../../../../../theme/color'
 import { ILLUSTRATIONS } from '../../../../../theme/illustrations'
 import { selectElements } from '../../../stores/elementSlice'
-import { selectRessources, updateRessource } from '../../../stores/ressourceSlice'
+import { selectResources, updateRessource } from '../../../stores/resourceSlice'
 import { SpecieType } from '../../../stores/types/SpecieType'
 import EditableDate from '../../dashboard-system/EditableDate'
 import EditableText from '../../dashboard-system/EditableText'
@@ -22,7 +22,7 @@ export default function SpecieDetailled({ isRessource }: { isRessource?: boolean
   // =================
   const dispatch = useAppDispatch()
   const elements = useAppSelector(selectElements)
-  const ressources = useAppSelector(selectRessources)
+  const resources = useAppSelector(selectResources)
 
   // =================
   // Navigation
@@ -32,7 +32,7 @@ export default function SpecieDetailled({ isRessource }: { isRessource?: boolean
   // =================
   // States
   // =================
-  const specie: SpecieType = index ? (isRessource ? ressources.species[parseInt(index)] : elements.species.elements[parseInt(index)]) : null
+  const specie: SpecieType = index ? (isRessource ? resources.species[parseInt(index)] : elements.species.elements[parseInt(index)]) : null
 
   // =================
   // Hooks

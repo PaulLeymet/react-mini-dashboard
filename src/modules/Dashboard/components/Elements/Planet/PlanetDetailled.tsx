@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
 import { color } from '../../../../../theme/color'
 import { ILLUSTRATIONS } from '../../../../../theme/illustrations'
 import { selectElements } from '../../../stores/elementSlice'
-import { selectRessources, updateRessource } from '../../../stores/ressourceSlice'
+import { selectResources, updateRessource } from '../../../stores/resourceSlice'
 import { PlanetType } from '../../../stores/types/PlanetType'
 import EditableDate from '../../dashboard-system/EditableDate'
 import EditableText from '../../dashboard-system/EditableText'
@@ -22,7 +22,7 @@ export default function PlanetDetailled({ isRessource }: { isRessource?: boolean
   // =================
   const dispatch = useAppDispatch()
   const elements = useAppSelector(selectElements)
-  const ressources = useAppSelector(selectRessources)
+  const resources = useAppSelector(selectResources)
 
   // =================
   // Navigation
@@ -32,7 +32,7 @@ export default function PlanetDetailled({ isRessource }: { isRessource?: boolean
   // =================
   // States
   // =================
-  const planet: PlanetType = index ? (isRessource ? ressources.planets[parseInt(index)] : elements.planets.elements[parseInt(index)]) : null
+  const planet: PlanetType = index ? (isRessource ? resources.planets[parseInt(index)] : elements.planets.elements[parseInt(index)]) : null
 
   // =================
   // Hooks

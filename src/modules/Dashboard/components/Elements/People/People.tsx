@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
 import { selectElements } from '../../../stores/elementSlice'
-import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
+import { addRessource, removeRessource, selectResources } from '../../../stores/resourceSlice'
 import { PeopleType } from '../../../stores/types/PeopleType'
 import Element from '../Element'
 
@@ -10,13 +10,13 @@ export default function People({ people, isRessource }: { people: PeopleType; is
   // Stores
   // =================
   const dispatch = useAppDispatch()
-  const ressources = useAppSelector(selectRessources)
+  const resources = useAppSelector(selectResources)
   const elements = useAppSelector(selectElements)
 
   // =================
   // States
   // =================
-  const selected = ressources.people.some((e) => e.name === people.name)
+  const selected = resources.people.some((e) => e.name === people.name)
 
   // =================
   // Hooks
@@ -27,7 +27,7 @@ export default function People({ people, isRessource }: { people: PeopleType; is
   // Methods
   // =================
   const onShowDetail = () => {
-    if (isRessource) navigate('/ressource/people/' + ressources.people.findIndex((e) => e.name === people.name))
+    if (isRessource) navigate('/ressource/people/' + resources.people.findIndex((e) => e.name === people.name))
     else navigate('/people/' + elements.people.elements.findIndex((e) => e.name === people.name))
   }
 

@@ -104,6 +104,6 @@ export const { addRessource, removeRessource, updateRessource } = ressourceSlice
 // =================
 // Selectors
 // =================
-export const selectRessources = (state: RootState) => state.ressources
+export const selectResources = (state: RootState) => state.resources
 
 export default ressourceSlice.reducer
