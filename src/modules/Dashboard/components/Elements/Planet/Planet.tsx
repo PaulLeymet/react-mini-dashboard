@@ -1,6 +1,7 @@
 import { CSSProperties } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
-import { displayInModal } from '../../../stores/modalSlice'
+import { selectElements } from '../../../stores/elementSlice'
 import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
 import { PlanetType } from '../../../stores/types/PlanetType'
 import Element from '../Element'
@@ -11,6 +12,7 @@ export default function Planet({ planet, style, isRessource }: { planet: PlanetT
   // =================
   const dispatch = useAppDispatch()
   const ressources = useAppSelector(selectRessources)
+  const elements = useAppSelector(selectElements)
 
   // =================
   // States
@@ -20,18 +22,14 @@ export default function Planet({ planet, style, isRessource }: { planet: PlanetT
   // =================
   // Hooks
   // =================
+  const navigate = useNavigate()
 
   // =================
   // Methods
   // =================
   const onShowDetail = () => {
-    dispatch(
-      displayInModal({
-        id: planet.name,
-        category: 'planets',
-        url: planet.url,
-      }),
-    )
+    if (isRessource) navigate('/ressource/planet/' + ressources.planets.findIndex((e) => e.name === planet.name))
+    else navigate('/planet/' + elements.planets.elements.findIndex((e) => e.name === planet.name))
   }
 
   const onAddRessource = () => {
