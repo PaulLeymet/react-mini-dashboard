@@ -31,7 +31,7 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: '/film/:index',
+    path: '/films/:index',
     element: <FilmPage />,
   },
   {
@@ -39,43 +39,43 @@ const router = createBrowserRouter([
     element: <PeoplePage />,
   },
   {
-    path: '/planet/:index',
+    path: '/planets/:index',
     element: <PlanetPage />,
   },
   {
-    path: '/specie/:index',
+    path: '/species/:index',
     element: <SpeciePage />,
   },
   {
-    path: '/starship/:index',
+    path: '/starships/:index',
     element: <StarshipPage />,
   },
   {
-    path: '/vehicle/:index',
+    path: '/vehicles/:index',
     element: <VehiclePage />,
   },
   {
-    path: 'resource/film/:index',
+    path: 'resources/films/:index',
     element: <FilmPage isResource />,
   },
   {
-    path: 'resource/people/:index',
+    path: 'resources/people/:index',
     element: <PeoplePage isResource />,
   },
   {
-    path: 'resource/planet/:index',
+    path: 'resources/planets/:index',
     element: <PlanetPage isResource />,
   },
   {
-    path: 'resource/specie/:index',
+    path: 'resources/species/:index',
     element: <SpeciePage isResource />,
   },
   {
-    path: 'resource/starship/:index',
+    path: 'resources/starships/:index',
     element: <StarshipPage isResource />,
   },
   {
-    path: 'resource/vehicle/:index',
+    path: 'resources/vehicles/:index',
     element: <VehiclePage isResource />,
   },
   {

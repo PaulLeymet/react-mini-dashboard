@@ -28,8 +28,8 @@ export default function Starship({ starship, style, isResource }: { starship: St
   // Methods
   // =================
   const onShowDetail = () => {
-    if (isResource) navigate('/resource/starship/' + resources.starships.findIndex((e) => e.name === starship.name))
-    else navigate('/starship/' + elements.starships.elements.findIndex((e) => e.name === starship.name))
+    if (isResource) navigate('/resources/starships/' + resources.starships.findIndex((e) => e.name === starship.name))
+    else navigate('/starships/' + elements.starships.elements.findIndex((e) => e.name === starship.name))
   }
 
   const onAddResource = () => {

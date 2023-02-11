@@ -27,7 +27,7 @@ export default function People({ people, isResource }: { people: PeopleType; isR
   // Methods
   // =================
   const onShowDetail = () => {
-    if (isResource) navigate('/resource/people/' + resources.people.findIndex((e) => e.name === people.name))
+    if (isResource) navigate('/resources/people/' + resources.people.findIndex((e) => e.name === people.name))
     else navigate('/people/' + elements.people.elements.findIndex((e) => e.name === people.name))
   }
 

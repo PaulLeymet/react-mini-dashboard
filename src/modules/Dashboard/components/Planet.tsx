@@ -28,8 +28,8 @@ export default function Planet({ planet, style, isResource }: { planet: PlanetTy
   // Methods
   // =================
   const onShowDetail = () => {
-    if (isResource) navigate('/resource/planet/' + resources.planets.findIndex((e) => e.name === planet.name))
-    else navigate('/planet/' + elements.planets.elements.findIndex((e) => e.name === planet.name))
+    if (isResource) navigate('/resources/planets/' + resources.planets.findIndex((e) => e.name === planet.name))
+    else navigate('/planets/' + elements.planets.elements.findIndex((e) => e.name === planet.name))
   }
 
   const onAddResource = () => {

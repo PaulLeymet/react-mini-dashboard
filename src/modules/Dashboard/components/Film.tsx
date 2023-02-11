@@ -28,8 +28,8 @@ export default function Film({ film, style, isResource }: { film: FilmType; styl
   // Methods
   // =================
   const onShowDetail = () => {
-    if (isResource) navigate('/resource/film/' + resources.films.findIndex((e) => e.title === film.title))
-    else navigate('/film/' + elements.films.elements.findIndex((e) => e.title === film.title))
+    if (isResource) navigate('/resources/films/' + resources.films.findIndex((e) => e.title === film.title))
+    else navigate('/films/' + elements.films.elements.findIndex((e) => e.title === film.title))
   }
 
   const onAddResource = () => {

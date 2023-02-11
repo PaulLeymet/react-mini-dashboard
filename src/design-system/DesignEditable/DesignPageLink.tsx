@@ -43,28 +43,8 @@ export default function DesignPageLink({ category, url, style }: { category: Ele
   // Methods
   // =================
   const navigateTo = () => {
-    switch (category) {
-      case 'films':
-        navigate('/film/' + elements.films.elements.findIndex((e) => e.title === element.title))
-        break
-      case 'people':
-        navigate('/people/' + elements.people.elements.findIndex((e) => e.name === element.name))
-        break
-      case 'planets':
-        navigate('/planet/' + elements.planets.elements.findIndex((e) => e.name === element.name))
-        break
-      case 'species':
-        navigate('/specie/' + elements.species.elements.findIndex((e) => e.name === element.name))
-        break
-      case 'starships':
-        navigate('/starship/' + elements.starships.elements.findIndex((e) => e.name === element.name))
-        break
-      case 'vehicles':
-        navigate('/vehicle/' + elements.vehicles.elements.findIndex((e) => e.name === element.name))
-        break
-      default:
-        break
-    }
+    if (category === 'films') navigate(`/${category}/${elements[`${category}`].elements.findIndex((e) => e.title === element.title)}`)
+    else navigate(`/${category}/${elements[`${category}`].elements.findIndex((e) => e.name === element.name)}`)
   }
 
   // =================

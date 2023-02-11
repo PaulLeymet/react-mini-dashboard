@@ -28,8 +28,8 @@ export default function Specie({ specie, style, isResource }: { specie: SpecieTy
   // Methods
   // =================
   const onShowDetail = () => {
-    if (isResource) navigate('/resource/specie/' + resources.species.findIndex((e) => e.name === specie.name))
-    else navigate('/specie/' + elements.species.elements.findIndex((e) => e.name === specie.name))
+    if (isResource) navigate('/resources/species/' + resources.species.findIndex((e) => e.name === specie.name))
+    else navigate('/species/' + elements.species.elements.findIndex((e) => e.name === specie.name))
   }
 
   const onAddResource = () => {

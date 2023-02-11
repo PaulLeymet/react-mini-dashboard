@@ -28,8 +28,8 @@ export default function Vehicle({ vehicle, style, isResource }: { vehicle: Vehic
   // Methods
   // =================
   const onShowDetail = () => {
-    if (isResource) navigate('/resource/vehicle/' + resources.vehicles.findIndex((e) => e.name === vehicle.name))
-    else navigate('/vehicle/' + elements.vehicles.elements.findIndex((e) => e.name === vehicle.name))
+    if (isResource) navigate('/resources/vehicles/' + resources.vehicles.findIndex((e) => e.name === vehicle.name))
+    else navigate('/vehicles/' + elements.vehicles.elements.findIndex((e) => e.name === vehicle.name))
   }
 
   const onAddResource = () => {
