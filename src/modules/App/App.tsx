@@ -119,6 +119,7 @@ export default function App() {
   }
 
   const onLogout = () => {
+    window.location.href = '/'
     setAuthenticated(false)
     dispatch(resetAuth())
   }
