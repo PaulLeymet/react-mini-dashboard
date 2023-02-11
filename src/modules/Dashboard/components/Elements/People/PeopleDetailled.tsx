@@ -1,21 +1,28 @@
 import { Grid } from '@mui/material'
-import { CSSProperties, useEffect, useState } from 'react'
+import { CSSProperties } from 'react'
 import { useParams } from 'react-router-dom'
 import DesignSpinner from '../../../../../design-system/DesignSpinner/DesignSpinner'
+import DesignTabs from '../../../../../design-system/DesignTabs/DesignTabs'
 import DesignHeader from '../../../../../design-system/DesignText/DesignHeader'
 import DesignText from '../../../../../design-system/DesignText/DesignText'
-import { useAppSelector } from '../../../../../store/hooks'
+import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
+import { color } from '../../../../../theme/color'
 import { ILLUSTRATIONS } from '../../../../../theme/illustrations'
-import { dateFormat } from '../../../../../utils/date'
 import { selectElements } from '../../../stores/elementSlice'
+import { selectRessources, updateRessource } from '../../../stores/ressourceSlice'
 import { PeopleType } from '../../../stores/types/PeopleType'
+import EditableDate from '../../dashboard-system/EditableDate'
+import EditableText from '../../dashboard-system/EditableText'
 import PageLink from '../../dashboard-system/PageLink'
+import CacheManager from '../CacheManager'
 
 export default function PeopleDetailled({ isRessource }: { isRessource?: boolean }) {
   // =================
   // Stores
   // =================
+  const dispatch = useAppDispatch()
   const elements = useAppSelector(selectElements)
+  const ressources = useAppSelector(selectRessources)
 
   // =================
   // Navigation
@@ -25,27 +32,120 @@ export default function PeopleDetailled({ isRessource }: { isRessource?: boolean
   // =================
   // States
   // =================
-  const [people, setPeople] = useState<PeopleType | undefined>(undefined)
+  const people: PeopleType = index ? (isRessource ? ressources.people[parseInt(index)] : elements.people.elements[parseInt(index)]) : null
 
   // =================
   // Hooks
   // =================
-  useEffect(() => {
-    if (index) fetchData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index])
 
   // =================
   // Methods
   // =================
-  const fetchData = async () => {
-    // First check locally if allready stored
+  const onNameUpdate = (text: string) => {
     if (index) {
-      const data = elements.people.elements[parseInt(index)]
-      if (data) {
-        setPeople(data)
-        return
-      }
+      dispatch(
+        updateRessource({
+          category: 'people',
+          index: parseInt(index),
+          ressource: { ...people, ...{ name: text } },
+        }),
+      )
+    }
+  }
+
+  const onBirthYearUpdate = (text: string) => {
+    if (index) {
+      dispatch(
+        updateRessource({
+          category: 'people',
+          index: parseInt(index),
+          ressource: { ...people, ...{ birth_year: text } },
+        }),
+      )
+    }
+  }
+
+  const onGenderUpdate = (text: string) => {
+    if (index) {
+      dispatch(
+        updateRessource({
+          category: 'people',
+          index: parseInt(index),
+          ressource: { ...people, ...{ gender: text } },
+        }),
+      )
+    }
+  }
+
+  const onEyeColorUpdate = (text: string) => {
+    if (index) {
+      dispatch(
+        updateRessource({
+          category: 'people',
+          index: parseInt(index),
+          ressource: { ...people, ...{ eye_color: text } },
+        }),
+      )
+    }
+  }
+
+  const onHairColorUpdate = (text: string) => {
+    if (index) {
+      dispatch(
+        updateRessource({
+          category: 'people',
+          index: parseInt(index),
+          ressource: { ...people, ...{ hair_color: text } },
+        }),
+      )
+    }
+  }
+
+  const onHeightUpdate = (text: string) => {
+    if (index) {
+      dispatch(
+        updateRessource({
+          category: 'people',
+          index: parseInt(index),
+          ressource: { ...people, ...{ height: text } },
+        }),
+      )
+    }
+  }
+
+  const onMassUpdate = (text: string) => {
+    if (index) {
+      dispatch(
+        updateRessource({
+          category: 'people',
+          index: parseInt(index),
+          ressource: { ...people, ...{ mass: text } },
+        }),
+      )
+    }
+  }
+
+  const onCreatedDateUpdate = (date: Date) => {
+    if (index) {
+      dispatch(
+        updateRessource({
+          category: 'people',
+          index: parseInt(index),
+          ressource: { ...people, ...{ created: date.toISOString() } },
+        }),
+      )
+    }
+  }
+
+  const onEditedDateUpdate = (date: Date) => {
+    if (index) {
+      dispatch(
+        updateRessource({
+          category: 'people',
+          index: parseInt(index),
+          ressource: { ...people, ...{ edited: date.toISOString() } },
+        }),
+      )
     }
   }
 
@@ -56,49 +156,127 @@ export default function PeopleDetailled({ isRessource }: { isRessource?: boolean
     <div style={styles.main}>
       {!!people ? (
         <div style={styles.content}>
-          <Grid style={styles.gridSection} container spacing={4}>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={3}>
-              <DesignText bold>{`Created on`}</DesignText>
-              <DesignText>{`${dateFormat(people.created, 'dd/MM/yyyy')}`}</DesignText>
+          <Grid style={styles.gridContainer} container>
+            <Grid style={styles.gridIllustration} item sm={4} xs={0}></Grid>
+            <Grid style={styles.gridInformations} item sm={8} xs={12}>
+              <Grid style={styles.gridContainer} container spacing={4}>
+                {/* SECTION TITLE */}
+                <Grid style={styles.grid} item xs={12}>
+                  <DesignHeader color={color.primary} variant="h5">
+                    {isRessource ? `Ressource - People` : `Element - People`}
+                  </DesignHeader>
+                  <EditableText placeholder={'Title'} editable={isRessource} onUpdate={onNameUpdate} variant="h5">
+                    {`${people.name}`}
+                  </EditableText>
+                </Grid>
+                <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
+                  <DesignText bold>Gender</DesignText>
+                  <EditableText placeholder={'Gender'} editable={isRessource} onUpdate={onGenderUpdate}>
+                    {`${people.gender}`}
+                  </EditableText>
+                  <DesignText style={{ marginTop: 2 }} bold>
+                    Height
+                  </DesignText>
+                  <EditableText placeholder={'Height'} editable={isRessource} onUpdate={onHeightUpdate}>
+                    {`${people.height}`}
+                  </EditableText>
+                  <DesignText style={{ marginTop: 2 }} bold>
+                    Mass
+                  </DesignText>
+                  <EditableText placeholder={'Mass'} editable={isRessource} onUpdate={onMassUpdate}>
+                    {`${people.mass}`}
+                  </EditableText>
+                  <DesignText style={{ marginTop: 2 }} bold>
+                    Eye color
+                  </DesignText>
+                  <EditableText placeholder={'Eye color'} editable={isRessource} onUpdate={onEyeColorUpdate}>
+                    {`${people.eye_color}`}
+                  </EditableText>
+                  <DesignText style={{ marginTop: 2 }} bold>
+                    Hair color
+                  </DesignText>
+                  <EditableText placeholder={'Hair color'} editable={isRessource} onUpdate={onHairColorUpdate}>
+                    {`${people.hair_color}`}
+                  </EditableText>
+                </Grid>
+                <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
+                  <DesignText bold>Created in</DesignText>
+                  <EditableDate placeholder={'Creation'} editable={isRessource} date={new Date(people.created)} onUpdate={onCreatedDateUpdate} />
+                  <DesignText style={{ marginTop: 2 }} bold>
+                    Edited in
+                  </DesignText>
+                  <EditableDate placeholder={'Edition'} editable={isRessource} date={new Date(people.edited)} onUpdate={onEditedDateUpdate} />
+
+                  <DesignText style={{ marginTop: 2 }} bold>
+                    Birth year
+                  </DesignText>
+                  <EditableText placeholder={'Birth'} editable={isRessource} onUpdate={onBirthYearUpdate}>
+                    {`${people.birth_year}`}
+                  </EditableText>
+                  <DesignText style={{ marginTop: 2 }} bold>
+                    Homeworld
+                  </DesignText>
+                  <PageLink style={styles.link} category="planets" url={people.homeworld} />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <DesignTabs
+                    tabs={[
+                      {
+                        label: 'Films',
+                        content: (
+                          <div style={styles.linkContainer}>
+                            {people.films?.map((url) => (
+                              <PageLink key={url} style={styles.link} category="films" url={url} />
+                            ))}
+                          </div>
+                        ),
+                      },
+                      {
+                        label: 'Species',
+                        content: (
+                          <div style={styles.linkContainer}>
+                            {people.species?.map((url) => (
+                              <PageLink key={url} style={styles.link} category="species" url={url} />
+                            ))}
+                          </div>
+                        ),
+                      },
+                      {
+                        label: 'Starships',
+                        content: (
+                          <div style={styles.linkContainer}>
+                            {people.starships?.map((url) => (
+                              <PageLink key={url} style={styles.link} category="starships" url={url} />
+                            ))}
+                          </div>
+                        ),
+                      },
+                      {
+                        label: 'Vehicles',
+                        content: (
+                          <div style={styles.linkContainer}>
+                            {people.vehicles?.map((url) => (
+                              <PageLink key={url} style={styles.link} category="vehicles" url={url} />
+                            ))}
+                          </div>
+                        ),
+                      },
+                    ]}
+                  />
+                </Grid>
+
+                {/* SECTION DATA */}
+                <Grid style={styles.gridInformations} item xs={12}></Grid>
+              </Grid>
             </Grid>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={6}>
-              <DesignHeader>{`${people.name}`}</DesignHeader>
-            </Grid>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={3}></Grid>
           </Grid>
-          <Grid style={styles.gridSection} container spacing={4}>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={12}></Grid>
-          </Grid>
-          <Grid style={styles.gridSection} container spacing={4}>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
-              <DesignText bold>{`Films`}</DesignText>
-              {people.films?.map((url) => (
-                <PageLink category="films" url={url} />
-              ))}
-            </Grid>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
-              <DesignText bold>{`Species`}</DesignText>
-              {people.species?.map((url) => (
-                <PageLink category="species" url={url} />
-              ))}
-            </Grid>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
-              <DesignText bold>{`Starships`}</DesignText>
-              {people.starships?.map((url) => (
-                <PageLink category="starships" url={url} />
-              ))}
-            </Grid>
-            <Grid className="hide-scrollbar" style={styles.grid} item xs={12 / 5}>
-              <DesignText bold>{`Vehicles`}</DesignText>
-              {people.vehicles?.map((url) => (
-                <PageLink category="vehicles" url={url} />
-              ))}
-            </Grid>
-          </Grid>
-          {true ? null : <></>}
+          <CacheManager categories={['films', 'planets', 'species', 'starships', 'vehicles']} />
         </div>
       ) : (
-        <DesignSpinner />
+        <div style={styles.spinnerContent}>
+          <DesignSpinner />
+        </div>
       )}
     </div>
   )
@@ -111,37 +289,50 @@ const styles: {
     display: 'flex',
     justifyContent: 'center',
     flexGrow: 1,
-    alignItems: 'center',
   },
-  background: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundImage: `url(${ILLUSTRATIONS.people})`,
-    backgroundSize: 'cover',
-    opacity: 0.1,
+  spinnerContent: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexGrow: 1,
   },
   content: {
-    margin: 20,
     display: 'flex',
+    flexGrow: 1,
+  },
+  gridContainer: {
+    display: 'flex',
+    flexGrow: 1,
+  },
+  gridIllustration: {
+    display: 'flex',
+    flexGrow: 1,
+    backgroundImage: `url(${ILLUSTRATIONS.people})`,
+    backgroundSize: 'cover',
+    opacity: 0.8,
+    transform: 'scaleX(-1)',
+    backgroundPositionX: -300,
+  },
+  gridInformations: {
+    display: 'relative',
+    flexGrow: 1,
+    padding: 20,
     flexDirection: 'column',
   },
-  accordionContent: {},
-  gridSection: {
+  linkContainer: {
     display: 'flex',
-    height: `${100 / 3}%`,
-    margin: 0,
-    padding: 0,
+    flexWrap: 'wrap',
+    flexGrow: 1,
+    margin: 20,
+  },
+  link: {
+    flexBasis: 'calc(20% - 20px)',
+    margin: '10px',
   },
   grid: {
     display: 'flex',
-    margin: 0,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
     flexDirection: 'column',
-    padding: 30,
-    overflow: 'scroll',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 }

@@ -1,5 +1,6 @@
+import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks'
-import { displayInModal } from '../../../stores/modalSlice'
+import { selectElements } from '../../../stores/elementSlice'
 import { addRessource, removeRessource, selectRessources } from '../../../stores/ressourceSlice'
 import { PeopleType } from '../../../stores/types/PeopleType'
 import Element from '../Element'
@@ -10,6 +11,7 @@ export default function People({ people, isRessource }: { people: PeopleType; is
   // =================
   const dispatch = useAppDispatch()
   const ressources = useAppSelector(selectRessources)
+  const elements = useAppSelector(selectElements)
 
   // =================
   // States
@@ -19,18 +21,14 @@ export default function People({ people, isRessource }: { people: PeopleType; is
   // =================
   // Hooks
   // =================
+  const navigate = useNavigate()
 
   // =================
   // Methods
   // =================
   const onShowDetail = () => {
-    dispatch(
-      displayInModal({
-        id: people.name,
-        category: 'people',
-        url: people.url,
-      }),
-    )
+    if (isRessource) navigate('/ressource/people/' + ressources.people.findIndex((e) => e.name === people.name))
+    else navigate('/people/' + elements.people.elements.findIndex((e) => e.name === people.name))
   }
 
   const onAddRessource = () => {

@@ -164,7 +164,7 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
                         label: 'People',
                         content: (
                           <div style={styles.linkContainer}>
-                            {film.vehicles?.map((url) => (
+                            {film.characters?.map((url) => (
                               <PageLink key={url} style={styles.link} category="people" url={url} />
                             ))}
                           </div>
@@ -174,7 +174,7 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
                         label: 'Planets',
                         content: (
                           <div style={styles.linkContainer}>
-                            {film.vehicles?.map((url) => (
+                            {film.planets?.map((url) => (
                               <PageLink key={url} style={styles.link} category="planets" url={url} />
                             ))}
                           </div>
@@ -184,7 +184,7 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
                         label: 'Species',
                         content: (
                           <div style={styles.linkContainer}>
-                            {film.vehicles?.map((url) => (
+                            {film.species?.map((url) => (
                               <PageLink key={url} style={styles.link} category="species" url={url} />
                             ))}
                           </div>
@@ -194,7 +194,7 @@ export default function FilmDetailled({ isRessource }: { isRessource?: boolean }
                         label: 'Starships',
                         content: (
                           <div style={styles.linkContainer}>
-                            {film.vehicles?.map((url) => (
+                            {film.starships?.map((url) => (
                               <PageLink key={url} style={styles.link} category="starships" url={url} />
                             ))}
                           </div>
