@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { CSSProperties, useState } from 'react'
 import DesignBox from '../../design-system/DesignBox/DesignBox'
 import DesignButton from '../../design-system/DesignButton/DesignButton'
@@ -31,6 +32,7 @@ export default function Login() {
   // =================
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [error, setError] = useState<boolean>(false)
 
   // =================
   // Hooks
@@ -49,8 +51,11 @@ export default function Login() {
 
   const onLogin = () => {
     if (username !== CREDENTIALS.username || password !== CREDENTIALS.password) {
+      setError(true)
       return
     }
+
+    setError(false)
 
     // @TODO : Server must create and store a token
     const TOKEN = 'SERVER-PROVIDED-TOKEN'
@@ -84,7 +89,16 @@ export default function Login() {
             <div style={styles.login}>
               <DesignInput sx={styles.loginElement} placeholder='Username' text={username} onChange={onUsernameChange} onEnter={onLogin} />
               <DesignPasswordInput sx={styles.loginElement} placeholder='Password' text={password} onChange={onPasswordChange} onEnter={onLogin} />
-              <DesignButton sx={styles.loginElement} label='Login' onClick={onLogin} />
+              <motion.div initial={{ scale: 1 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }}>
+                <DesignButton sx={styles.loginElement} label='Login' onClick={onLogin} />
+              </motion.div>
+              {error && (
+                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                  <DesignText style={styles.error} color={color.red}>
+                    {'Wrong credentials'}
+                  </DesignText>
+                </motion.div>
+              )}
             </div>
           </>
         )}
@@ -126,5 +140,10 @@ const styles: {
   loginElement: {
     width: '100%',
     margin: 1,
+  },
+  error: {
+    marginTop: 2,
+    fontSize: 16,
+    fontFamily: 'Starjedi',
   },
 }
