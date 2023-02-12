@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.260c073c.css",
-    "main.js": "/static/js/main.a258aa08.js",
-    "static/js/787.8c7c8775.chunk.js": "/static/js/787.8c7c8775.chunk.js",
-    "static/media/films.png": "/static/media/films.6009f75cd3ff4b53498d.png",
-    "static/media/vehicles.jpeg": "/static/media/vehicles.4c5fb07cc784d2c5e101.jpeg",
-    "static/media/species.jpeg": "/static/media/species.bf49adc5f16801e506fe.jpeg",
-    "static/media/planets.jpeg": "/static/media/planets.5c0c70a17ba599c1d785.jpeg",
-    "static/media/starships.jpeg": "/static/media/starships.10501b8579501c21934d.jpeg",
-    "static/media/Roboto-Regular.ttf": "/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
-    "static/media/characters.jpeg": "/static/media/characters.ca8e6521df591b4a3cdf.jpeg",
-    "static/media/Starjedi.ttf": "/static/media/Starjedi.8d577dc1e1755c4860f3.ttf",
-    "index.html": "/index.html",
-    "main.260c073c.css.map": "/static/css/main.260c073c.css.map",
-    "main.a258aa08.js.map": "/static/js/main.a258aa08.js.map",
-    "787.8c7c8775.chunk.js.map": "/static/js/787.8c7c8775.chunk.js.map"
+    "main.css": "/react-mini-dashboard/static/css/main.8eb4d363.css",
+    "main.js": "/react-mini-dashboard/static/js/main.7b59ef6e.js",
+    "static/js/787.8c7c8775.chunk.js": "/react-mini-dashboard/static/js/787.8c7c8775.chunk.js",
+    "static/media/films.png": "/react-mini-dashboard/static/media/films.6009f75cd3ff4b53498d.png",
+    "static/media/vehicles.jpeg": "/react-mini-dashboard/static/media/vehicles.4c5fb07cc784d2c5e101.jpeg",
+    "static/media/species.jpeg": "/react-mini-dashboard/static/media/species.bf49adc5f16801e506fe.jpeg",
+    "static/media/planets.jpeg": "/react-mini-dashboard/static/media/planets.5c0c70a17ba599c1d785.jpeg",
+    "static/media/starships.jpeg": "/react-mini-dashboard/static/media/starships.10501b8579501c21934d.jpeg",
+    "static/media/Roboto-Regular.ttf": "/react-mini-dashboard/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
+    "static/media/characters.jpeg": "/react-mini-dashboard/static/media/characters.ca8e6521df591b4a3cdf.jpeg",
+    "static/media/Starjedi.ttf": "/react-mini-dashboard/static/media/Starjedi.8d577dc1e1755c4860f3.ttf",
+    "index.html": "/react-mini-dashboard/index.html",
+    "main.8eb4d363.css.map": "/react-mini-dashboard/static/css/main.8eb4d363.css.map",
+    "main.7b59ef6e.js.map": "/react-mini-dashboard/static/js/main.7b59ef6e.js.map",
+    "787.8c7c8775.chunk.js.map": "/react-mini-dashboard/static/js/787.8c7c8775.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.260c073c.css",
-    "static/js/main.a258aa08.js"
+    "static/css/main.8eb4d363.css",
+    "static/js/main.7b59ef6e.js"
   ]
 }
