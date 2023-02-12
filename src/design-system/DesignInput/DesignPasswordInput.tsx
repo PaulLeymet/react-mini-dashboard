@@ -10,13 +10,13 @@ export default function DesignPasswordInput({
   text,
   sx,
   onChange,
-  onKeyDown,
+  onEnter,
 }: {
   placeholder?: string
   text: string
   sx?: SxProps<Theme>
   onChange: (text: string) => void
-  onKeyDown?: () => void
+  onEnter?: () => void
 }) {
   const [showPassword, setShowPassword] = useState(false)
 
@@ -24,6 +24,10 @@ export default function DesignPasswordInput({
   const handleMouseDownPassword = () => setShowPassword(!showPassword)
   const onChangeHandler = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     onChange(event.target.value)
+  }
+
+  const onKeyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter' && onEnter) onEnter()
   }
 
   const styles: SxProps<Theme> = {
@@ -46,7 +50,7 @@ export default function DesignPasswordInput({
       variant='outlined'
       autoCapitalize={'none'}
       onChange={onChangeHandler}
-      onKeyDown={onKeyDown}
+      onKeyDown={onKeyDownHandler}
       type={showPassword ? 'text' : 'password'}
       InputProps={{
         endAdornment: (

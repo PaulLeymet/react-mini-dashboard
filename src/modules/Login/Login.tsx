@@ -82,8 +82,8 @@ export default function Login() {
               <DesignHeader color={color.white}>{`Login`}</DesignHeader>
             </div>
             <div style={styles.login}>
-              <DesignInput sx={styles.loginElement} placeholder='Username' text={username} onChange={onUsernameChange} onKeyDown={onLogin} />
-              <DesignPasswordInput sx={styles.loginElement} placeholder='Password' text={password} onChange={onPasswordChange} onKeyDown={onLogin} />
+              <DesignInput sx={styles.loginElement} placeholder='Username' text={username} onChange={onUsernameChange} onEnter={onLogin} />
+              <DesignPasswordInput sx={styles.loginElement} placeholder='Password' text={password} onChange={onPasswordChange} onEnter={onLogin} />
               <DesignButton sx={styles.loginElement} label='Login' onClick={onLogin} />
             </div>
           </>
