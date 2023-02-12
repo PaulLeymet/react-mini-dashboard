@@ -22,68 +22,73 @@ import FallbackPage from './FallbackPage'
 // =================
 // Routes
 // =================
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <DashboardPage />,
+    },
+    {
+      path: '/login',
+      element: <Login />,
+    },
+    {
+      path: '/films/:index',
+      element: <FilmPage />,
+    },
+    {
+      path: '/people/:index',
+      element: <PeoplePage />,
+    },
+    {
+      path: '/planets/:index',
+      element: <PlanetPage />,
+    },
+    {
+      path: '/species/:index',
+      element: <SpeciePage />,
+    },
+    {
+      path: '/starships/:index',
+      element: <StarshipPage />,
+    },
+    {
+      path: '/vehicles/:index',
+      element: <VehiclePage />,
+    },
+    {
+      path: 'resources/films/:index',
+      element: <FilmPage isResource />,
+    },
+    {
+      path: 'resources/people/:index',
+      element: <PeoplePage isResource />,
+    },
+    {
+      path: 'resources/planets/:index',
+      element: <PlanetPage isResource />,
+    },
+    {
+      path: 'resources/species/:index',
+      element: <SpeciePage isResource />,
+    },
+    {
+      path: 'resources/starships/:index',
+      element: <StarshipPage isResource />,
+    },
+    {
+      path: 'resources/vehicles/:index',
+      element: <VehiclePage isResource />,
+    },
+    {
+      path: '*',
+      element: <FallbackPage />,
+    },
+  ],
   {
-    path: '/',
-    element: <DashboardPage />,
+    basename: process.env.NODE_ENV === 'production' ? '/react-mini-dashboard' : undefined,
   },
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '/films/:index',
-    element: <FilmPage />,
-  },
-  {
-    path: '/people/:index',
-    element: <PeoplePage />,
-  },
-  {
-    path: '/planets/:index',
-    element: <PlanetPage />,
-  },
-  {
-    path: '/species/:index',
-    element: <SpeciePage />,
-  },
-  {
-    path: '/starships/:index',
-    element: <StarshipPage />,
-  },
-  {
-    path: '/vehicles/:index',
-    element: <VehiclePage />,
-  },
-  {
-    path: 'resources/films/:index',
-    element: <FilmPage isResource />,
-  },
-  {
-    path: 'resources/people/:index',
-    element: <PeoplePage isResource />,
-  },
-  {
-    path: 'resources/planets/:index',
-    element: <PlanetPage isResource />,
-  },
-  {
-    path: 'resources/species/:index',
-    element: <SpeciePage isResource />,
-  },
-  {
-    path: 'resources/starships/:index',
-    element: <StarshipPage isResource />,
-  },
-  {
-    path: 'resources/vehicles/:index',
-    element: <VehiclePage isResource />,
-  },
-  {
-    path: '*',
-    element: <FallbackPage />,
-  },
-])
+)
 
 export default function App() {
   // =================
