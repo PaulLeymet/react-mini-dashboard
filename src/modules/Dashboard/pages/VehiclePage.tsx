@@ -1,11 +1,11 @@
 import { Grid } from '@mui/material'
 import { CSSProperties } from 'react'
 import { useParams } from 'react-router-dom'
+import DesignBox from '../../../design-system/DesignBox/DesignBox'
 import DesignEditableDate from '../../../design-system/DesignEditable/DesignEditableDate'
 import DesignEditableText from '../../../design-system/DesignEditable/DesignEditableText'
 import DesignSpinner from '../../../design-system/DesignSpinner/DesignSpinner'
 import DesignHeader from '../../../design-system/DesignText/DesignHeader'
-import DesignText from '../../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { color } from '../../../theme/color'
 import { ILLUSTRATIONS } from '../../../theme/illustrations'
@@ -212,89 +212,71 @@ export default function VehiclePage({ isResource }: { isResource?: boolean }) {
   // Render
   // =================
   return (
-    <div style={styles.main}>
+    <DesignBox style={styles.main}>
       {!!vehicle ? (
-        <div style={styles.content}>
+        <DesignBox>
           <Grid style={styles.gridContainer} container>
             <Grid style={styles.gridIllustration} item sm={4} xs={0}></Grid>
             <Grid style={styles.gridInformations} item sm={8} xs={12}>
               <Grid style={styles.gridContainer} container spacing={4}>
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
-                  <DesignHeader color={color.primary} variant="h5">
+                  <DesignHeader textAlign="left" color={color.primary} variant="h5">
                     {isResource ? `Resource - Vehicle` : `Element - Vehicle`}
                   </DesignHeader>
-                  <DesignEditableText placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate} variant="h5">
+                  <DesignEditableText label="Name" placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate}>
                     {`${vehicle.name}`}
                   </DesignEditableText>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
-                  <DesignText bold>Model</DesignText>
-                  <DesignEditableText placeholder={'Model'} editable={isResource} onUpdate={onModelUpdate}>
+                  <DesignEditableText label="Model" placeholder={'Model'} editable={isResource} onUpdate={onModelUpdate}>
                     {`${vehicle.model}`}
                   </DesignEditableText>
-                  <DesignText style={{ marginTop: 2 }} bold>
-                    Vehicle class
-                  </DesignText>
-                  <DesignEditableText placeholder={'Vehicle class'} editable={isResource} onUpdate={onVehicleClassUpdate}>
+                  <DesignEditableText label="Vehicle class" placeholder={'Vehicle class'} editable={isResource} onUpdate={onVehicleClassUpdate}>
                     {`${vehicle.vehicle_class}`}
                   </DesignEditableText>
-                  <DesignText style={{ marginTop: 2 }} bold>
-                    Manufacturer
-                  </DesignText>
-                  <DesignEditableText placeholder={'Manufacturer'} editable={isResource} onUpdate={onManufacturerUpdate}>
+                  <DesignEditableText label="Manufacturer" placeholder={'Manufacturer'} editable={isResource} onUpdate={onManufacturerUpdate}>
                     {`${vehicle.manufacturer}`}
                   </DesignEditableText>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
-                  <DesignText bold>Created in</DesignText>
                   <DesignEditableDate
+                    label="Created in"
                     placeholder={'Creation'}
                     editable={isResource}
                     date={new Date(vehicle.created)}
                     onUpdate={onCreatedDateUpdate}
                   />
-                  <DesignText style={{ marginTop: 2 }} bold>
-                    Edited in
-                  </DesignText>
-                  <DesignEditableDate placeholder={'Edition'} editable={isResource} date={new Date(vehicle.edited)} onUpdate={onEditedDateUpdate} />
+                  <DesignEditableDate
+                    label="Edited in"
+                    placeholder={'Edition'}
+                    editable={isResource}
+                    date={new Date(vehicle.edited)}
+                    onUpdate={onEditedDateUpdate}
+                  />
                 </Grid>
                 <Grid item xs={12} container>
                   <Grid style={styles.grid} item xs={4}>
-                    <DesignText bold>Crew</DesignText>
-                    <DesignEditableText placeholder={'Crew'} editable={isResource} onUpdate={onCrewUpdate}>
+                    <DesignEditableText label="Crew" placeholder={'Crew'} editable={isResource} onUpdate={onCrewUpdate}>
                       {`${vehicle.crew}`}
                     </DesignEditableText>
-                    <DesignText style={{ marginTop: 2 }} bold>
-                      Passengers
-                    </DesignText>
-                    <DesignEditableText placeholder={'Passengers'} editable={isResource} onUpdate={onPassengersUpdate}>
+                    <DesignEditableText label="Passengers" placeholder={'Passengers'} editable={isResource} onUpdate={onPassengersUpdate}>
                       {`${vehicle.passengers}`}
                     </DesignEditableText>
                   </Grid>
-
                   <Grid style={styles.grid} item xs={4}>
-                    <DesignText bold>Cargo capacity</DesignText>
-                    <DesignEditableText placeholder={'Cargo capacity'} editable={isResource} onUpdate={onCargoCapacityUpdate}>
+                    <DesignEditableText label="Cargo capacity" placeholder={'Cargo capacity'} editable={isResource} onUpdate={onCargoCapacityUpdate}>
                       {`${vehicle.cargo_capacity}`}
                     </DesignEditableText>
-                    <DesignText style={{ marginTop: 2 }} bold>
-                      Max speed
-                    </DesignText>
-                    <DesignEditableText placeholder={'Speed'} editable={isResource} onUpdate={onMaxSpeedUpdate}>
+                    <DesignEditableText label="Max speed" placeholder={'Speed'} editable={isResource} onUpdate={onMaxSpeedUpdate}>
                       {`${vehicle.max_atmosphering_speed}`}
                     </DesignEditableText>
                   </Grid>
-
                   <Grid style={styles.grid} item xs={4}>
-                    <DesignText bold>Cost</DesignText>
-                    <DesignEditableText placeholder={'Cost'} editable={isResource} onUpdate={onCostUpdate}>
+                    <DesignEditableText label="Cost" placeholder={'Cost'} editable={isResource} onUpdate={onCostUpdate}>
                       {`${vehicle.cost_in_credits}`}
                     </DesignEditableText>
-                    <DesignText style={{ marginTop: 2 }} bold>
-                      Consumables
-                    </DesignText>
-                    <DesignEditableText placeholder={'Consumables'} editable={isResource} onUpdate={onConsumablesUpdate}>
+                    <DesignEditableText label="Consumables" placeholder={'Consumables'} editable={isResource} onUpdate={onConsumablesUpdate}>
                       {`${vehicle.consumables}`}
                     </DesignEditableText>
                   </Grid>
@@ -322,13 +304,13 @@ export default function VehiclePage({ isResource }: { isResource?: boolean }) {
             </Grid>
           </Grid>
           <CacheManager categories={['films', 'people']} />
-        </div>
+        </DesignBox>
       ) : (
         <div style={styles.spinnerContent}>
           <DesignSpinner />
         </div>
       )}
-    </div>
+    </DesignBox>
   )
 }
 
@@ -341,23 +323,13 @@ const styles: {
     flexGrow: 1,
   },
   spinnerContent: {
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    flexGrow: 1,
-  },
-  content: {
-    display: 'flex',
-    flexGrow: 1,
-  },
-  gridContainer: {
-    display: 'flex',
-    flexGrow: 1,
   },
   gridIllustration: {
     display: 'flex',
     flexGrow: 1,
-    backgroundImage: `url(${ILLUSTRATIONS.vehicles})`,
+    backgroundImage: `url(${ILLUSTRATIONS.films})`,
     backgroundSize: 'cover',
     opacity: 0.8,
   },
@@ -367,20 +339,8 @@ const styles: {
     padding: 20,
     flexDirection: 'column',
   },
-  linkContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexGrow: 1,
-    margin: 20,
-  },
-  link: {
-    flexBasis: 'calc(20% - 20px)',
-    margin: '10px',
-  },
   grid: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 }

@@ -1,6 +1,7 @@
 import { Grid } from '@mui/material'
 import { CSSProperties } from 'react'
 import { useParams } from 'react-router-dom'
+import DesignBox from '../../../design-system/DesignBox/DesignBox'
 import DesignEditableDate from '../../../design-system/DesignEditable/DesignEditableDate'
 import DesignEditableText from '../../../design-system/DesignEditable/DesignEditableText'
 import DesignPageLink from '../../../design-system/DesignEditable/DesignPageLink'
@@ -153,64 +154,55 @@ export default function PeoplePage({ isResource }: { isResource?: boolean }) {
   // Render
   // =================
   return (
-    <div style={styles.main}>
+    <DesignBox style={styles.main}>
       {!!people ? (
-        <div style={styles.content}>
+        <DesignBox>
           <Grid style={styles.gridContainer} container>
             <Grid style={styles.gridIllustration} item sm={4} xs={0}></Grid>
             <Grid style={styles.gridInformations} item sm={8} xs={12}>
               <Grid style={styles.gridContainer} container spacing={4}>
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
-                  <DesignHeader color={color.primary} variant="h5">
+                  <DesignHeader textAlign="left" color={color.primary} variant="h5">
                     {isResource ? `Resource - People` : `Element - People`}
                   </DesignHeader>
-                  <DesignEditableText placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate} variant="h5">
+                  <DesignEditableText label="Name" placeholder={'Name'} editable={isResource} onUpdate={onNameUpdate}>
                     {`${people.name}`}
                   </DesignEditableText>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
-                  <DesignText bold>Gender</DesignText>
-                  <DesignEditableText placeholder={'Gender'} editable={isResource} onUpdate={onGenderUpdate}>
+                  <DesignEditableText label="Gender" placeholder={'Gender'} editable={isResource} onUpdate={onGenderUpdate}>
                     {`${people.gender}`}
                   </DesignEditableText>
-                  <DesignText style={{ marginTop: 2 }} bold>
-                    Height
-                  </DesignText>
-                  <DesignEditableText placeholder={'Height'} editable={isResource} onUpdate={onHeightUpdate}>
+                  <DesignEditableText label="Height" placeholder={'Height'} editable={isResource} onUpdate={onHeightUpdate}>
                     {`${people.height}`}
                   </DesignEditableText>
-                  <DesignText style={{ marginTop: 2 }} bold>
-                    Mass
-                  </DesignText>
-                  <DesignEditableText placeholder={'Mass'} editable={isResource} onUpdate={onMassUpdate}>
+                  <DesignEditableText label="Mass" placeholder={'Mass'} editable={isResource} onUpdate={onMassUpdate}>
                     {`${people.mass}`}
                   </DesignEditableText>
-                  <DesignText style={{ marginTop: 2 }} bold>
-                    Eye color
-                  </DesignText>
-                  <DesignEditableText placeholder={'Eye color'} editable={isResource} onUpdate={onEyeColorUpdate}>
+                  <DesignEditableText label=" Eye color" placeholder={'Eye color'} editable={isResource} onUpdate={onEyeColorUpdate}>
                     {`${people.eye_color}`}
                   </DesignEditableText>
-                  <DesignText style={{ marginTop: 2 }} bold>
-                    Hair color
-                  </DesignText>
-                  <DesignEditableText placeholder={'Hair color'} editable={isResource} onUpdate={onHairColorUpdate}>
+                  <DesignEditableText label=" Hair color" placeholder={'Hair color'} editable={isResource} onUpdate={onHairColorUpdate}>
                     {`${people.hair_color}`}
                   </DesignEditableText>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
-                  <DesignText bold>Created in</DesignText>
-                  <DesignEditableDate placeholder={'Creation'} editable={isResource} date={new Date(people.created)} onUpdate={onCreatedDateUpdate} />
-                  <DesignText style={{ marginTop: 2 }} bold>
-                    Edited in
-                  </DesignText>
-                  <DesignEditableDate placeholder={'Edition'} editable={isResource} date={new Date(people.edited)} onUpdate={onEditedDateUpdate} />
-
-                  <DesignText style={{ marginTop: 2 }} bold>
-                    Birth year
-                  </DesignText>
-                  <DesignEditableText placeholder={'Birth'} editable={isResource} onUpdate={onBirthYearUpdate}>
+                  <DesignEditableDate
+                    label="Created in"
+                    placeholder={'Creation'}
+                    editable={isResource}
+                    date={new Date(people.created)}
+                    onUpdate={onCreatedDateUpdate}
+                  />
+                  <DesignEditableDate
+                    label="Edited in"
+                    placeholder={'Edition'}
+                    editable={isResource}
+                    date={new Date(people.edited)}
+                    onUpdate={onEditedDateUpdate}
+                  />
+                  <DesignEditableText label="Birth year" placeholder={'Birth'} editable={isResource} onUpdate={onBirthYearUpdate}>
                     {`${people.birth_year}`}
                   </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
@@ -252,13 +244,13 @@ export default function PeoplePage({ isResource }: { isResource?: boolean }) {
             </Grid>
           </Grid>
           <CacheManager categories={['films', 'planets', 'species', 'starships', 'vehicles']} />
-        </div>
+        </DesignBox>
       ) : (
         <div style={styles.spinnerContent}>
           <DesignSpinner />
         </div>
       )}
-    </div>
+    </DesignBox>
   )
 }
 
@@ -271,27 +263,15 @@ const styles: {
     flexGrow: 1,
   },
   spinnerContent: {
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    flexGrow: 1,
-  },
-  content: {
-    display: 'flex',
-    flexGrow: 1,
-  },
-  gridContainer: {
-    display: 'flex',
-    flexGrow: 1,
   },
   gridIllustration: {
     display: 'flex',
     flexGrow: 1,
-    backgroundImage: `url(${ILLUSTRATIONS.people})`,
+    backgroundImage: `url(${ILLUSTRATIONS.films})`,
     backgroundSize: 'cover',
     opacity: 0.8,
-    transform: 'scaleX(-1)',
-    backgroundPositionX: -300,
   },
   gridInformations: {
     display: 'relative',
@@ -299,20 +279,8 @@ const styles: {
     padding: 20,
     flexDirection: 'column',
   },
-  linkContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexGrow: 1,
-    margin: 20,
-  },
-  link: {
-    flexBasis: 'calc(20% - 20px)',
-    margin: '10px',
-  },
   grid: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 }

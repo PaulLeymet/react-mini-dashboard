@@ -1,15 +1,22 @@
-import { TextField } from '@mui/material'
+import { createTheme, TextField, ThemeProvider } from '@mui/material'
 import { ChangeEvent, CSSProperties } from 'react'
 import { color } from '../../theme/color'
-import DesignText, { DesignTextProps } from '../DesignText/DesignText'
 
 export default function DesignEditableText({
   style,
   editable,
   onUpdate,
   placeholder,
-  ...props
-}: { style?: CSSProperties; editable?: boolean; onUpdate?: (text: string) => void; placeholder?: string } & DesignTextProps) {
+  label,
+  children,
+}: {
+  style?: CSSProperties
+  editable?: boolean
+  onUpdate?: (text: string) => void
+  label: string
+  placeholder: string
+  children: string
+}) {
   // =================
   // Stores
   // =================
@@ -33,29 +40,49 @@ export default function DesignEditableText({
     if (onUpdate) onUpdate(event.target.value)
   }
 
+  const theme = createTheme({
+    palette: {
+      action: {
+        disabled: color.secondary,
+      },
+    },
+  })
+
   // =================
   // Render
   // =================
-  return editable ? (
-    <TextField
-      style={{ ...styles.input, ...style }}
-      sx={{
-        '& .MuiInput-underline:before': { borderBottomColor: color.secondary },
-        '& .MuiInput-underline:after': { borderBottomColor: color.secondary },
-      }}
-      inputProps={{ min: 0, style: { textAlign: 'center' } }}
-      variant="standard"
-      placeholder={placeholder}
-      value={props.children}
-      onChange={onChangeHandler}
-    />
-  ) : (
-    <DesignText {...props} />
+  return (
+    <ThemeProvider theme={theme}>
+      <TextField
+        style={{ ...styles.input, ...style }}
+        sx={{
+          '& .MuiInput-underline:before': { borderBottomColor: color.secondary },
+          '& .MuiInput-underline:after': { borderBottomColor: color.secondary },
+          '& .MuiInputBase-input.Mui-disabled': {
+            WebkitTextFillColor: color.black,
+          },
+        }}
+        inputProps={{ min: 0, style: { textAlign: 'left' } }}
+        InputProps={{ disableUnderline: !editable }}
+        // InputLabelProps={{ style: { color: color.primary } }}
+        disabled={!editable}
+        label={label}
+        variant={'standard'}
+        placeholder={placeholder}
+        value={children}
+        onChange={onChangeHandler}
+      />
+    </ThemeProvider>
   )
 }
 
 const styles: {
   [key: string]: CSSProperties | undefined
 } = {
-  input: {},
+  input: {
+    margin: 10,
+    color: color.black,
+    display: 'flex',
+    flexGrow: 1,
+  },
 }

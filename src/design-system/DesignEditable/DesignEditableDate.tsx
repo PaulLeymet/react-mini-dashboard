@@ -3,15 +3,20 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { CSSProperties } from 'react'
 import { color } from '../../theme/color'
 import { dateFormat } from '../../utils/date'
-import DesignText, { DesignTextProps } from '../DesignText/DesignText'
 
 export default function DesignEditableDate({
   date,
   editable,
   onUpdate,
+  label,
   placeholder,
-  ...props
-}: { date: Date; editable?: boolean; onUpdate?: (date: Date) => void; placeholder?: string } & Omit<DesignTextProps, 'children'>) {
+}: {
+  date: Date
+  editable?: boolean
+  onUpdate?: (date: Date) => void
+  placeholder?: string
+  label: string
+}) {
   // =================
   // Stores
   // =================
@@ -38,19 +43,30 @@ export default function DesignEditableDate({
   // =================
   // Render
   // =================
-  return editable ? (
+  return (
     <DatePicker
       value={date}
       onChange={onChangeHandler}
+      label={label}
+      disabled={!editable}
+      disableOpenPicker={!editable}
+      InputProps={{
+        disableUnderline: true,
+      }}
       renderInput={(params) => (
         <TextField
           style={styles.input}
           sx={{
-            svg: { color: color.primary },
+            svg: { color: color.primary + 'A0' },
             '& .MuiInput-underline:before': { borderBottomColor: color.secondary },
             '& .MuiInput-underline:after': { borderBottomColor: color.secondary },
+            '& .MuiInputBase-input.Mui-disabled': {
+              WebkitTextFillColor: color.black,
+            },
           }}
           inputProps={{ min: 0, style: { textAlign: 'center' } }}
+          //InputLabelProps={{ style: { color: color.primary } }}
+          disabled={!editable}
           variant="standard"
           placeholder={placeholder}
           value={`${dateFormat(date, 'dd/MM/yyyy')}`}
@@ -58,13 +74,13 @@ export default function DesignEditableDate({
         />
       )}
     />
-  ) : (
-    <DesignText {...props}>{`${dateFormat(date, 'dd/MM/yyyy')}`}</DesignText>
   )
 }
 
 const styles: {
   [key: string]: CSSProperties | undefined
 } = {
-  input: {},
+  input: {
+    margin: 10,
+  },
 }

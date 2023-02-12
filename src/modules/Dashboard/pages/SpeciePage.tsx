@@ -1,6 +1,7 @@
 import { Grid } from '@mui/material'
 import { CSSProperties } from 'react'
 import { useParams } from 'react-router-dom'
+import DesignBox from '../../../design-system/DesignBox/DesignBox'
 import DesignEditableDate from '../../../design-system/DesignEditable/DesignEditableDate'
 import DesignEditableText from '../../../design-system/DesignEditable/DesignEditableText'
 import DesignPageLink from '../../../design-system/DesignEditable/DesignPageLink'
@@ -177,59 +178,52 @@ export default function SpeciePage({ isResource }: { isResource?: boolean }) {
   // Render
   // =================
   return (
-    <div style={styles.main}>
+    <DesignBox style={styles.main}>
       {!!specie ? (
-        <div style={styles.content}>
+        <DesignBox>
           <Grid style={styles.gridContainer} container>
             <Grid style={styles.gridIllustration} item sm={4} xs={0}></Grid>
             <Grid style={styles.gridInformations} item sm={8} xs={12}>
               <Grid style={styles.gridContainer} container spacing={4}>
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
-                  <DesignHeader color={color.primary} variant="h5">
+                  <DesignHeader textAlign="left" color={color.primary} variant="h5">
                     {isResource ? `Resource - Specie` : `Element - Specie`}
                   </DesignHeader>
-                  <DesignEditableText placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate} variant="h5">
+                  <DesignEditableText label="Name" placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate}>
                     {`${specie.name}`}
                   </DesignEditableText>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
-                  <DesignText bold>Classification</DesignText>
-                  <DesignEditableText placeholder={'Classification'} editable={isResource} onUpdate={onClassificationUpdate}>
+                  <DesignEditableText label="Classification" placeholder={'Classification'} editable={isResource} onUpdate={onClassificationUpdate}>
                     {`${specie.classification}`}
                   </DesignEditableText>
-                  <DesignText style={{ marginTop: 2 }} bold>
-                    Designation
-                  </DesignText>
-                  <DesignEditableText placeholder={'Designation'} editable={isResource} onUpdate={onDesignationUpdate}>
+                  <DesignEditableText label="Designation" placeholder={'Designation'} editable={isResource} onUpdate={onDesignationUpdate}>
                     {`${specie.designation}`}
                   </DesignEditableText>
-
-                  <DesignText style={{ marginTop: 2 }} bold>
-                    Average height
-                  </DesignText>
-                  <DesignEditableText placeholder={'Average height'} editable={isResource} onUpdate={onHeightUpdate}>
+                  <DesignEditableText label="Average height" placeholder={'Average height'} editable={isResource} onUpdate={onHeightUpdate}>
                     {`${specie.average_height}`}
                   </DesignEditableText>
-
-                  <DesignText style={{ marginTop: 2 }} bold>
-                    Average lifespan
-                  </DesignText>
-                  <DesignEditableText placeholder={'Average lifespan'} editable={isResource} onUpdate={onLifespanceUpdate}>
+                  <DesignEditableText label="Average lifespan" placeholder={'Average lifespan'} editable={isResource} onUpdate={onLifespanceUpdate}>
                     {`${specie.average_lifespan}`}
                   </DesignEditableText>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
-                  <DesignText bold>Created in</DesignText>
-                  <DesignEditableDate placeholder={'Creation'} editable={isResource} date={new Date(specie.created)} onUpdate={onCreatedDateUpdate} />
-                  <DesignText style={{ marginTop: 2 }} bold>
-                    Edited in
-                  </DesignText>
-                  <DesignEditableDate placeholder={'Edition'} editable={isResource} date={new Date(specie.edited)} onUpdate={onEditedDateUpdate} />
-                  <DesignText style={{ marginTop: 2 }} bold>
-                    Language
-                  </DesignText>
-                  <DesignEditableText placeholder={'Language'} editable={isResource} onUpdate={onLanguageUpdate}>
+                  <DesignEditableDate
+                    label="Created in"
+                    placeholder={'Creation'}
+                    editable={isResource}
+                    date={new Date(specie.created)}
+                    onUpdate={onCreatedDateUpdate}
+                  />
+                  <DesignEditableDate
+                    label="Edited in"
+                    placeholder={'Edition'}
+                    editable={isResource}
+                    date={new Date(specie.edited)}
+                    onUpdate={onEditedDateUpdate}
+                  />
+                  <DesignEditableText label="Language" placeholder={'Language'} editable={isResource} onUpdate={onLanguageUpdate}>
                     {`${specie.language}`}
                   </DesignEditableText>
                   <DesignText style={{ marginTop: 2 }} bold>
@@ -239,20 +233,17 @@ export default function SpeciePage({ isResource }: { isResource?: boolean }) {
                 </Grid>
                 <Grid item xs={12} container>
                   <Grid style={styles.grid} item xs={4}>
-                    <DesignText bold>Skin colors</DesignText>
-                    <DesignEditableText placeholder={'Skin colors'} editable={isResource} onUpdate={onSkinColorsUpdate}>
+                    <DesignEditableText label="Skin colors" placeholder={'Skin colors'} editable={isResource} onUpdate={onSkinColorsUpdate}>
                       {`${specie.skin_colors}`}
                     </DesignEditableText>
                   </Grid>
                   <Grid style={styles.grid} item xs={4}>
-                    <DesignText bold>Eye colors</DesignText>
-                    <DesignEditableText placeholder={'Eye colors'} editable={isResource} onUpdate={onEyeColorsUpdate}>
+                    <DesignEditableText label="Eye colors" placeholder={'Eye colors'} editable={isResource} onUpdate={onEyeColorsUpdate}>
                       {`${specie.eye_colors}`}
                     </DesignEditableText>
                   </Grid>
                   <Grid style={styles.grid} item xs={4}>
-                    <DesignText bold>Hairs colors</DesignText>
-                    <DesignEditableText placeholder={'Hairs colors'} editable={isResource} onUpdate={onHairColorUpdate}>
+                    <DesignEditableText label="Hairs colors" placeholder={'Hairs colors'} editable={isResource} onUpdate={onHairColorUpdate}>
                       {`${specie.hair_colors}`}
                     </DesignEditableText>
                   </Grid>
@@ -280,13 +271,13 @@ export default function SpeciePage({ isResource }: { isResource?: boolean }) {
             </Grid>
           </Grid>
           <CacheManager categories={['films', 'people']} />
-        </div>
+        </DesignBox>
       ) : (
         <div style={styles.spinnerContent}>
           <DesignSpinner />
         </div>
       )}
-    </div>
+    </DesignBox>
   )
 }
 
@@ -299,23 +290,13 @@ const styles: {
     flexGrow: 1,
   },
   spinnerContent: {
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    flexGrow: 1,
-  },
-  content: {
-    display: 'flex',
-    flexGrow: 1,
-  },
-  gridContainer: {
-    display: 'flex',
-    flexGrow: 1,
   },
   gridIllustration: {
     display: 'flex',
     flexGrow: 1,
-    backgroundImage: `url(${ILLUSTRATIONS.species})`,
+    backgroundImage: `url(${ILLUSTRATIONS.films})`,
     backgroundSize: 'cover',
     opacity: 0.8,
   },
@@ -325,20 +306,8 @@ const styles: {
     padding: 20,
     flexDirection: 'column',
   },
-  linkContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexGrow: 1,
-    margin: 20,
-  },
-  link: {
-    flexBasis: 'calc(20% - 20px)',
-    margin: '10px',
-  },
   grid: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 }
