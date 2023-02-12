@@ -3,15 +3,14 @@ import { CSSProperties } from 'react'
 import { useParams } from 'react-router-dom'
 import DesignEditableDate from '../../../design-system/DesignEditable/DesignEditableDate'
 import DesignEditableText from '../../../design-system/DesignEditable/DesignEditableText'
-import DesignPageLink from '../../../design-system/DesignEditable/DesignPageLink'
 import DesignSpinner from '../../../design-system/DesignSpinner/DesignSpinner'
-import DesignTabs from '../../../design-system/DesignTabs/DesignTabs'
 import DesignHeader from '../../../design-system/DesignText/DesignHeader'
 import DesignText from '../../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { color } from '../../../theme/color'
 import { ILLUSTRATIONS } from '../../../theme/illustrations'
 import CacheManager from '../components/CacheManager'
+import LinksTabs from '../components/LinksTabs'
 import { selectElements } from '../stores/elementSlice'
 import { selectResources, updateResource } from '../stores/resourceSlice'
 import { VehicleType } from '../stores/types/VehicleType'
@@ -301,27 +300,17 @@ export default function VehiclePage({ isResource }: { isResource?: boolean }) {
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <DesignTabs
+                  <LinksTabs
                     tabs={[
                       {
+                        category: 'films',
                         label: 'Films',
-                        content: (
-                          <div style={styles.linkContainer}>
-                            {vehicle.films?.map((url) => (
-                              <DesignPageLink key={url} style={styles.link} category="films" url={url} />
-                            ))}
-                          </div>
-                        ),
+                        urls: vehicle.films,
                       },
                       {
+                        category: 'people',
                         label: 'Pilots',
-                        content: (
-                          <div style={styles.linkContainer}>
-                            {vehicle.pilots?.map((url) => (
-                              <DesignPageLink key={url} style={styles.link} category="people" url={url} />
-                            ))}
-                          </div>
-                        ),
+                        urls: vehicle.pilots,
                       },
                     ]}
                   />

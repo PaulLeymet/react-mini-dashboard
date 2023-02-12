@@ -3,15 +3,14 @@ import { CSSProperties } from 'react'
 import { useParams } from 'react-router-dom'
 import DesignEditableDate from '../../../design-system/DesignEditable/DesignEditableDate'
 import DesignEditableText from '../../../design-system/DesignEditable/DesignEditableText'
-import DesignPageLink from '../../../design-system/DesignEditable/DesignPageLink'
 import DesignSpinner from '../../../design-system/DesignSpinner/DesignSpinner'
-import DesignTabs from '../../../design-system/DesignTabs/DesignTabs'
 import DesignHeader from '../../../design-system/DesignText/DesignHeader'
 import DesignText from '../../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { color } from '../../../theme/color'
 import { ILLUSTRATIONS } from '../../../theme/illustrations'
 import CacheManager from '../components/CacheManager'
+import LinksTabs from '../components/LinksTabs'
 import { selectElements } from '../stores/elementSlice'
 import { selectResources, updateResource } from '../stores/resourceSlice'
 import { FilmType } from '../stores/types/FilmType'
@@ -171,57 +170,32 @@ export default function FilmPage({ isResource }: { isResource?: boolean }) {
                   >{`${film.opening_crawl}`}</DesignEditableText>
                 </Grid>
                 <Grid item xs={12}>
-                  <DesignTabs
+                  <LinksTabs
                     tabs={[
                       {
+                        category: 'people',
                         label: 'People',
-                        content: (
-                          <div style={styles.linkContainer}>
-                            {film.characters?.map((url) => (
-                              <DesignPageLink key={url} style={styles.link} category="people" url={url} />
-                            ))}
-                          </div>
-                        ),
+                        urls: film.characters,
                       },
                       {
+                        category: 'planets',
                         label: 'Planets',
-                        content: (
-                          <div style={styles.linkContainer}>
-                            {film.planets?.map((url) => (
-                              <DesignPageLink key={url} style={styles.link} category="planets" url={url} />
-                            ))}
-                          </div>
-                        ),
+                        urls: film.planets,
                       },
                       {
+                        category: 'species',
                         label: 'Species',
-                        content: (
-                          <div style={styles.linkContainer}>
-                            {film.species?.map((url) => (
-                              <DesignPageLink key={url} style={styles.link} category="species" url={url} />
-                            ))}
-                          </div>
-                        ),
+                        urls: film.species,
                       },
                       {
+                        category: 'starships',
                         label: 'Starships',
-                        content: (
-                          <div style={styles.linkContainer}>
-                            {film.starships?.map((url) => (
-                              <DesignPageLink key={url} style={styles.link} category="starships" url={url} />
-                            ))}
-                          </div>
-                        ),
+                        urls: film.starships,
                       },
                       {
+                        category: 'vehicles',
                         label: 'Vehicles',
-                        content: (
-                          <div style={styles.linkContainer}>
-                            {film.vehicles?.map((url) => (
-                              <DesignPageLink key={url} style={styles.link} category="vehicles" url={url} />
-                            ))}
-                          </div>
-                        ),
+                        urls: film.vehicles,
                       },
                     ]}
                   />
@@ -277,16 +251,6 @@ const styles: {
     flexGrow: 1,
     padding: 20,
     flexDirection: 'column',
-  },
-  linkContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexGrow: 1,
-    margin: 20,
-  },
-  link: {
-    flexBasis: 'calc(20% - 20px)',
-    margin: '10px',
   },
   grid: {
     display: 'flex',

@@ -5,13 +5,13 @@ import DesignEditableDate from '../../../design-system/DesignEditable/DesignEdit
 import DesignEditableText from '../../../design-system/DesignEditable/DesignEditableText'
 import DesignPageLink from '../../../design-system/DesignEditable/DesignPageLink'
 import DesignSpinner from '../../../design-system/DesignSpinner/DesignSpinner'
-import DesignTabs from '../../../design-system/DesignTabs/DesignTabs'
 import DesignHeader from '../../../design-system/DesignText/DesignHeader'
 import DesignText from '../../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { color } from '../../../theme/color'
 import { ILLUSTRATIONS } from '../../../theme/illustrations'
 import CacheManager from '../components/CacheManager'
+import LinksTabs from '../components/LinksTabs'
 import { selectElements } from '../stores/elementSlice'
 import { selectResources, updateResource } from '../stores/resourceSlice'
 import { PeopleType } from '../stores/types/PeopleType'
@@ -220,47 +220,27 @@ export default function PeoplePage({ isResource }: { isResource?: boolean }) {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <DesignTabs
+                  <LinksTabs
                     tabs={[
                       {
+                        category: 'films',
                         label: 'Films',
-                        content: (
-                          <div style={styles.linkContainer}>
-                            {people.films?.map((url) => (
-                              <DesignPageLink key={url} style={styles.link} category="films" url={url} />
-                            ))}
-                          </div>
-                        ),
+                        urls: people.films,
                       },
                       {
+                        category: 'species',
                         label: 'Species',
-                        content: (
-                          <div style={styles.linkContainer}>
-                            {people.species?.map((url) => (
-                              <DesignPageLink key={url} style={styles.link} category="species" url={url} />
-                            ))}
-                          </div>
-                        ),
+                        urls: people.species,
                       },
                       {
+                        category: 'starships',
                         label: 'Starships',
-                        content: (
-                          <div style={styles.linkContainer}>
-                            {people.starships?.map((url) => (
-                              <DesignPageLink key={url} style={styles.link} category="starships" url={url} />
-                            ))}
-                          </div>
-                        ),
+                        urls: people.starships,
                       },
                       {
+                        category: 'vehicles',
                         label: 'Vehicles',
-                        content: (
-                          <div style={styles.linkContainer}>
-                            {people.vehicles?.map((url) => (
-                              <DesignPageLink key={url} style={styles.link} category="vehicles" url={url} />
-                            ))}
-                          </div>
-                        ),
+                        urls: people.vehicles,
                       },
                     ]}
                   />

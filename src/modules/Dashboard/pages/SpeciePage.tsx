@@ -5,13 +5,13 @@ import DesignEditableDate from '../../../design-system/DesignEditable/DesignEdit
 import DesignEditableText from '../../../design-system/DesignEditable/DesignEditableText'
 import DesignPageLink from '../../../design-system/DesignEditable/DesignPageLink'
 import DesignSpinner from '../../../design-system/DesignSpinner/DesignSpinner'
-import DesignTabs from '../../../design-system/DesignTabs/DesignTabs'
 import DesignHeader from '../../../design-system/DesignText/DesignHeader'
 import DesignText from '../../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { color } from '../../../theme/color'
 import { ILLUSTRATIONS } from '../../../theme/illustrations'
 import CacheManager from '../components/CacheManager'
+import LinksTabs from '../components/LinksTabs'
 import { selectElements } from '../stores/elementSlice'
 import { selectResources, updateResource } from '../stores/resourceSlice'
 import { SpecieType } from '../stores/types/SpecieType'
@@ -258,27 +258,17 @@ export default function SpeciePage({ isResource }: { isResource?: boolean }) {
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <DesignTabs
+                  <LinksTabs
                     tabs={[
                       {
+                        category: 'films',
                         label: 'Films',
-                        content: (
-                          <div style={styles.linkContainer}>
-                            {specie.films?.map((url) => (
-                              <DesignPageLink key={url} style={styles.link} category="films" url={url} />
-                            ))}
-                          </div>
-                        ),
+                        urls: specie.films,
                       },
                       {
+                        category: 'people',
                         label: 'Characters',
-                        content: (
-                          <div style={styles.linkContainer}>
-                            {specie.people?.map((url) => (
-                              <DesignPageLink key={url} style={styles.link} category="people" url={url} />
-                            ))}
-                          </div>
-                        ),
+                        urls: specie.people,
                       },
                     ]}
                   />

@@ -50,7 +50,16 @@ export default function DesignPageLink({ category, url, style }: { category: Ele
   // =================
   // Render
   // =================
-  return <Chip style={{ ...styles.link, ...style }} variant="outlined" label={element?.name || element?.title} clickable onClick={navigateTo} />
+  return (
+    <Chip
+      placeholder="..."
+      style={{ ...styles.link, ...style }}
+      variant="outlined"
+      label={element?.name || element?.title}
+      clickable
+      onClick={navigateTo}
+    />
+  )
 }
 
 const styles: {
@@ -59,5 +68,8 @@ const styles: {
   style: {
     color: color.primary,
     background: color.primary,
+    display: 'flex',
+    flexGrow: 1,
+    width: '100%',
   },
 }
