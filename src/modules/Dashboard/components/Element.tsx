@@ -91,7 +91,7 @@ const styles: {
 } = {
   main: {
     width: 250,
-    height: 200,
+    height: '18vh',
     background: color.black + 'F0',
     borderRadius: 10,
     margin: 20,
