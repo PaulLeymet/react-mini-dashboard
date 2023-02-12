@@ -53,18 +53,6 @@ export default function PlanetPage({ isResource }: { isResource?: boolean }) {
     }
   }
 
-  const onDirectorUpdate = (text: string) => {
-    if (index) {
-      dispatch(
-        updateResource({
-          category: 'planets',
-          index: parseInt(index),
-          resource: { ...planet, ...{ director: text } },
-        }),
-      )
-    }
-  }
-
   const onDiameterUpdate = (text: string) => {
     if (index) {
       dispatch(

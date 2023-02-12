@@ -89,30 +89,6 @@ export default function VehiclePage({ isResource }: { isResource?: boolean }) {
     }
   }
 
-  const onMgltUpdate = (text: string) => {
-    if (index) {
-      dispatch(
-        updateResource({
-          category: 'vehicles',
-          index: parseInt(index),
-          resource: { ...vehicle, ...{ MGLT: text } },
-        }),
-      )
-    }
-  }
-
-  const onHyperdriveUpdate = (text: string) => {
-    if (index) {
-      dispatch(
-        updateResource({
-          category: 'vehicles',
-          index: parseInt(index),
-          resource: { ...vehicle, ...{ hyperdrive_rating: text } },
-        }),
-      )
-    }
-  }
-
   const onCrewUpdate = (text: string) => {
     if (index) {
       dispatch(

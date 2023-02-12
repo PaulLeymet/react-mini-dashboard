@@ -1,7 +1,6 @@
 import { CSSProperties } from 'react'
 import DesignBox from '../../../design-system/DesignBox/DesignBox'
 import DesignTabs from '../../../design-system/DesignTabs/DesignTabs'
-import { useIsMobile } from '../../../hooks/useIsMobile'
 import { useMount } from '../../../hooks/useMount'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { color } from '../../../theme/color'
@@ -31,7 +30,6 @@ export default function DashboardPage() {
     fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   })
-  const isMobile = useIsMobile()
 
   // =================
   // Methods
