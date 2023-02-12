@@ -9,6 +9,8 @@ export default function DesignEditableText({
   placeholder,
   label,
   children,
+  multiline,
+  rows,
 }: {
   style?: CSSProperties
   editable?: boolean
@@ -16,6 +18,8 @@ export default function DesignEditableText({
   label: string
   placeholder: string
   children: string
+  multiline?: boolean
+  rows?: number
 }) {
   // =================
   // Stores
@@ -47,7 +51,7 @@ export default function DesignEditableText({
       },
     },
   })
-
+  console.log(children)
   // =================
   // Render
   // =================
@@ -62,7 +66,9 @@ export default function DesignEditableText({
             WebkitTextFillColor: color.black,
           },
         }}
-        inputProps={{ min: 0, style: { textAlign: 'left' } }}
+        inputProps={{ className: 'hide-scrollbar', min: 0, style: { textAlign: 'left' } }}
+        multiline={multiline}
+        maxRows={multiline ? rows : 5}
         InputProps={{ disableUnderline: !editable }}
         // InputLabelProps={{ style: { color: color.primary } }}
         disabled={!editable}

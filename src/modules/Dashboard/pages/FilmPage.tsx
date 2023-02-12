@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { color } from '../../../theme/color'
 import { ILLUSTRATIONS } from '../../../theme/illustrations'
 import CacheManager from '../components/CacheManager'
+import DetailPageSection from '../components/DetailPageSection'
 import LinksTabs from '../components/LinksTabs'
 import { selectElements } from '../stores/elementSlice'
 import { selectResources, updateResource } from '../stores/resourceSlice'
@@ -125,52 +126,61 @@ export default function FilmPage({ isResource }: { isResource?: boolean }) {
               <Grid style={styles.gridContainer} container spacing={4}>
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
-                  <DesignHeader textAlign="left" color={color.primary} variant="h5">
+                  <DesignHeader style={styles.header} textAlign="left" color={color.primary} variant="h5">
                     {isResource ? `Resource - Film` : `Element - Film`}
                   </DesignHeader>
-                  <DesignEditableText label="Title" placeholder={'Title'} editable={isResource} onUpdate={onTitleUpdate}>
-                    {isResource ? `${film.title}` : `Episode ${film.episode_id} - ${film.title}`}
-                  </DesignEditableText>
+                  <DetailPageSection>
+                    <DesignEditableText label="Title" placeholder={'Title'} editable={isResource} onUpdate={onTitleUpdate}>
+                      {isResource ? `${film.title}` : `Episode ${film.episode_id} - ${film.title}`}
+                    </DesignEditableText>
+                  </DetailPageSection>
                 </Grid>
                 <Grid style={styles.grid} item xs={6}>
-                  <DesignEditableText
-                    label="Directed by"
-                    placeholder="Director"
-                    editable={isResource}
-                    onUpdate={onDirectorUpdate}
-                  >{`${film.director}`}</DesignEditableText>
-
-                  <DesignEditableText
-                    label={'Produced by'}
-                    placeholder={'Producer'}
-                    editable={isResource}
-                    onUpdate={onProducerUpdate}
-                  >{`${film.producer}`}</DesignEditableText>
+                  <DetailPageSection>
+                    <DesignEditableText
+                      label="Directed by"
+                      placeholder="Director"
+                      editable={isResource}
+                      onUpdate={onDirectorUpdate}
+                    >{`${film.director}`}</DesignEditableText>
+                    <DesignEditableText
+                      label={'Produced by'}
+                      placeholder={'Producer'}
+                      editable={isResource}
+                      onUpdate={onProducerUpdate}
+                    >{`${film.producer}`}</DesignEditableText>
+                  </DetailPageSection>
                 </Grid>
                 <Grid style={styles.grid} item xs={6}>
-                  <DesignEditableDate
-                    label="Created in"
-                    placeholder={'Creation'}
-                    editable={isResource}
-                    date={new Date(film.created)}
-                    onUpdate={onCreatedDateUpdate}
-                  />
-                  <DesignEditableDate
-                    label="Released in"
-                    placeholder={'Release'}
-                    editable={isResource}
-                    date={new Date(film.release_date)}
-                    onUpdate={onReleasedDateUpdate}
-                  />
+                  <DetailPageSection>
+                    <DesignEditableDate
+                      label="Created in"
+                      placeholder={'Creation'}
+                      editable={isResource}
+                      date={new Date(film.created)}
+                      onUpdate={onCreatedDateUpdate}
+                    />
+                    <DesignEditableDate
+                      label="Released in"
+                      placeholder={'Release'}
+                      editable={isResource}
+                      date={new Date(film.release_date)}
+                      onUpdate={onReleasedDateUpdate}
+                    />
+                  </DetailPageSection>
                 </Grid>
                 <Grid item xs={12}>
-                  <DesignEditableText
-                    label="Opening crawl"
-                    style={{ display: 'flex', flexGrow: 1 }}
-                    placeholder={'Opening crawl'}
-                    editable={isResource}
-                    onUpdate={onCrawlUpdate}
-                  >{`${film.opening_crawl}`}</DesignEditableText>
+                  <DetailPageSection>
+                    <DesignEditableText
+                      label="Opening crawl"
+                      style={{ display: 'flex', flexGrow: 1 }}
+                      placeholder={'Opening crawl'}
+                      editable={isResource}
+                      onUpdate={onCrawlUpdate}
+                      multiline
+                      rows={8}
+                    >{`${film.opening_crawl}`}</DesignEditableText>
+                  </DetailPageSection>
                 </Grid>
                 <Grid item xs={12}>
                   <LinksTabs
@@ -248,5 +258,8 @@ const styles: {
   grid: {
     display: 'flex',
     flexDirection: 'column',
+  },
+  header: {
+    marginBottom: 2,
   },
 }

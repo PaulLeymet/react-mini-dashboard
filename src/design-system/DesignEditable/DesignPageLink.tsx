@@ -4,9 +4,16 @@ import { useNavigate } from 'react-router-dom'
 import { selectElements } from '../../modules/Dashboard/stores/elementSlice'
 import { ElementsCategory } from '../../modules/Dashboard/stores/types/CategoryType'
 import { useAppSelector } from '../../store/hooks'
-import { color } from '../../theme/color'
+import DesignBox from '../DesignBox/DesignBox'
+import DesignText from '../DesignText/DesignText'
 
-export default function DesignPageLink({ category, url, style }: { category: ElementsCategory; url: string; style?: CSSProperties }) {
+export interface DesignPageLinkProps {
+  category: ElementsCategory
+  url: string
+  style?: CSSProperties
+  label?: string
+}
+export default function DesignPageLink({ label, category, url, style }: DesignPageLinkProps) {
   // =================
   // Stores
   // =================
@@ -51,25 +58,49 @@ export default function DesignPageLink({ category, url, style }: { category: Ele
   // Render
   // =================
   return (
-    <Chip
-      placeholder="..."
-      style={{ ...styles.link, ...style }}
-      variant="outlined"
-      label={element?.name || element?.title}
-      clickable
-      onClick={navigateTo}
-    />
+    (element?.name || element?.title) &&
+    (label ? (
+      <DesignBox style={styles.container}>
+        <DesignText style={styles.label} textAlign="left">
+          {label}
+        </DesignText>
+        <Chip
+          placeholder="..."
+          style={{ ...styles.link, ...style }}
+          variant="outlined"
+          label={element?.name || element?.title}
+          clickable
+          onClick={navigateTo}
+        />
+      </DesignBox>
+    ) : (
+      <Chip
+        placeholder="..."
+        style={{ ...styles.link, ...style }}
+        variant="outlined"
+        label={element?.name || element?.title}
+        clickable
+        onClick={navigateTo}
+      />
+    ))
   )
 }
 
 const styles: {
   [key: string]: CSSProperties | undefined
 } = {
-  style: {
-    color: color.primary,
-    background: color.primary,
-    display: 'flex',
-    flexGrow: 1,
-    width: '100%',
+  container: {
+    flexDirection: 'column',
+  },
+  label: {
+    marginLeft: '8px',
+    fontSize: 12,
+    fontWeight: '400',
+    color: 'rgba(0, 0, 0, 0.38)',
+    marginBottom: 1,
+  },
+  link: {
+    marginLeft: '8px',
+    maxWidth: 200,
   },
 }

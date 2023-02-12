@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { color } from '../../../theme/color'
 import { ILLUSTRATIONS } from '../../../theme/illustrations'
 import CacheManager from '../components/CacheManager'
+import DetailPageSection from '../components/DetailPageSection'
 import LinksTabs from '../components/LinksTabs'
 import { selectElements } from '../stores/elementSlice'
 import { selectResources, updateResource } from '../stores/resourceSlice'
@@ -221,78 +222,91 @@ export default function StarshipPage({ isResource }: { isResource?: boolean }) {
               <Grid style={styles.gridContainer} container spacing={4}>
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
-                  <DesignHeader textAlign="left" color={color.primary} variant="h5">
+                  <DesignHeader style={styles.header} textAlign="left" color={color.primary} variant="h5">
                     {isResource ? `Resource - Starship` : `Element - Starship`}
                   </DesignHeader>
-                  <DesignEditableText label="Name" placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate}>
-                    {`${starship.name}`}
-                  </DesignEditableText>
+                  <DetailPageSection>
+                    <DesignEditableText label="Name" placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate}>
+                      {`${starship.name}`}
+                    </DesignEditableText>
+                  </DetailPageSection>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
-                  <DesignEditableText label="Model" placeholder={'Model'} editable={isResource} onUpdate={onModelUpdate}>
-                    {`${starship.model}`}
-                  </DesignEditableText>
-                  <DesignEditableText label="Starship class" placeholder={'Starship class'} editable={isResource} onUpdate={onStarshipClassUpdate}>
-                    {`${starship.starship_class}`}
-                  </DesignEditableText>
-                  <DesignEditableText label="Manufacturer" placeholder={'Manufacturer'} editable={isResource} onUpdate={onManufacturerUpdate}>
-                    {`${starship.manufacturer}`}
-                  </DesignEditableText>
+                  <DetailPageSection>
+                    <DesignEditableText label="Model" placeholder={'Model'} editable={isResource} onUpdate={onModelUpdate}>
+                      {`${starship.model}`}
+                    </DesignEditableText>
+                    <DesignEditableText label="Starship class" placeholder={'Starship class'} editable={isResource} onUpdate={onStarshipClassUpdate}>
+                      {`${starship.starship_class}`}
+                    </DesignEditableText>
+                    <DesignEditableText label="Manufacturer" placeholder={'Manufacturer'} editable={isResource} onUpdate={onManufacturerUpdate}>
+                      {`${starship.manufacturer}`}
+                    </DesignEditableText>
+                  </DetailPageSection>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
-                  <DesignEditableDate
-                    label="Created in"
-                    placeholder={'Creation'}
-                    editable={isResource}
-                    date={new Date(starship.created)}
-                    onUpdate={onCreatedDateUpdate}
-                  />
-                  <DesignEditableDate
-                    label="Edited in"
-                    placeholder={'Edition'}
-                    editable={isResource}
-                    date={new Date(starship.edited)}
-                    onUpdate={onEditedDateUpdate}
-                  />
+                  <DetailPageSection>
+                    <DesignEditableDate
+                      label="Created in"
+                      placeholder={'Creation'}
+                      editable={isResource}
+                      date={new Date(starship.created)}
+                      onUpdate={onCreatedDateUpdate}
+                    />
+                    <DesignEditableDate
+                      label="Edited in"
+                      placeholder={'Edition'}
+                      editable={isResource}
+                      date={new Date(starship.edited)}
+                      onUpdate={onEditedDateUpdate}
+                    />
+                  </DetailPageSection>
                 </Grid>
                 <Grid item xs={12} container>
-                  <Grid style={styles.grid} item xs={3}>
-                    <DesignEditableText label="Megalight per hour" placeholder={'MGLT'} editable={isResource} onUpdate={onMgltUpdate}>
-                      {`${starship.MGLT}`}
-                    </DesignEditableText>
-                    <DesignEditableText
-                      label="Hyperdrive rating"
-                      placeholder={'Hyperdrive rating'}
-                      editable={isResource}
-                      onUpdate={onHyperdriveUpdate}
-                    >
-                      {`${starship.hyperdrive_rating}`}
-                    </DesignEditableText>
-                  </Grid>
-                  <Grid style={styles.grid} item xs={3}>
-                    <DesignEditableText label="Crew" placeholder={'Crew'} editable={isResource} onUpdate={onCrewUpdate}>
-                      {`${starship.crew}`}
-                    </DesignEditableText>
-                    <DesignEditableText label="Passengers" placeholder={'Passengers'} editable={isResource} onUpdate={onPassengersUpdate}>
-                      {`${starship.passengers}`}
-                    </DesignEditableText>
-                  </Grid>
-                  <Grid style={styles.grid} item xs={3}>
-                    <DesignEditableText label="Cargo capacity" placeholder={'Cargo capacity'} editable={isResource} onUpdate={onCargoCapacityUpdate}>
-                      {`${starship.cargo_capacity}`}
-                    </DesignEditableText>
-                    <DesignEditableText label="Max speed" placeholder={'Speed'} editable={isResource} onUpdate={onMaxSpeedUpdate}>
-                      {`${starship.max_atmosphering_speed}`}
-                    </DesignEditableText>
-                  </Grid>
-                  <Grid style={styles.grid} item xs={3}>
-                    <DesignEditableText label="Cost" placeholder={'Cost'} editable={isResource} onUpdate={onCostUpdate}>
-                      {`${starship.cost_in_credits}`}
-                    </DesignEditableText>
-                    <DesignEditableText label="Consumables" placeholder={'Consumables'} editable={isResource} onUpdate={onConsumablesUpdate}>
-                      {`${starship.consumables}`}
-                    </DesignEditableText>
-                  </Grid>
+                  <DetailPageSection>
+                    <Grid style={styles.grid} item xs={3}>
+                      <DesignEditableText label="Megalight per hour" placeholder={'MGLT'} editable={isResource} onUpdate={onMgltUpdate}>
+                        {`${starship.MGLT}`}
+                      </DesignEditableText>
+                      <DesignEditableText
+                        label="Hyperdrive rating"
+                        placeholder={'Hyperdrive rating'}
+                        editable={isResource}
+                        onUpdate={onHyperdriveUpdate}
+                      >
+                        {`${starship.hyperdrive_rating}`}
+                      </DesignEditableText>
+                    </Grid>
+                    <Grid style={styles.grid} item xs={3}>
+                      <DesignEditableText label="Crew" placeholder={'Crew'} editable={isResource} onUpdate={onCrewUpdate}>
+                        {`${starship.crew}`}
+                      </DesignEditableText>
+                      <DesignEditableText label="Passengers" placeholder={'Passengers'} editable={isResource} onUpdate={onPassengersUpdate}>
+                        {`${starship.passengers}`}
+                      </DesignEditableText>
+                    </Grid>
+                    <Grid style={styles.grid} item xs={3}>
+                      <DesignEditableText
+                        label="Cargo capacity"
+                        placeholder={'Cargo capacity'}
+                        editable={isResource}
+                        onUpdate={onCargoCapacityUpdate}
+                      >
+                        {`${starship.cargo_capacity}`}
+                      </DesignEditableText>
+                      <DesignEditableText label="Max speed" placeholder={'Speed'} editable={isResource} onUpdate={onMaxSpeedUpdate}>
+                        {`${starship.max_atmosphering_speed}`}
+                      </DesignEditableText>
+                    </Grid>
+                    <Grid style={styles.grid} item xs={3}>
+                      <DesignEditableText label="Cost" placeholder={'Cost'} editable={isResource} onUpdate={onCostUpdate}>
+                        {`${starship.cost_in_credits}`}
+                      </DesignEditableText>
+                      <DesignEditableText label="Consumables" placeholder={'Consumables'} editable={isResource} onUpdate={onConsumablesUpdate}>
+                        {`${starship.consumables}`}
+                      </DesignEditableText>
+                    </Grid>
+                  </DetailPageSection>
                 </Grid>
                 <Grid item xs={12}>
                   <LinksTabs
@@ -355,5 +369,8 @@ const styles: {
   grid: {
     display: 'flex',
     flexDirection: 'column',
+  },
+  header: {
+    marginBottom: 2,
   },
 }
