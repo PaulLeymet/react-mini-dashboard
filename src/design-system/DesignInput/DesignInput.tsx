@@ -43,6 +43,7 @@ export default function DesignInput({
       value={text}
       placeholder={placeholder}
       variant='outlined'
+      autoCapitalize={'none'}
       onChange={onChangeHandler}
       onKeyDown={onKeyDown}
       type={type}

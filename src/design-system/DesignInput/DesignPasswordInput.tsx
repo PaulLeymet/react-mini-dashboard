@@ -44,6 +44,7 @@ export default function DesignPasswordInput({
       value={text}
       placeholder={placeholder}
       variant='outlined'
+      autoCapitalize={'none'}
       onChange={onChangeHandler}
       onKeyDown={onKeyDown}
       type={showPassword ? 'text' : 'password'}
