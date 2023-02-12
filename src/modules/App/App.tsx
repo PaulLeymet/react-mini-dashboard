@@ -19,6 +19,8 @@ import Login from '../Login/Login'
 import { resetAuth, selectAuth } from '../Login/stores/authSlice'
 import FallbackPage from './FallbackPage'
 
+const BASENAME = process.env.NODE_ENV === 'production' ? '/react-mini-dashboard' : '/'
+
 // =================
 // Routes
 // =================
@@ -86,7 +88,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: process.env.NODE_ENV === 'production' ? '/react-mini-dashboard' : undefined,
+    basename: BASENAME,
   },
 )
 
@@ -132,13 +134,13 @@ export default function App() {
   }
 
   const onLogout = () => {
-    window.location.href = '/'
     setAuthenticated(false)
     dispatch(resetAuth())
+    window.location.href = BASENAME
   }
 
   const onTitleClick = () => {
-    window.location.href = '/'
+    window.location.href = BASENAME
   }
 
   // =================
