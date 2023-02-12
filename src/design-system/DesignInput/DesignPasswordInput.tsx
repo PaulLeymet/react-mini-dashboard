@@ -10,11 +10,13 @@ export default function DesignPasswordInput({
   text,
   sx,
   onChange,
+  onKeyDown,
 }: {
   placeholder?: string
   text: string
   sx?: SxProps<Theme>
   onChange: (text: string) => void
+  onKeyDown?: () => void
 }) {
   const [showPassword, setShowPassword] = useState(false)
 
@@ -33,7 +35,7 @@ export default function DesignPasswordInput({
 
   return (
     <TextField
-      color="info"
+      color='info'
       sx={{
         ...styles,
         ...sx,
@@ -41,13 +43,14 @@ export default function DesignPasswordInput({
       margin={'dense'}
       value={text}
       placeholder={placeholder}
-      variant="outlined"
+      variant='outlined'
       onChange={onChangeHandler}
+      onKeyDown={onKeyDown}
       type={showPassword ? 'text' : 'password'}
       InputProps={{
         endAdornment: (
-          <InputAdornment position="end">
-            <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
+          <InputAdornment position='end'>
+            <IconButton aria-label='toggle password visibility' onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
               {showPassword ? <Visibility /> : <VisibilityOff />}
             </IconButton>
           </InputAdornment>

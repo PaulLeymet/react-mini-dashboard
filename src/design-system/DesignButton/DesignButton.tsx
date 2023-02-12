@@ -9,6 +9,7 @@ export default function DesignButton({
   loading,
   disabled,
   sx,
+  onKeyDown,
 }: {
   className?: string
   label: string
@@ -16,6 +17,7 @@ export default function DesignButton({
   loading?: boolean
   disabled?: boolean
   sx?: SxProps<Theme>
+  onKeyDown?: () => void
 }) {
   const styles: SxProps<Theme> = {
     padding: 1,
@@ -43,6 +45,7 @@ export default function DesignButton({
         className={className}
         variant='contained'
         onClick={onClick}
+        onKeyDown={onKeyDown}
       >
         {label}
       </LoadingButton>

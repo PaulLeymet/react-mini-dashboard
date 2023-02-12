@@ -9,12 +9,14 @@ export default function DesignInput({
   text,
   sx,
   onChange,
+  onKeyDown,
   type,
 }: {
   placeholder?: string
   text: string
   sx?: SxProps<Theme>
   onChange?: (text: string) => void
+  onKeyDown?: () => void
   type?: React.HTMLInputTypeAttribute
 }) {
   const styles: SxProps<Theme> = {
@@ -32,7 +34,7 @@ export default function DesignInput({
 
   return (
     <TextField
-      color="info"
+      color='info'
       sx={{
         ...styles,
         ...sx,
@@ -40,8 +42,9 @@ export default function DesignInput({
       margin={'dense'}
       value={text}
       placeholder={placeholder}
-      variant="outlined"
+      variant='outlined'
       onChange={onChangeHandler}
+      onKeyDown={onKeyDown}
       type={type}
     />
   )

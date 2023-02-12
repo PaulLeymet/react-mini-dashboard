@@ -73,7 +73,7 @@ export default function Login() {
               <DesignText>{`Hello ${auth.user.username}`}</DesignText>
             </div>
             <div style={styles.login}>
-              <DesignButton sx={styles.loginElement} label="Logout" onClick={onLogout} />
+              <DesignButton sx={styles.loginElement} label='Logout' onClick={onLogout} />
             </div>
           </>
         ) : (
@@ -82,9 +82,9 @@ export default function Login() {
               <DesignHeader color={color.white}>{`Login`}</DesignHeader>
             </div>
             <div style={styles.login}>
-              <DesignInput sx={styles.loginElement} placeholder="Username" text={username} onChange={onUsernameChange} />
-              <DesignPasswordInput sx={styles.loginElement} placeholder="Password" text={password} onChange={onPasswordChange} />
-              <DesignButton sx={styles.loginElement} label="Login" onClick={onLogin} />
+              <DesignInput sx={styles.loginElement} placeholder='Username' text={username} onChange={onUsernameChange} onKeyDown={onLogin} />
+              <DesignPasswordInput sx={styles.loginElement} placeholder='Password' text={password} onChange={onPasswordChange} onKeyDown={onLogin} />
+              <DesignButton sx={styles.loginElement} label='Login' onClick={onLogin} />
             </div>
           </>
         )}
