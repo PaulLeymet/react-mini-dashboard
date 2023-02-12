@@ -8,7 +8,6 @@ import DesignText from '../../design-system/DesignText/DesignText'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { color } from '../../theme/color'
 import { ILLUSTRATIONS } from '../../theme/illustrations'
-import { hashString } from '../../utils/crypt'
 import { resetAuth, selectAuth, setToken } from './stores/authSlice'
 
 const CREDENTIALS = {
@@ -54,7 +53,7 @@ export default function Login() {
     }
 
     // @TODO : Server must create and store a token
-    const TOKEN = hashString(username + password)
+    const TOKEN = 'SERVER-PROVIDED-TOKEN'
     dispatch(setToken(TOKEN))
   }
 
