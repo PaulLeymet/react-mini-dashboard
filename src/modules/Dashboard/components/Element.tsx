@@ -3,7 +3,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
 import { motion } from 'framer-motion'
 import { CSSProperties, useState } from 'react'
-import DesignText from '../../../design-system/DesignText/DesignText'
+import DesignHeader from '../../../design-system/DesignText/DesignHeader'
 import { useIsMobile } from '../../../hooks/useIsMobile'
 import { color } from '../../../theme/color'
 
@@ -64,9 +64,9 @@ export default function Element({
       onHoverEnd={onHoverEnd}
       onClick={onShow}
     >
-      <DesignText color={color.white} textAlign={'center'} style={styles.text}>
+      <DesignHeader color={color.white} textAlign={'center'} style={styles.text} variant={'subtitle1'}>
         {id}
-      </DesignText>
+      </DesignHeader>
       {hovered ? (
         isResource ? (
           <div style={styles.deleteIconContainer}>
@@ -104,7 +104,6 @@ const styles: {
     cursor: 'pointer',
   },
   text: {
-    fontFamily: 'Starjedi',
     pointerEvents: 'none',
   },
   addIconContainer: {

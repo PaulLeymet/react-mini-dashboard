@@ -13,7 +13,7 @@ export default function DesignHeader({
   style?: CSSProperties
   onClick?: () => void
   color?: string
-  variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'caption' | 'button' | 'overline' | 'inherit'
   textAlign?: 'center' | 'left' | 'right'
 }) {
   return (
@@ -27,7 +27,8 @@ export default function DesignHeader({
       color={color}
       textAlign={textAlign}
     >
-      {children}
+      {/* Patch for wrong characteur in Starjedi custom font */}
+      {children.replace('V', 'v').replace('O', 'o')}
     </DesignText>
   )
 }
