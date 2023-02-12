@@ -15,4 +15,4 @@ Here's a [live version](https://paulleymet.github.io/react-mini-dashboard/).
 
 1.  Clone the repo : `https://github.com/PaulLeymet/react-mini-dashboard.git`
 2.  Build and run the app : `yarn; yarn start`
-3.  The app is locally served : http://localhost:3000/
+3.  The app is locally served : http://localhost:3000/react-mini-dashboard

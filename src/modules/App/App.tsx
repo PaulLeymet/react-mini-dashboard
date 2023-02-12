@@ -19,7 +19,7 @@ import Login from '../Login/Login'
 import { resetAuth, selectAuth } from '../Login/stores/authSlice'
 import FallbackPage from './FallbackPage'
 
-const BASENAME = process.env.NODE_ENV === 'production' ? '/react-mini-dashboard' : '/'
+const BASENAME = '/react-mini-dashboard'
 
 // =================
 // Routes
