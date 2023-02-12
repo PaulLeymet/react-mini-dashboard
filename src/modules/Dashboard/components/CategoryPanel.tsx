@@ -3,6 +3,7 @@ import DesignBox from '../../../design-system/DesignBox/DesignBox'
 import DesignHeader from '../../../design-system/DesignText/DesignHeader'
 import { useAppSelector } from '../../../store/hooks'
 import { color } from '../../../theme/color'
+import { selectElements } from '../stores/elementSlice'
 import { selectResources } from '../stores/resourceSlice'
 import { ElementsCategory } from '../stores/types/CategoryType'
 import CacheManager from './CacheManager'
@@ -12,6 +13,7 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
   // =================
   // Stores
   // =================
+  const elements = useAppSelector(selectElements)
   const resources = useAppSelector(selectResources)
 
   // =================
@@ -25,6 +27,24 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
   // =================
   // Methods
   // =================
+  const getCategoryLabel = (category: ElementsCategory) => {
+    switch (category) {
+      case 'films':
+        return 'Films'
+      case 'people':
+        return 'People'
+      case 'planets':
+        return 'Planets'
+      case 'species':
+        return 'Species'
+      case 'starships':
+        return 'Starships'
+      case 'vehicles':
+        return 'Vehicles'
+      default:
+        return ''
+    }
+  }
 
   // =================
   // Render
@@ -37,16 +57,16 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
       }}
     >
       <DesignBox style={styles.elementSection}>
-        <DesignHeader style={styles.header} color={color.white}>
-          {'Category elements'}
+        <DesignHeader textAlign="left" style={styles.header} color={color.white}>
+          {`${getCategoryLabel(category)} - ${elements[`${category}`].count}`}
         </DesignHeader>
         <ElementsList style={styles.cardContainer} category={category} />
       </DesignBox>
       <DesignBox style={styles.resourceSection}>
         {resources[`${category}`].length ? (
           <>
-            <DesignHeader style={styles.header} color={color.white}>
-              {'My resources'}
+            <DesignHeader textAlign="left" style={styles.header} color={color.white}>
+              {`My ${getCategoryLabel(category).toLowerCase()} - ${resources[`${category}`].length}`}
             </DesignHeader>
             <ElementsList category={category} isResourceList />
           </>
@@ -67,10 +87,12 @@ const styles: {
   elementSection: {
     flexDirection: 'column',
     margin: 10,
+    padding: 10,
     flex: 1,
   },
   resourceSection: {
     flexDirection: 'column',
+    padding: 10,
     margin: 10,
     flex: 1,
   },

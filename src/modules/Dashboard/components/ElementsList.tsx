@@ -2,7 +2,7 @@ import { CSSProperties } from 'react'
 import DesignBox from '../../../design-system/DesignBox/DesignBox'
 import DesignSlick from '../../../design-system/DesignSlick/DesignSlick'
 import DesignSpinner from '../../../design-system/DesignSpinner/DesignSpinner'
-import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import { useAppSelector } from '../../../store/hooks'
 import { color } from '../../../theme/color'
 import { selectElements } from '../stores/elementSlice'
 import { selectResources } from '../stores/resourceSlice'
@@ -34,7 +34,6 @@ export default function ElementsList({
   // =================
   const dashboard = useAppSelector(selectElements)
   const resources = useAppSelector(selectResources)
-  const dispatch = useAppDispatch()
 
   // =================
   // States
