@@ -10,8 +10,8 @@ export default function FallbackPage() {
   // =================
   return (
     <div style={styles.page}>
-      <DesignHeader variant="h2" color={color.white}>{`Wrong page`}</DesignHeader>
-      <DesignText variant="h6" color={color.white}>{`You lost your way young Jedi !`}</DesignText>
+      <DesignHeader variant='h2' color={color.white}>{`Wrong page`}</DesignHeader>
+      <DesignText variant='h6' color={color.white}>{`You lost your way young Jedi !`}</DesignText>
     </div>
   )
 }

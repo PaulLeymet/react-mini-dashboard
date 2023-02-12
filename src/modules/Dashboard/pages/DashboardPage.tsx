@@ -106,27 +106,27 @@ export default function DashboardPage() {
         tabs={[
           {
             label: 'Films',
-            content: <CategoryPanel category="films" />,
+            content: <CategoryPanel category='films' />,
           },
           {
             label: 'People',
-            content: <CategoryPanel category="people" />,
+            content: <CategoryPanel category='people' />,
           },
           {
             label: 'Planets',
-            content: <CategoryPanel category="planets" />,
+            content: <CategoryPanel category='planets' />,
           },
           {
             label: 'Species',
-            content: <CategoryPanel category="species" />,
+            content: <CategoryPanel category='species' />,
           },
           {
             label: 'Starships',
-            content: <CategoryPanel category="starships" />,
+            content: <CategoryPanel category='starships' />,
           },
           {
             label: 'Vehicles',
-            content: <CategoryPanel category="vehicles" />,
+            content: <CategoryPanel category='vehicles' />,
           },
         ]}
       />

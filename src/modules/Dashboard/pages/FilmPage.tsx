@@ -126,11 +126,11 @@ export default function FilmPage({ isResource }: { isResource?: boolean }) {
               <Grid style={styles.gridContainer} container spacing={4}>
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
-                  <DesignHeader style={styles.header} textAlign="left" color={color.primary} variant="h5">
+                  <DesignHeader style={styles.header} textAlign='left' color={color.primary} variant='h5'>
                     {isResource ? `Resource - Film` : `Element - Film`}
                   </DesignHeader>
                   <DetailPageSection>
-                    <DesignEditableText label="Title" placeholder={'Title'} editable={isResource} onUpdate={onTitleUpdate}>
+                    <DesignEditableText label='Title' placeholder={'Title'} editable={isResource} onUpdate={onTitleUpdate}>
                       {isResource ? `${film.title}` : `Episode ${film.episode_id} - ${film.title}`}
                     </DesignEditableText>
                   </DetailPageSection>
@@ -138,8 +138,8 @@ export default function FilmPage({ isResource }: { isResource?: boolean }) {
                 <Grid style={styles.grid} item xs={6}>
                   <DetailPageSection>
                     <DesignEditableText
-                      label="Directed by"
-                      placeholder="Director"
+                      label='Directed by'
+                      placeholder='Director'
                       editable={isResource}
                       onUpdate={onDirectorUpdate}
                     >{`${film.director}`}</DesignEditableText>
@@ -154,14 +154,14 @@ export default function FilmPage({ isResource }: { isResource?: boolean }) {
                 <Grid style={styles.grid} item xs={6}>
                   <DetailPageSection>
                     <DesignEditableDate
-                      label="Created in"
+                      label='Created in'
                       placeholder={'Creation'}
                       editable={isResource}
                       date={new Date(film.created)}
                       onUpdate={onCreatedDateUpdate}
                     />
                     <DesignEditableDate
-                      label="Released in"
+                      label='Released in'
                       placeholder={'Release'}
                       editable={isResource}
                       date={new Date(film.release_date)}
@@ -172,7 +172,7 @@ export default function FilmPage({ isResource }: { isResource?: boolean }) {
                 <Grid item xs={12}>
                   <DetailPageSection>
                     <DesignEditableText
-                      label="Opening crawl"
+                      label='Opening crawl'
                       style={{ display: 'flex', flexGrow: 1 }}
                       placeholder={'Opening crawl'}
                       editable={isResource}

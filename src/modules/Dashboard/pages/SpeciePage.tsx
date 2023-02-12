@@ -187,27 +187,27 @@ export default function SpeciePage({ isResource }: { isResource?: boolean }) {
               <Grid style={styles.gridContainer} container spacing={4}>
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
-                  <DesignHeader style={styles.header} textAlign="left" color={color.primary} variant="h5">
+                  <DesignHeader style={styles.header} textAlign='left' color={color.primary} variant='h5'>
                     {isResource ? `Resource - Specie` : `Element - Specie`}
                   </DesignHeader>
                   <DetailPageSection>
-                    <DesignEditableText label="Name" placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate}>
+                    <DesignEditableText label='Name' placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate}>
                       {`${specie.name}`}
                     </DesignEditableText>
                   </DetailPageSection>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
                   <DetailPageSection>
-                    <DesignEditableText label="Classification" placeholder={'Classification'} editable={isResource} onUpdate={onClassificationUpdate}>
+                    <DesignEditableText label='Classification' placeholder={'Classification'} editable={isResource} onUpdate={onClassificationUpdate}>
                       {`${specie.classification}`}
                     </DesignEditableText>
-                    <DesignEditableText label="Designation" placeholder={'Designation'} editable={isResource} onUpdate={onDesignationUpdate}>
+                    <DesignEditableText label='Designation' placeholder={'Designation'} editable={isResource} onUpdate={onDesignationUpdate}>
                       {`${specie.designation}`}
                     </DesignEditableText>
-                    <DesignEditableText label="Average height" placeholder={'Average height'} editable={isResource} onUpdate={onHeightUpdate}>
+                    <DesignEditableText label='Average height' placeholder={'Average height'} editable={isResource} onUpdate={onHeightUpdate}>
                       {`${specie.average_height}`}
                     </DesignEditableText>
-                    <DesignEditableText label="Average lifespan" placeholder={'Average lifespan'} editable={isResource} onUpdate={onLifespanceUpdate}>
+                    <DesignEditableText label='Average lifespan' placeholder={'Average lifespan'} editable={isResource} onUpdate={onLifespanceUpdate}>
                       {`${specie.average_lifespan}`}
                     </DesignEditableText>
                   </DetailPageSection>
@@ -215,39 +215,39 @@ export default function SpeciePage({ isResource }: { isResource?: boolean }) {
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
                   <DetailPageSection>
                     <DesignEditableDate
-                      label="Created in"
+                      label='Created in'
                       placeholder={'Creation'}
                       editable={isResource}
                       date={new Date(specie.created)}
                       onUpdate={onCreatedDateUpdate}
                     />
                     <DesignEditableDate
-                      label="Edited in"
+                      label='Edited in'
                       placeholder={'Edition'}
                       editable={isResource}
                       date={new Date(specie.edited)}
                       onUpdate={onEditedDateUpdate}
                     />
-                    <DesignEditableText label="Language" placeholder={'Language'} editable={isResource} onUpdate={onLanguageUpdate}>
+                    <DesignEditableText label='Language' placeholder={'Language'} editable={isResource} onUpdate={onLanguageUpdate}>
                       {`${specie.language}`}
                     </DesignEditableText>
-                    <DesignPageLink label="Homeworld" category="planets" url={specie.homeworld} />
+                    <DesignPageLink label='Homeworld' category='planets' url={specie.homeworld} />
                   </DetailPageSection>
                 </Grid>
                 <Grid item xs={12} container>
                   <DetailPageSection>
                     <Grid style={styles.grid} item xs={4}>
-                      <DesignEditableText label="Skin colors" placeholder={'Skin colors'} editable={isResource} onUpdate={onSkinColorsUpdate}>
+                      <DesignEditableText label='Skin colors' placeholder={'Skin colors'} editable={isResource} onUpdate={onSkinColorsUpdate}>
                         {`${specie.skin_colors}`}
                       </DesignEditableText>
                     </Grid>
                     <Grid style={styles.grid} item xs={4}>
-                      <DesignEditableText label="Eye colors" placeholder={'Eye colors'} editable={isResource} onUpdate={onEyeColorsUpdate}>
+                      <DesignEditableText label='Eye colors' placeholder={'Eye colors'} editable={isResource} onUpdate={onEyeColorsUpdate}>
                         {`${specie.eye_colors}`}
                       </DesignEditableText>
                     </Grid>
                     <Grid style={styles.grid} item xs={4}>
-                      <DesignEditableText label="Hairs colors" placeholder={'Hairs colors'} editable={isResource} onUpdate={onHairColorUpdate}>
+                      <DesignEditableText label='Hairs colors' placeholder={'Hairs colors'} editable={isResource} onUpdate={onHairColorUpdate}>
                         {`${specie.hair_colors}`}
                       </DesignEditableText>
                     </Grid>

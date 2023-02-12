@@ -41,7 +41,7 @@ export default function DesignButton({
         disabled={disabled}
         loading={loading}
         className={className}
-        variant="contained"
+        variant='contained'
         onClick={onClick}
       >
         {label}

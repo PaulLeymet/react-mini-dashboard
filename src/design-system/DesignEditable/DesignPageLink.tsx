@@ -61,13 +61,13 @@ export default function DesignPageLink({ label, category, url, style }: DesignPa
     (element?.name || element?.title) &&
     (label ? (
       <DesignBox style={styles.container}>
-        <DesignText style={styles.label} textAlign="left">
+        <DesignText style={styles.label} textAlign='left'>
           {label}
         </DesignText>
         <Chip
-          placeholder="..."
+          placeholder='...'
           style={{ ...styles.link, ...style }}
-          variant="outlined"
+          variant='outlined'
           label={element?.name || element?.title}
           clickable
           onClick={navigateTo}
@@ -75,9 +75,9 @@ export default function DesignPageLink({ label, category, url, style }: DesignPa
       </DesignBox>
     ) : (
       <Chip
-        placeholder="..."
+        placeholder='...'
         style={{ ...styles.link, ...style }}
-        variant="outlined"
+        variant='outlined'
         label={element?.name || element?.title}
         clickable
         onClick={navigateTo}

@@ -198,24 +198,24 @@ export default function VehiclePage({ isResource }: { isResource?: boolean }) {
               <Grid style={styles.gridContainer} container spacing={4}>
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
-                  <DesignHeader style={styles.header} textAlign="left" color={color.primary} variant="h5">
+                  <DesignHeader style={styles.header} textAlign='left' color={color.primary} variant='h5'>
                     {isResource ? `Resource - Vehicle` : `Element - Vehicle`}
                   </DesignHeader>
                   <DetailPageSection>
-                    <DesignEditableText label="Name" placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate}>
+                    <DesignEditableText label='Name' placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate}>
                       {`${vehicle.name}`}
                     </DesignEditableText>
                   </DetailPageSection>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
                   <DetailPageSection>
-                    <DesignEditableText label="Model" placeholder={'Model'} editable={isResource} onUpdate={onModelUpdate}>
+                    <DesignEditableText label='Model' placeholder={'Model'} editable={isResource} onUpdate={onModelUpdate}>
                       {`${vehicle.model}`}
                     </DesignEditableText>
-                    <DesignEditableText label="Vehicle class" placeholder={'Vehicle class'} editable={isResource} onUpdate={onVehicleClassUpdate}>
+                    <DesignEditableText label='Vehicle class' placeholder={'Vehicle class'} editable={isResource} onUpdate={onVehicleClassUpdate}>
                       {`${vehicle.vehicle_class}`}
                     </DesignEditableText>
-                    <DesignEditableText label="Manufacturer" placeholder={'Manufacturer'} editable={isResource} onUpdate={onManufacturerUpdate}>
+                    <DesignEditableText label='Manufacturer' placeholder={'Manufacturer'} editable={isResource} onUpdate={onManufacturerUpdate}>
                       {`${vehicle.manufacturer}`}
                     </DesignEditableText>
                   </DetailPageSection>
@@ -223,14 +223,14 @@ export default function VehiclePage({ isResource }: { isResource?: boolean }) {
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
                   <DetailPageSection>
                     <DesignEditableDate
-                      label="Created in"
+                      label='Created in'
                       placeholder={'Creation'}
                       editable={isResource}
                       date={new Date(vehicle.created)}
                       onUpdate={onCreatedDateUpdate}
                     />
                     <DesignEditableDate
-                      label="Edited in"
+                      label='Edited in'
                       placeholder={'Edition'}
                       editable={isResource}
                       date={new Date(vehicle.edited)}
@@ -241,31 +241,31 @@ export default function VehiclePage({ isResource }: { isResource?: boolean }) {
                 <Grid item xs={12} container>
                   <DetailPageSection>
                     <Grid style={styles.grid} item xs={4}>
-                      <DesignEditableText label="Crew" placeholder={'Crew'} editable={isResource} onUpdate={onCrewUpdate}>
+                      <DesignEditableText label='Crew' placeholder={'Crew'} editable={isResource} onUpdate={onCrewUpdate}>
                         {`${vehicle.crew}`}
                       </DesignEditableText>
-                      <DesignEditableText label="Passengers" placeholder={'Passengers'} editable={isResource} onUpdate={onPassengersUpdate}>
+                      <DesignEditableText label='Passengers' placeholder={'Passengers'} editable={isResource} onUpdate={onPassengersUpdate}>
                         {`${vehicle.passengers}`}
                       </DesignEditableText>
                     </Grid>
                     <Grid style={styles.grid} item xs={4}>
                       <DesignEditableText
-                        label="Cargo capacity"
+                        label='Cargo capacity'
                         placeholder={'Cargo capacity'}
                         editable={isResource}
                         onUpdate={onCargoCapacityUpdate}
                       >
                         {`${vehicle.cargo_capacity}`}
                       </DesignEditableText>
-                      <DesignEditableText label="Max speed" placeholder={'Speed'} editable={isResource} onUpdate={onMaxSpeedUpdate}>
+                      <DesignEditableText label='Max speed' placeholder={'Speed'} editable={isResource} onUpdate={onMaxSpeedUpdate}>
                         {`${vehicle.max_atmosphering_speed}`}
                       </DesignEditableText>
                     </Grid>
                     <Grid style={styles.grid} item xs={4}>
-                      <DesignEditableText label="Cost" placeholder={'Cost'} editable={isResource} onUpdate={onCostUpdate}>
+                      <DesignEditableText label='Cost' placeholder={'Cost'} editable={isResource} onUpdate={onCostUpdate}>
                         {`${vehicle.cost_in_credits}`}
                       </DesignEditableText>
-                      <DesignEditableText label="Consumables" placeholder={'Consumables'} editable={isResource} onUpdate={onConsumablesUpdate}>
+                      <DesignEditableText label='Consumables' placeholder={'Consumables'} editable={isResource} onUpdate={onConsumablesUpdate}>
                         {`${vehicle.consumables}`}
                       </DesignEditableText>
                     </Grid>

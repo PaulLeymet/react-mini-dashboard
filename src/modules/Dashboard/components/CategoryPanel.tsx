@@ -57,7 +57,7 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
       }}
     >
       <DesignBox style={styles.elementSection}>
-        <DesignHeader textAlign="left" style={styles.header} color={color.white}>
+        <DesignHeader textAlign='left' style={styles.header} color={color.white}>
           {`${getCategoryLabel(category)} - ${elements[`${category}`].count}`}
         </DesignHeader>
         <ElementsList style={styles.cardContainer} category={category} />
@@ -65,7 +65,7 @@ export default function CategoryPanel({ category, style }: { category: ElementsC
       <DesignBox style={styles.resourceSection}>
         {resources[`${category}`].length ? (
           <>
-            <DesignHeader textAlign="left" style={styles.header} color={color.white}>
+            <DesignHeader textAlign='left' style={styles.header} color={color.white}>
               {`My ${getCategoryLabel(category).toLowerCase()} - ${resources[`${category}`].length}`}
             </DesignHeader>
             <ElementsList category={category} isResourceList />

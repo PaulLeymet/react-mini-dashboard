@@ -163,30 +163,30 @@ export default function PeoplePage({ isResource }: { isResource?: boolean }) {
               <Grid style={styles.gridContainer} container spacing={4}>
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
-                  <DesignHeader style={styles.header} textAlign="left" color={color.primary} variant="h5">
+                  <DesignHeader style={styles.header} textAlign='left' color={color.primary} variant='h5'>
                     {isResource ? `Resource - People` : `Element - People`}
                   </DesignHeader>
                   <DetailPageSection>
-                    <DesignEditableText label="Name" placeholder={'Name'} editable={isResource} onUpdate={onNameUpdate}>
+                    <DesignEditableText label='Name' placeholder={'Name'} editable={isResource} onUpdate={onNameUpdate}>
                       {`${people.name}`}
                     </DesignEditableText>
                   </DetailPageSection>
                 </Grid>
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
                   <DetailPageSection>
-                    <DesignEditableText label="Gender" placeholder={'Gender'} editable={isResource} onUpdate={onGenderUpdate}>
+                    <DesignEditableText label='Gender' placeholder={'Gender'} editable={isResource} onUpdate={onGenderUpdate}>
                       {`${people.gender}`}
                     </DesignEditableText>
-                    <DesignEditableText label="Height" placeholder={'Height'} editable={isResource} onUpdate={onHeightUpdate}>
+                    <DesignEditableText label='Height' placeholder={'Height'} editable={isResource} onUpdate={onHeightUpdate}>
                       {`${people.height}`}
                     </DesignEditableText>
-                    <DesignEditableText label="Mass" placeholder={'Mass'} editable={isResource} onUpdate={onMassUpdate}>
+                    <DesignEditableText label='Mass' placeholder={'Mass'} editable={isResource} onUpdate={onMassUpdate}>
                       {`${people.mass}`}
                     </DesignEditableText>
-                    <DesignEditableText label=" Eye color" placeholder={'Eye color'} editable={isResource} onUpdate={onEyeColorUpdate}>
+                    <DesignEditableText label=' Eye color' placeholder={'Eye color'} editable={isResource} onUpdate={onEyeColorUpdate}>
                       {`${people.eye_color}`}
                     </DesignEditableText>
-                    <DesignEditableText label=" Hair color" placeholder={'Hair color'} editable={isResource} onUpdate={onHairColorUpdate}>
+                    <DesignEditableText label=' Hair color' placeholder={'Hair color'} editable={isResource} onUpdate={onHairColorUpdate}>
                       {`${people.hair_color}`}
                     </DesignEditableText>
                   </DetailPageSection>
@@ -194,24 +194,24 @@ export default function PeoplePage({ isResource }: { isResource?: boolean }) {
                 <Grid style={{ ...styles.grid, ...{ justifyContent: 'start' } }} item xs={6}>
                   <DetailPageSection>
                     <DesignEditableDate
-                      label="Created in"
+                      label='Created in'
                       placeholder={'Creation'}
                       editable={isResource}
                       date={new Date(people.created)}
                       onUpdate={onCreatedDateUpdate}
                     />
                     <DesignEditableDate
-                      label="Edited in"
+                      label='Edited in'
                       placeholder={'Edition'}
                       editable={isResource}
                       date={new Date(people.edited)}
                       onUpdate={onEditedDateUpdate}
                     />
-                    <DesignEditableText label="Birth year" placeholder={'Birth'} editable={isResource} onUpdate={onBirthYearUpdate}>
+                    <DesignEditableText label='Birth year' placeholder={'Birth'} editable={isResource} onUpdate={onBirthYearUpdate}>
                       {`${people.birth_year}`}
                     </DesignEditableText>
 
-                    <DesignPageLink label="Homeworld" category="planets" url={people.homeworld} />
+                    <DesignPageLink label='Homeworld' category='planets' url={people.homeworld} />
                   </DetailPageSection>
                 </Grid>
 

@@ -67,7 +67,7 @@ export default function DesignEditableDate({
           inputProps={{ min: 0, style: { textAlign: 'center' } }}
           //InputLabelProps={{ style: { color: color.primary } }}
           disabled={!editable}
-          variant="standard"
+          variant='standard'
           placeholder={placeholder}
           value={`${dateFormat(date, 'dd/MM/yyyy')}`}
           {...params}

@@ -186,21 +186,21 @@ export default function PlanetPage({ isResource }: { isResource?: boolean }) {
               <Grid style={styles.gridContainer} container spacing={4}>
                 {/* SECTION TITLE */}
                 <Grid style={styles.grid} item xs={12}>
-                  <DesignHeader style={styles.header} textAlign="left" color={color.primary} variant="h5">
+                  <DesignHeader style={styles.header} textAlign='left' color={color.primary} variant='h5'>
                     {isResource ? `Resource - Planet` : `Element - Planet`}
                   </DesignHeader>
                   <DetailPageSection>
-                    <DesignEditableText label="Name" placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate}>
+                    <DesignEditableText label='Name' placeholder={'Title'} editable={isResource} onUpdate={onNameUpdate}>
                       {`${planet.name}`}
                     </DesignEditableText>
                   </DetailPageSection>
                 </Grid>
                 <Grid style={styles.grid} item xs={6}>
                   <DetailPageSection>
-                    <DesignEditableText label="Climate" placeholder={'Climate'} editable={isResource} onUpdate={onClimateUpdate}>
+                    <DesignEditableText label='Climate' placeholder={'Climate'} editable={isResource} onUpdate={onClimateUpdate}>
                       {`${planet.climate}`}
                     </DesignEditableText>
-                    <DesignEditableText label="Population" placeholder={'Population'} editable={isResource} onUpdate={onPopulationUpdate}>
+                    <DesignEditableText label='Population' placeholder={'Population'} editable={isResource} onUpdate={onPopulationUpdate}>
                       {`${planet.population}`}
                     </DesignEditableText>
                   </DetailPageSection>
@@ -208,14 +208,14 @@ export default function PlanetPage({ isResource }: { isResource?: boolean }) {
                 <Grid style={styles.grid} item xs={6}>
                   <DetailPageSection>
                     <DesignEditableDate
-                      label="Created in"
+                      label='Created in'
                       placeholder={'Creation'}
                       editable={isResource}
                       date={new Date(planet.created)}
                       onUpdate={onCreatedDateUpdate}
                     />
                     <DesignEditableDate
-                      label=" Edited in"
+                      label=' Edited in'
                       placeholder={'Edition'}
                       editable={isResource}
                       date={new Date(planet.edited)}
@@ -226,10 +226,10 @@ export default function PlanetPage({ isResource }: { isResource?: boolean }) {
                 <Grid item xs={12} container>
                   <Grid style={styles.grid} item xs={4}>
                     <DetailPageSection>
-                      <DesignEditableText label="Orbital period" placeholder={'Orbital period'} editable={isResource} onUpdate={onOrbitalUpdate}>
+                      <DesignEditableText label='Orbital period' placeholder={'Orbital period'} editable={isResource} onUpdate={onOrbitalUpdate}>
                         {`${planet.orbital_period}`}
                       </DesignEditableText>
-                      <DesignEditableText label="Rotation period" placeholder={'Rotation period'} editable={isResource} onUpdate={onRotationUpdate}>
+                      <DesignEditableText label='Rotation period' placeholder={'Rotation period'} editable={isResource} onUpdate={onRotationUpdate}>
                         {`${planet.rotation_period}`}
                       </DesignEditableText>
                     </DetailPageSection>
@@ -237,20 +237,20 @@ export default function PlanetPage({ isResource }: { isResource?: boolean }) {
 
                   <Grid style={styles.grid} item xs={4}>
                     <DetailPageSection>
-                      <DesignEditableText label="Diameter" placeholder={'Diameter'} editable={isResource} onUpdate={onDiameterUpdate}>
+                      <DesignEditableText label='Diameter' placeholder={'Diameter'} editable={isResource} onUpdate={onDiameterUpdate}>
                         {`${planet.diameter}`}
                       </DesignEditableText>
-                      <DesignEditableText label="Gravity" placeholder={'Gravity'} editable={isResource} onUpdate={onGravityUpdate}>
+                      <DesignEditableText label='Gravity' placeholder={'Gravity'} editable={isResource} onUpdate={onGravityUpdate}>
                         {`${planet.gravity}`}
                       </DesignEditableText>
                     </DetailPageSection>
                   </Grid>
                   <Grid style={styles.grid} item xs={4}>
                     <DetailPageSection>
-                      <DesignEditableText label="Terrain" placeholder={'Terrain'} editable={isResource} onUpdate={onTerrainUpdate}>
+                      <DesignEditableText label='Terrain' placeholder={'Terrain'} editable={isResource} onUpdate={onTerrainUpdate}>
                         {`${planet.terrain}`}
                       </DesignEditableText>
-                      <DesignEditableText label="Surface water" placeholder={'Surface water'} editable={isResource} onUpdate={onSurfaceWaterUpdate}>
+                      <DesignEditableText label='Surface water' placeholder={'Surface water'} editable={isResource} onUpdate={onSurfaceWaterUpdate}>
                         {`${planet.surface_water}`}
                       </DesignEditableText>
                     </DetailPageSection>
