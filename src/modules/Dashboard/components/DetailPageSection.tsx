@@ -30,7 +30,7 @@ const styles: {
 } = {
   section: {
     flexDirection: 'column',
-    border: `1px solid ${color.secondary}`,
+    border: `1px solid ${color.black + '10'}`,
     borderRadius: 20,
     marginLeft: 10,
     marginRight: 10,
