@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { selectElements } from '../stores/elementSlice'
@@ -5,7 +6,7 @@ import { addResource, removeResource, selectResources } from '../stores/resource
 import { PeopleType } from '../stores/types/PeopleType'
 import Element from './Element'
 
-export default function People({ people, isResource }: { people: PeopleType; isResource?: boolean }) {
+export default function People({ people, style, isResource }: { people: PeopleType; style?: CSSProperties; isResource?: boolean }) {
   // =================
   // Stores
   // =================

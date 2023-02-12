@@ -1,7 +1,5 @@
 import { CSSProperties } from 'react'
-import DesignBox from '../../../design-system/DesignBox/DesignBox'
-import DesignSlick from '../../../design-system/DesignSlick/DesignSlick'
-import DesignSpinner from '../../../design-system/DesignSpinner/DesignSpinner'
+import { DesignBox, DesignSlick, DesignSpinner } from '../../../design-system'
 import { useAppSelector } from '../../../store/hooks'
 import { color } from '../../../theme/color'
 import { selectElements } from '../stores/elementSlice'

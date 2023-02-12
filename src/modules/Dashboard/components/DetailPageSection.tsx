@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react'
-import DesignBox from '../../../design-system/DesignBox/DesignBox'
+import { DesignBox } from '../../../design-system'
 import { color } from '../../../theme/color'
 
 export default function DetailPageSection({ style, children }: { style?: CSSProperties; children: JSX.Element | JSX.Element[] | null }) {

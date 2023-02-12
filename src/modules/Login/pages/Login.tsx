@@ -1,15 +1,10 @@
 import { motion } from 'framer-motion'
 import { CSSProperties, useState } from 'react'
-import DesignBox from '../../design-system/DesignBox/DesignBox'
-import DesignButton from '../../design-system/DesignButton/DesignButton'
-import DesignInput from '../../design-system/DesignInput/DesignInput'
-import DesignPasswordInput from '../../design-system/DesignInput/DesignPasswordInput'
-import DesignHeader from '../../design-system/DesignText/DesignHeader'
-import DesignText from '../../design-system/DesignText/DesignText'
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { color } from '../../theme/color'
-import { ILLUSTRATIONS } from '../../theme/illustrations'
-import { resetAuth, selectAuth, setToken } from './stores/authSlice'
+import { DesignBox, DesignButton, DesignHeader, DesignInput, DesignPasswordInput, DesignText } from '../../../design-system'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import { color } from '../../../theme/color'
+import { ILLUSTRATIONS } from '../../../theme/illustrations'
+import { resetAuth, selectAuth, setToken } from '../stores/authSlice'
 
 const CREDENTIALS = {
   username: 'creativ',

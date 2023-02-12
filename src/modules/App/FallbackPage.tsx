@@ -1,6 +1,5 @@
 import { CSSProperties } from 'react'
-import DesignHeader from '../../design-system/DesignText/DesignHeader'
-import DesignText from '../../design-system/DesignText/DesignText'
+import { DesignHeader, DesignText } from '../../design-system'
 import { color } from '../../theme/color'
 import { ILLUSTRATIONS } from '../../theme/illustrations'
 

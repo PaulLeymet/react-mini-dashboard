@@ -3,7 +3,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
 import { motion } from 'framer-motion'
 import { CSSProperties, useState } from 'react'
-import DesignHeader from '../../../design-system/DesignText/DesignHeader'
+import { DesignHeader } from '../../../design-system'
 import { useIsMobile } from '../../../hooks/useIsMobile'
 import { color } from '../../../theme/color'
 

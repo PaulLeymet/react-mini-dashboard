@@ -1,6 +1,5 @@
 import { CSSProperties } from 'react'
-import DesignPageLink from '../../../design-system/DesignEditable/DesignPageLink'
-import DesignTabs from '../../../design-system/DesignTabs/DesignTabs'
+import { DesignPageLink, DesignTabs } from '../../../design-system'
 import { ElementsCategory } from '../stores/types/CategoryType'
 
 export default function LinksTabs({ tabs }: { tabs: { category: ElementsCategory; label: string; urls: string[] }[] }) {

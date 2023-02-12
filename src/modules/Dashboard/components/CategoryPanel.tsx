@@ -1,6 +1,5 @@
 import { CSSProperties } from 'react'
-import DesignBox from '../../../design-system/DesignBox/DesignBox'
-import DesignHeader from '../../../design-system/DesignText/DesignHeader'
+import { DesignBox, DesignHeader } from '../../../design-system'
 import { useAppSelector } from '../../../store/hooks'
 import { color } from '../../../theme/color'
 import { selectElements } from '../stores/elementSlice'
